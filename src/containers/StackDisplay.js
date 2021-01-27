@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
+
+// Chakra
+import { Heading } from '@chakra-ui/react';
 
 import Stack from '../data-structures/Stack';
 
@@ -29,12 +32,16 @@ function StackDisplay() {
   };
 
   return (
-    <div>
+    <Fragment>
+      <Heading style={{ paddingBottom: '20px', textAlign: 'center' }}>
+        Stack
+      </Heading>
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
+          paddingTop: '30px',
         }}
       >
         {stack.size >= 1 ? (
@@ -42,7 +49,7 @@ function StackDisplay() {
             {stack.size > 1 ? <div>{stack.items.last.value}</div> : null}
             {stackDisplayArray.map((item, index) => {
               if (index !== 0 && index !== stack.size - 1) {
-                return <div>{item}</div>;
+                return <div key={item}>{item}</div>;
               } else return null;
             })}
             <div>{stack.items.first.value}</div>
@@ -58,7 +65,7 @@ function StackDisplay() {
         </form>
         <button onClick={handleRemoveFromStack}>Remove from Stack</button>
       </div>
-    </div>
+    </Fragment>
   );
 }
 

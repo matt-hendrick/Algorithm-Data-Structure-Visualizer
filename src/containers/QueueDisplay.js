@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+
+// Chakra
+import { Heading } from '@chakra-ui/react';
 
 import Queue from '../data-structures/Queue';
 
@@ -29,16 +32,25 @@ function QueueDisplay() {
   };
 
   return (
-    <div>
+    <Fragment>
+      <Heading style={{ paddingBottom: '20px', textAlign: 'center' }}>
+        Queue
+      </Heading>
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
+          paddingTop: '30px',
         }}
       >
         {queue.size >= 1 ? (
-          <div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
             {queue.size > 1 ? <div>{queue.items.last.value}</div> : null}
             {queueDisplayArray.map((item, index) => {
               if (index !== 0 && index !== queue.size - 1) {
@@ -58,7 +70,7 @@ function QueueDisplay() {
         </form>
         <button onClick={handleRemoveFromQueue}>Remove from Queue</button>
       </div>
-    </div>
+    </Fragment>
   );
 }
 
