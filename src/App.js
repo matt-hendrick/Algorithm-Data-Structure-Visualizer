@@ -1,10 +1,18 @@
 import React from 'react';
-import BalancingTree from './containers/BalancingTree';
+import './App.css';
+
+import StackDisplay from './containers/StackDisplay';
+import QueueDisplay from './containers/QueueDisplay';
+// import BalancingTree from './containers/BalancingTree';
 
 function App() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 100 }}>
-      <BalancingTree />
+    <div className="AppContainer">
+      <StackDisplay />
+      <QueueDisplay />
+      {/* <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <BalancingTree />
+      </div> */}
     </div>
   );
 }

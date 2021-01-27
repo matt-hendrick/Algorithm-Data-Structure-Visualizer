@@ -1,27 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import AVLTree from '../data-structures/AVLTree';
 
-function getRandomInt(min = 1, max = 10) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+import CircularNode from '../components/CircularNode';
+import Input from '../components/Input';
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function BalancingTree() {
-  let arrLength = getRandomInt(2, 13);
+  const [max, setMax] = useState(10);
+
+  const handleMaxChange = (event) => {
+    const updatedMax = event.target.value;
+    setMax(updatedMax);
+  };
+
+  console.log(max);
   let arr = [];
-  for (let i = 0; i < arrLength; i++) arr.push(getRandomInt(25));
+  for (let i = 0; i < max; i++) arr.push(getRandomInt(1000));
   let avlTree = new AVLTree();
   arr.forEach((item) => avlTree.add(item));
-  console.log(avlTree);
-  return avlTree.toArray().map((item, index) => {
-    if (item === null) return null;
-    if (index === avlTree.size) {
-      return <div key={item}>{item}</div>;
-    } else {
-      return <div key={item}>{item},</div>;
-    }
-  });
+  console.log(avlTree, arr);
+  return (
+    <div>
+      <Input
+        value={max}
+        onChange={handleMaxChange}
+        placeholder="Set a maximum number of tree nodes"
+      />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {avlTree.toArray().map((item, index) => {
+          if (item === null) return null;
+          else if (index === 0) {
+            return (
+              <div style={{ justifyContent: 'center' }}>
+                <CircularNode key={item}>{item}</CircularNode>
+              </div>
+            );
+          } else if (index > 0 && index < 3)
+            return (
+              <div style={{ justifyContent: 'space-around' }}>
+                <CircularNode key={item}>{item}</CircularNode>
+              </div>
+            );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default BalancingTree;
