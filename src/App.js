@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+// Bootstrap
+import Container from 'react-bootstrap/Container';
+
 import NavBar from './components/Navbar/Navbar';
 import StackDisplay from './containers/StackDisplay';
 import QueueDisplay from './containers/QueueDisplay';
@@ -10,18 +13,20 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <div
+      <Container style={{ marginTop: '50px' }}>
+        {/* <div
         style={{
           display: 'flex',
           justifyContent: 'center',
           marginTop: '100px',
         }}
-      >
+      > */}
         <Switch>
           <Route exact path="/stack" component={StackDisplay} />
           <Route exact path="/queue" component={QueueDisplay} />
         </Switch>
-      </div>
+        {/* </div> */}
+      </Container>
     </Router>
   );
 }

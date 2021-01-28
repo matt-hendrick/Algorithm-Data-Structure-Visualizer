@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+
+// Bootstrap
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import Stack from '../data-structures/Stack';
 
-import Input from '../components/Input';
+import Input from '../components/Input/Input';
+import RectangularNode from '../components/StackNode/StackNode';
 
 let stack = new Stack();
 
 function StackDisplay() {
   const [userValue, setUserValue] = useState('');
-  const [stackDisplayArray, setStackDisplayArray] = useState([]);
+  const [middleStackDisplayArray, setMiddleStackDisplayArray] = useState([]);
 
   const handleUserValueChange = (event) => {
     const updatedUserValue = event.target.value;
@@ -17,48 +23,71 @@ function StackDisplay() {
 
   const handleAddToStack = (event) => {
     event.preventDefault();
-    stack.add(userValue);
-    setStackDisplayArray([userValue, ...stackDisplayArray]);
+    if (userValue) {
+      stack.add(userValue);
+      setMiddleStackDisplayArray([userValue, ...middleStackDisplayArray]);
+    }
   };
 
   const handleRemoveFromStack = () => {
-    stack.remove();
-    let tempStackArr = [...stackDisplayArray];
-    tempStackArr.shift();
-    setStackDisplayArray(tempStackArr);
+    if (stack.size > 0) {
+      stack.remove();
+      let tempStackArr = [...middleStackDisplayArray];
+      tempStackArr.shift();
+      setMiddleStackDisplayArray(tempStackArr);
+    }
   };
 
-  return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          textAlign: 'center',
-        }}
-      >
-        {stack.size >= 1 ? (
-          <div>
-            {stack.size > 1 ? <div>{stack.items.last.value}</div> : null}
-            {stackDisplayArray.map((item, index) => {
-              if (index !== 0 && index !== stack.size - 1) {
-                return <div key={item}>{item}</div>;
-              } else return null;
-            })}
-            <div>{stack.items.first.value}</div>
-          </div>
+  let stackDisplay = <RectangularNode>Empty Stack</RectangularNode>;
+
+  if (stack.size >= 1)
+    stackDisplay = (
+      <Fragment>
+        {stack.size > 1 ? (
+          <RectangularNode>{stack.items.last.value}</RectangularNode>
         ) : null}
-        <form onSubmit={handleAddToStack}>
-          <Input
-            value={userValue}
-            onChange={handleUserValueChange}
-            placeholder="Value"
-          />
-          <button>Add to Stack</button>
-        </form>
-        <button onClick={handleRemoveFromStack}>Remove from Stack</button>
-      </div>
-    </div>
+        {middleStackDisplayArray.map((item, index) => {
+          if (index !== 0 && index !== stack.size - 1) {
+            return <RectangularNode key={item}>{item}</RectangularNode>;
+          } else return null;
+        })}
+        <RectangularNode>{stack.items.first.value}</RectangularNode>
+      </Fragment>
+    );
+
+  return (
+    <Container>
+      <Row style={{ marginBottom: '10vh' }}>
+        <Col>
+          <form onSubmit={handleAddToStack} style={{ display: 'flex' }}>
+            <Input
+              value={userValue}
+              onChange={handleUserValueChange}
+              placeholder="Value"
+            />
+            <button>Add to Stack</button>
+          </form>
+        </Col>
+        <Col>
+          <button onClick={handleRemoveFromStack}>Remove from Stack</button>
+        </Col>
+      </Row>
+      <Row
+        style={{ display: 'flex', height: '65vh', alignContent: 'flex-end' }}
+      >
+        <Col />
+        <Col
+          style={
+            {
+              // alignSelf: 'flex-end'
+            }
+          }
+        >
+          {stackDisplay}
+        </Col>
+        <Col />
+      </Row>
+    </Container>
   );
 }
 
