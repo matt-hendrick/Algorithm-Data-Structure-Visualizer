@@ -1,7 +1,7 @@
 import React from 'react';
 
 function CircularNode(props) {
-  return <div className="CircularNode">{props.children}</div>;
+  return <div>{props.children}</div>;
 }
 
 export default CircularNode;
