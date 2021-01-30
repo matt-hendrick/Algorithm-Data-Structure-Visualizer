@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Stack from '../data-structures/Stack';
+import Stack from '../dataStructures/Stack';
 
 import Input from '../components/Input/Input';
 import RectangularNode from '../components/StackNode/StackNode';
@@ -48,7 +48,7 @@ function StackDisplay() {
         ) : null}
         {middleStackDisplayArray.map((item, index) => {
           if (index !== 0 && index !== stack.size - 1) {
-            return <RectangularNode key={item}>{item}</RectangularNode>;
+            return <RectangularNode key={item + index}>{item}</RectangularNode>;
           } else return null;
         })}
         <RectangularNode>{stack.items.first.value}</RectangularNode>
@@ -73,18 +73,14 @@ function StackDisplay() {
         </Col>
       </Row>
       <Row
-        style={{ display: 'flex', height: '65vh', alignContent: 'flex-end' }}
+        style={{
+          display: 'flex',
+          height: '65vh',
+          alignContent: 'flex-end',
+        }}
       >
         <Col />
-        <Col
-          style={
-            {
-              // alignSelf: 'flex-end'
-            }
-          }
-        >
-          {stackDisplay}
-        </Col>
+        <Col>{stackDisplay}</Col>
         <Col />
       </Row>
     </Container>

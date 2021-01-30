@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Queue from '../data-structures/Queue';
+import Queue from '../dataStructures/Queue';
 
 import Input from '../components/Input/Input';
 import QueueNode from '../components/QueueNode/QueueNode';
@@ -46,7 +46,7 @@ function QueueDisplay() {
         style={{
           display: 'flex',
           justifyContent: 'space-around',
-          overflow: 'auto',
+          flexWrap: 'wrap-reverse',
         }}
       >
         {queue.size > 1 ? (
@@ -54,7 +54,7 @@ function QueueDisplay() {
         ) : null}
         {queueDisplayArray.map((item, index) => {
           if (index !== 0 && index !== queue.size - 1) {
-            return <QueueNode key={item}>{item}</QueueNode>;
+            return <QueueNode key={item + index}>{item}</QueueNode>;
           } else return null;
         })}
         <QueueNode>{queue.items.first.value}</QueueNode>
