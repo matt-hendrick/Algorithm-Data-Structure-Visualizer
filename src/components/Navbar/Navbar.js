@@ -13,6 +13,7 @@ function MyNavbar() {
         <Nav className="mr-auto">
           <Nav.Link href="/stack">Stacks</Nav.Link>
           <Nav.Link href="/queue">Queues</Nav.Link>
+          <Nav.Link href="/sorting">Sorting</Nav.Link>
           <Nav.Link href="/linkedlist">Linked Lists</Nav.Link>
           <Nav.Link href="/binarysearchtree">Binary Search Trees</Nav.Link>
           <Nav.Link href="/graph">Graphs</Nav.Link>
