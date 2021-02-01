@@ -8,7 +8,6 @@ import NavBar from './components/Navbar/Navbar';
 import StackDisplay from './containers/StackDisplay';
 import QueueDisplay from './containers/QueueDisplay';
 import Sorting from './containers/Sorting';
-import DelayTesting from './containers/DelayTesting';
 // import BalancingTree from './containers/BalancingTree';
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
           <Route exact path="/stack" component={StackDisplay} />
           <Route exact path="/queue" component={QueueDisplay} />
           <Route exact path="/sorting" component={Sorting} />
-          <Route exact path="/delay" component={DelayTesting} />
         </Switch>
         {/* </div> */}
       </Container>
