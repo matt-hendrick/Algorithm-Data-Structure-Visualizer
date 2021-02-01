@@ -21,30 +21,16 @@ function Sorting() {
 
   useInterval(() => {
     if (sortingSteps && currentStep < sortingSteps.length && isRunning) {
-      // step through bubbleSort on interval
-      if (sortingType === 'Bubble Sort') {
-        let tempArr = [...arr];
-        if (sortingSteps[currentStep] !== null) {
-          swap(
-            tempArr,
-            sortingSteps[currentStep][0],
-            sortingSteps[currentStep][1]
-          );
-          setArr(tempArr);
-        }
-        setCurrentStep(currentStep + 1);
-      } else if (sortingType === 'Insertion Sort') {
-        let tempArr = [...arr];
-        if (sortingSteps[currentStep] !== null) {
-          swap(
-            tempArr,
-            sortingSteps[currentStep][0],
-            sortingSteps[currentStep][1]
-          );
-          setArr(tempArr);
-        }
-        setCurrentStep(currentStep + 1);
+      let tempArr = [...arr];
+      if (sortingSteps[currentStep] !== null) {
+        swap(
+          tempArr,
+          sortingSteps[currentStep][0],
+          sortingSteps[currentStep][1]
+        );
+        setArr(tempArr);
       }
+      setCurrentStep(currentStep + 1);
     }
   }, sortingSpeed);
 
@@ -69,9 +55,9 @@ function Sorting() {
 
       for (let current = 0; current < tempArr.length - i; current++) {
         if (tempArr[current][0] > tempArr[current + 1][0]) {
+          tempSortingStepsArray.push([current, current + 1]);
           swap(tempArr, current, current + 1);
           swapped = true;
-          tempSortingStepsArray.push([current, current + 1]);
         }
         // create null entries in steps array to indicate that items were not swapped
         else tempSortingStepsArray.push(null);
@@ -107,6 +93,30 @@ function Sorting() {
     setSortingSpeed(500);
   };
 
+  const handleSelectionSort = () => {
+    let tempArr = [...arr];
+
+    for (let left = 0; left < tempArr.length; left++) {
+      let selection = left;
+
+      for (let right = left + 1; right < tempArr.length; right++) {
+        if (tempArr[selection][0] > tempArr[right][0]) {
+          selection = right;
+        } else tempSortingStepsArray.push(null);
+      }
+
+      if (selection !== left) {
+        tempSortingStepsArray.push([selection, left]);
+        swap(tempArr, selection, left);
+      }
+    }
+    setSortingSteps(tempSortingStepsArray);
+    setCurrentStep(0);
+    setIsRunning(true);
+    setSortingType('Selection Sort');
+    setSortingSpeed(500);
+  };
+
   const handleShuffle = () => {
     let tempArr = [...arr];
     shuffle(tempArr);
@@ -135,6 +145,7 @@ function Sorting() {
         <div>Select Placeholder</div>
         <button onClick={handleBubbleSort}>Bubble Sort!</button>
         <button onClick={handleInsertionSort}>Insertion Sort!</button>
+        <button onClick={handleSelectionSort}>Selection Sort!</button>
         <button onClick={handleShuffle}>Shuffle!</button>
         <button onClick={generateArray}>Generate a New Array!</button>
         {currentStep > 0 ? (
