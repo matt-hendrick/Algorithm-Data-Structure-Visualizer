@@ -5,10 +5,10 @@ import {
   shuffle,
   swap,
 } from '../utility/utilityFunctions';
-import FlipMove from 'react-flip-move';
 
 function Sorting() {
   const [arr, setArr] = useState();
+  const [originalArr, setOriginalArr] = useState();
   const [sortingType, setSortingType] = useState(null);
   const [sortingSteps, setSortingSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
@@ -36,14 +36,12 @@ function Sorting() {
           setArr(tempArr);
         }
         setCurrentStep(currentStep + 1);
+      } else {
+        if (sortingSteps[currentStep] !== null) {
+          setArr(sortingSteps[currentStep]);
+        }
+        setCurrentStep(currentStep + 1);
       }
-      // else {
-      //   console.log(sortingSteps, arr);
-      //   if (sortingSteps[currentStep] !== null) {
-      //     setArr(sortingSteps[currentStep]);
-      //   }
-      //   setCurrentStep(currentStep + 1);
-      // }
     }
   }, sortingSpeed);
 
@@ -53,6 +51,7 @@ function Sorting() {
       tempArr.push([getRandomInt(1, 100), i]);
     }
     setArr(tempArr);
+    setOriginalArr();
     setIsRunning(false);
     setCurrentStep(0);
     setSortingType(null);
@@ -79,6 +78,10 @@ function Sorting() {
       if (!swapped) break;
     }
     setSortingSteps(tempSortingStepsArray);
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
     setCurrentStep(0);
     setIsRunning(true);
     setSortingType('Bubble Sort');
@@ -100,6 +103,10 @@ function Sorting() {
       }
     }
     setSortingSteps(tempSortingStepsArray);
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
     setCurrentStep(0);
     setIsRunning(true);
     setSortingType('Insertion Sort');
@@ -124,14 +131,78 @@ function Sorting() {
       }
     }
     setSortingSteps(tempSortingStepsArray);
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
     setCurrentStep(0);
     setIsRunning(true);
     setSortingType('Selection Sort');
     setSortingSpeed(500);
   };
 
-  const handleShuffle = () => {
+  const handleMergeSort = () => {
     let tempArr = [...arr];
+    let len = tempArr.length;
+
+    let buffer = [];
+
+    for (let size = 1; size < len; size *= 2) {
+      for (let leftStart = 0; leftStart < len; leftStart += 2 * size) {
+        let left = leftStart;
+
+        let right = Math.min(left + size, len);
+
+        let leftLimit = right;
+
+        let rightLimit = Math.min(right + size, len);
+
+        let i = left;
+
+        while (left < leftLimit && right < rightLimit) {
+          if (tempArr[left][0] <= tempArr[right][0]) {
+            buffer[i] = tempArr[left];
+            tempSortingStepsArray.push([...buffer]);
+            left++;
+            i++;
+          } else {
+            buffer[i] = tempArr[right];
+            tempSortingStepsArray.push([...buffer]);
+            right++;
+            i++;
+          }
+        }
+
+        while (left < leftLimit) {
+          buffer[i] = tempArr[left];
+          tempSortingStepsArray.push([...buffer]);
+          left++;
+          i++;
+        }
+
+        while (right < rightLimit) {
+          buffer[i] = tempArr[right];
+          tempSortingStepsArray.push([...buffer]);
+          right++;
+          i++;
+        }
+      }
+      [tempArr, buffer] = [buffer, tempArr];
+    }
+    setSortingSteps(tempSortingStepsArray);
+    setOriginalArr(arr);
+    setSortingType('Merge Sort');
+    setCurrentStep(0);
+    setIsRunning(true);
+    setSortingSpeed(500);
+  };
+
+  const handleShuffle = () => {
+    let tempArr = originalArr ? [...originalArr] : [...arr];
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
     shuffle(tempArr);
     setArr(tempArr);
     setIsRunning(false);
@@ -161,7 +232,7 @@ function Sorting() {
         <button onClick={handleBubbleSort}>Bubble Sort!</button>
         <button onClick={handleInsertionSort}>Insertion Sort!</button>
         <button onClick={handleSelectionSort}>Selection Sort!</button>
-        {/* <button onClick={handleMergeSort}>Merge Sort!</button> */}
+        <button onClick={handleMergeSort}>Merge Sort!</button>
         <button onClick={handleShuffle}>Shuffle!</button>
         <button onClick={generateArray}>Generate a New Array!</button>
         {currentStep > 0 ? (
@@ -192,15 +263,27 @@ function Sorting() {
         ) : null}
       </div>
 
-      {arr ? (
-        <FlipMove>
-          {arr.map((item) => (
-            <ItemCard key={item[1]} size={item[0]}>
-              {item[0]}
-            </ItemCard>
-          ))}
-        </FlipMove>
-      ) : null}
+      <div style={{ display: 'flex' }}>
+        {originalArr ? (
+          <div>
+            {originalArr.map((item) => (
+              <ItemCard key={item[1]} size={item[0]}>
+                {item[0]}
+              </ItemCard>
+            ))}{' '}
+          </div>
+        ) : null}
+
+        {arr ? (
+          <div>
+            {arr.map((item) => (
+              <ItemCard key={item[1]} size={item[0]}>
+                {item[0]}
+              </ItemCard>
+            ))}{' '}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
