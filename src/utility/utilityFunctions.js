@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function useInterval(callback, delay) {
+export function useInterval(callback, delay) {
   const savedCallback = useRef();
 
   // Remember the latest callback.
@@ -20,4 +20,18 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-export default useInterval;
+export function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+export function swap(array, from, to) {
+  [array[from], array[to]] = [array[to], array[from]];
+}
+
+export function shuffle(array) {
+  for (let index = 0; index < array.length; index++) {
+    const newIndex = Math.floor(Math.random() * array.length);
+    swap(array, index, newIndex);
+  }
+  return array;
+}
