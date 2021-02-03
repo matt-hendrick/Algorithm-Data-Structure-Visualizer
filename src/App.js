@@ -23,6 +23,7 @@ function App() {
         }}
       > */}
         <Switch>
+          <Route exact path="/" component={Sorting} />
           <Route exact path="/stack" component={StackDisplay} />
           <Route exact path="/queue" component={QueueDisplay} />
           <Route exact path="/sorting" component={Sorting} />

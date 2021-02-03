@@ -24,7 +24,8 @@ function Sorting() {
       if (
         sortingType === 'Bubble Sort' ||
         sortingType === 'Insertion Sort' ||
-        sortingType === 'Selection Sort'
+        sortingType === 'Selection Sort' ||
+        sortingType === 'Quick Sort'
       ) {
         let tempArr = [...arr];
         if (sortingSteps[currentStep] !== null) {
@@ -61,7 +62,7 @@ function Sorting() {
   let tempSortingStepsArray = [];
 
   const handleBubbleSort = () => {
-    let tempArr = [...arr];
+    let tempArr = originalArr ? [...originalArr] : [...arr];
     for (let i = 1; i < tempArr.length; i++) {
       let swapped = false;
 
@@ -89,7 +90,7 @@ function Sorting() {
   };
 
   const handleInsertionSort = () => {
-    let tempArr = [...arr];
+    let tempArr = originalArr ? [...originalArr] : [...arr];
 
     for (let right = 1; right < tempArr.length; right++) {
       for (
@@ -114,7 +115,7 @@ function Sorting() {
   };
 
   const handleSelectionSort = () => {
-    let tempArr = [...arr];
+    let tempArr = originalArr ? [...originalArr] : [...arr];
     tempSortingStepsArray = [];
 
     for (let left = 0; left < tempArr.length; left++) {
@@ -197,6 +198,47 @@ function Sorting() {
     setSortingSpeed(500);
   };
 
+  function quickSortPartition(array, low, high) {
+    const pivotIndex = low;
+    let pivotFinalIndex = pivotIndex;
+
+    for (let current = pivotIndex + 1; current <= high; current++) {
+      if (array[current][0] < array[pivotIndex][0]) {
+        pivotFinalIndex += 1;
+        tempSortingStepsArray.push([current, pivotFinalIndex]);
+        swap(array, current, pivotFinalIndex);
+      }
+    }
+
+    tempSortingStepsArray.push([pivotIndex, pivotFinalIndex]);
+    swap(array, pivotIndex, pivotFinalIndex);
+
+    return pivotFinalIndex;
+  }
+
+  function quickSort(array, low = 0, high = array.length - 1) {
+    if (low < high) {
+      const partitionIndex = quickSortPartition(array, low, high);
+      quickSort(array, low, partitionIndex - 1);
+      quickSort(array, partitionIndex + 1, high);
+    }
+    setSortingSteps(tempSortingStepsArray);
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
+    setSortingType('Quick Sort');
+    setCurrentStep(0);
+    setIsRunning(true);
+    setSortingSpeed(500);
+    return array;
+  }
+
+  const handleQuickSort = () => {
+    let tempArr = originalArr ? [...originalArr] : [...arr];
+    return quickSort(tempArr);
+  };
+
   const handleShuffle = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     if (originalArr) {
@@ -233,12 +275,16 @@ function Sorting() {
         <button onClick={handleInsertionSort}>Insertion Sort!</button>
         <button onClick={handleSelectionSort}>Selection Sort!</button>
         <button onClick={handleMergeSort}>Merge Sort!</button>
+        <button onClick={handleQuickSort}>Quick Sort!</button>
         <button onClick={handleShuffle}>Shuffle!</button>
         <button onClick={generateArray}>Generate a New Array!</button>
         {currentStep > 0 ? (
           <div>
             <button onClick={togglePause}>
               {isRunning ? 'Pause' : 'Continue'}
+            </button>
+            <button onClick={() => handleSortingSpeedChange(2000)}>
+              Slowest Sorting Speed
             </button>
             <button onClick={() => handleSortingSpeedChange(1000)}>
               Slow Sorting Speed
@@ -248,6 +294,9 @@ function Sorting() {
             </button>
             <button onClick={() => handleSortingSpeedChange(100)}>
               Fast Sorting Speed
+            </button>
+            <button onClick={() => handleSortingSpeedChange(10)}>
+              Fastest Sorting Speed
             </button>
           </div>
         ) : null}
@@ -270,17 +319,22 @@ function Sorting() {
               <ItemCard key={item[1]} size={item[0]}>
                 {item[0]}
               </ItemCard>
-            ))}{' '}
+            ))}
           </div>
         ) : null}
 
         {arr ? (
-          <div>
-            {arr.map((item) => (
-              <ItemCard key={item[1]} size={item[0]}>
-                {item[0]}
-              </ItemCard>
-            ))}{' '}
+          <div style={{ display: 'flex' }}>
+            <div>
+              {arr.map((item) => (
+                <ItemCard key={item[1]} size={item[0]}>
+                  {item[0]}
+                </ItemCard>
+              ))}
+            </div>
+            {sortingSteps[currentStep] === null && isRunning ? (
+              <div>No Change Made</div>
+            ) : null}
           </div>
         ) : null}
       </div>
