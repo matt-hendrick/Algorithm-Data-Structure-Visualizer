@@ -30,7 +30,8 @@ function Sorting() {
         sortingType === 'Bubble Sort' ||
         sortingType === 'Insertion Sort' ||
         sortingType === 'Selection Sort' ||
-        sortingType === 'Quick Sort'
+        sortingType === 'Quick Sort' ||
+        sortingType === 'Heap Sort'
       ) {
         let tempArr = [...arr];
         if (sortingSteps[currentStep] !== null) {
@@ -159,7 +160,7 @@ function Sorting() {
   };
 
   const handleMergeSort = () => {
-    let tempArr = [...arr];
+    let tempArr = originalArr ? [...originalArr] : [...arr];
     let len = tempArr.length;
 
     let buffer = [];
@@ -214,7 +215,7 @@ function Sorting() {
     setSortingSpeed(500);
   };
 
-  function quickSortPartition(array, low, high) {
+  const quickSortPartition = (array, low, high) => {
     const pivotIndex = low;
     let pivotFinalIndex = pivotIndex;
 
@@ -230,9 +231,9 @@ function Sorting() {
     swap(array, pivotIndex, pivotFinalIndex);
 
     return pivotFinalIndex;
-  }
+  };
 
-  function quickSort(array, low = 0, high = array.length - 1) {
+  const quickSort = (array, low = 0, high = array.length - 1) => {
     if (low < high) {
       const partitionIndex = quickSortPartition(array, low, high);
       quickSort(array, low, partitionIndex - 1);
@@ -248,11 +249,54 @@ function Sorting() {
     setIsRunning(true);
     setSortingSpeed(500);
     return array;
-  }
+  };
 
   const handleQuickSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     return quickSort(tempArr);
+  };
+
+  const max_heapify = (tempArr, i, tempArrLength) => {
+    let left = 2 * i;
+    let right = 2 * i + 1;
+    let maximum;
+    if (right < tempArrLength) {
+      if (tempArr[left][0] >= tempArr[right][0]) {
+        maximum = left;
+      } else {
+        maximum = right;
+      }
+    } else if (left < tempArrLength) {
+      maximum = left;
+    } else return;
+    if (tempArr[i][0] < tempArr[maximum][0]) {
+      tempSortingStepsArray.push([i, maximum]);
+      swap(tempArr, i, maximum);
+      max_heapify(tempArr, maximum, tempArrLength);
+    }
+    return;
+  };
+
+  const handleHeapSort = () => {
+    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArrLength = tempArr.length;
+    for (let i = Math.floor(tempArrLength / 2) - 1; i >= 0; i--) {
+      max_heapify(tempArr, i, tempArrLength);
+    }
+    for (let i = tempArrLength - 1; i >= 0; i--) {
+      tempSortingStepsArray.push([0, i]);
+      swap(tempArr, 0, i);
+      max_heapify(tempArr, 0, i);
+    }
+    setSortingSteps(tempSortingStepsArray);
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
+    setCurrentStep(0);
+    setIsRunning(true);
+    setSortingType('Heap Sort');
+    setSortingSpeed(500);
   };
 
   const handleBogoSort = () => {
@@ -303,6 +347,7 @@ function Sorting() {
         <button onClick={handleSelectionSort}>Selection Sort!</button>
         <button onClick={handleMergeSort}>Merge Sort!</button>
         <button onClick={handleQuickSort}>Quick Sort!</button>
+        <button onClick={handleHeapSort}>Heap Sort!</button>
         <button onClick={handleBogoSort}>Bogo Sort!</button>
         <button onClick={handleShuffle}>Shuffle!</button>
         <button onClick={generateArray}>Generate a New Array!</button>
@@ -346,7 +391,7 @@ function Sorting() {
         {originalArr ? (
           <div>
             {originalArr.map((item) => (
-              <ItemCard key={item[1]} size={item[0]}>
+              <ItemCard key={item[1]} size={item[0] * 2}>
                 {item[0]}
               </ItemCard>
             ))}
@@ -357,7 +402,7 @@ function Sorting() {
           <div style={{ display: 'flex' }}>
             <div>
               {arr.map((item) => (
-                <ItemCard key={item[1]} size={item[0]}>
+                <ItemCard key={item[1]} size={item[0] * 2}>
                   {item[0]}
                 </ItemCard>
               ))}
