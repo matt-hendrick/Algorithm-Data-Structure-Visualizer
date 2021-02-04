@@ -13,14 +13,19 @@ function Sorting() {
   const [sortingSteps, setSortingSteps] = useState([]);
   const [currentStep, setCurrentStep] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [sortingSpeed, setSortingSpeed] = useState(500);
+  const [sortingSpeed, setSortingSpeed] = useState(10000);
 
   useEffect(() => {
     generateArray();
   }, []);
 
   useInterval(() => {
-    if (sortingSteps && currentStep < sortingSteps.length && isRunning) {
+    if (
+      sortingSteps &&
+      currentStep < sortingSteps.length &&
+      isRunning &&
+      sortingType !== 'Bogo Sort'
+    ) {
       if (
         sortingType === 'Bubble Sort' ||
         sortingType === 'Insertion Sort' ||
@@ -37,10 +42,21 @@ function Sorting() {
           setArr(tempArr);
         }
         setCurrentStep(currentStep + 1);
-      } else {
+      } else if (sortingType === 'Merge Sort') {
         if (sortingSteps[currentStep] !== null) {
           setArr(sortingSteps[currentStep]);
         }
+        setCurrentStep(currentStep + 1);
+      }
+    }
+    // Bogo sort
+    else if (sortingType === 'Bogo Sort' && isRunning) {
+      let tempArr = originalArr ? [...originalArr] : [...arr];
+      let sortedArr = [...tempArr];
+      sortedArr.sort((a, b) => a[0] - b[0]);
+      if (tempArr !== sortedArr) {
+        shuffle(tempArr);
+        setArr(tempArr);
         setCurrentStep(currentStep + 1);
       }
     }
@@ -56,7 +72,7 @@ function Sorting() {
     setIsRunning(false);
     setCurrentStep(0);
     setSortingType(null);
-    setSortingSpeed(500);
+    setSortingSpeed(10000);
   };
 
   let tempSortingStepsArray = [];
@@ -239,6 +255,17 @@ function Sorting() {
     return quickSort(tempArr);
   };
 
+  const handleBogoSort = () => {
+    if (originalArr) {
+      setArr(originalArr);
+      setOriginalArr();
+    }
+    setCurrentStep(0);
+    setIsRunning(true);
+    setSortingType('Bogo Sort');
+    setSortingSpeed(500);
+  };
+
   const handleShuffle = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     if (originalArr) {
@@ -276,6 +303,7 @@ function Sorting() {
         <button onClick={handleSelectionSort}>Selection Sort!</button>
         <button onClick={handleMergeSort}>Merge Sort!</button>
         <button onClick={handleQuickSort}>Quick Sort!</button>
+        <button onClick={handleBogoSort}>Bogo Sort!</button>
         <button onClick={handleShuffle}>Shuffle!</button>
         <button onClick={generateArray}>Generate a New Array!</button>
         {currentStep > 0 ? (
@@ -304,8 +332,10 @@ function Sorting() {
         {sortingType ? (
           <div>
             <h3>
-              Number of Steps Required to Sort this Array with {sortingType}:{' '}
-              {sortingSteps.length}{' '}
+              Number of Steps Required to Sort this Array with {sortingType}
+              {sortingType !== 'Bogo Sort'
+                ? `: ${sortingSteps.length}`
+                : " is unknown as Bogo Sort's average run time is O(n!)"}
             </h3>
             <h3>Current Step: {currentStep}</h3>
           </div>
