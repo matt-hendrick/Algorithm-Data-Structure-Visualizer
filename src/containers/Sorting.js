@@ -8,6 +8,8 @@ import {
 
 function Sorting() {
   const [arr, setArr] = useState();
+  // originalArr is set to arr when merge sort is run
+  // originalArr is displayed alongside the new array built by the merge sort function
   const [originalArr, setOriginalArr] = useState();
   const [sortingType, setSortingType] = useState(null);
   const [sortingSteps, setSortingSteps] = useState([]);
@@ -34,7 +36,10 @@ function Sorting() {
         sortingType === 'Heap Sort'
       ) {
         let tempArr = [...arr];
-        if (sortingSteps[currentStep] !== null) {
+        if (
+          sortingSteps[currentStep] !== null &&
+          sortingSteps[currentStep][0] < 25
+        ) {
           swap(
             tempArr,
             sortingSteps[currentStep][0],
@@ -45,6 +50,7 @@ function Sorting() {
         setCurrentStep(currentStep + 1);
       } else if (sortingType === 'Merge Sort') {
         if (sortingSteps[currentStep] !== null) {
+          console.log(sortingSteps[currentStep]);
           setArr(sortingSteps[currentStep]);
         }
         setCurrentStep(currentStep + 1);
@@ -80,6 +86,7 @@ function Sorting() {
 
   const handleBubbleSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
+
     for (let i = 1; i < tempArr.length; i++) {
       let swapped = false;
 
@@ -89,7 +96,7 @@ function Sorting() {
           swap(tempArr, current, current + 1);
           swapped = true;
         }
-        // create null entries in steps array to indicate that items were not swapped
+        // create null entries in steps array to indicate that items were compared but not swapped
         else tempSortingStepsArray.push(null);
       }
 
@@ -133,19 +140,23 @@ function Sorting() {
 
   const handleSelectionSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
-    tempSortingStepsArray = [];
 
     for (let left = 0; left < tempArr.length; left++) {
       let selection = left;
 
+      // iterates through every item to the right of the left pointer
       for (let right = left + 1; right < tempArr.length; right++) {
+        // if right is greater than the current selection, selection is set to right
         if (tempArr[selection][0] > tempArr[right][0]) {
           selection = right;
         }
+        // if selection is is not greater than right, adds a null step to the temp array
+        else tempSortingStepsArray.push(null);
+        // if selection has been changed and the left pointer is greater than the selection, they are swapped
         if (selection !== left && tempArr[selection][0] < tempArr[left][0]) {
           tempSortingStepsArray.push([selection, left]);
           swap(tempArr, selection, left);
-        } else tempSortingStepsArray.push(null);
+        }
       }
     }
     setSortingSteps(tempSortingStepsArray);
@@ -163,6 +174,7 @@ function Sorting() {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     let len = tempArr.length;
 
+    // creates a second array necessary for merge sort
     let buffer = [];
 
     for (let size = 1; size < len; size *= 2) {
@@ -208,37 +220,38 @@ function Sorting() {
       [tempArr, buffer] = [buffer, tempArr];
     }
     setSortingSteps(tempSortingStepsArray);
-    setOriginalArr(arr);
+    if (arr.length === 25) {
+      setOriginalArr(arr);
+    }
     setSortingType('Merge Sort');
     setCurrentStep(0);
     setIsRunning(true);
     setSortingSpeed(500);
   };
 
-  const quickSortPartition = (array, low, high) => {
-    const pivotIndex = low;
-    let pivotFinalIndex = pivotIndex;
+  const getQuickSortPivot = (array, start, end) => {
+    let pivot = array[start],
+      pointer = start;
 
-    for (let current = pivotIndex + 1; current <= high; current++) {
-      if (array[current][0] < array[pivotIndex][0]) {
-        pivotFinalIndex += 1;
-        tempSortingStepsArray.push([current, pivotFinalIndex]);
-        swap(array, current, pivotFinalIndex);
+    for (let i = start; i < array.length; i++) {
+      if (array[i][0] < pivot[0]) {
+        pointer++;
+        tempSortingStepsArray.push([pointer, i]);
+        swap(array, pointer, i);
       }
     }
+    tempSortingStepsArray.push([start, pointer]);
+    swap(array, start, pointer);
 
-    tempSortingStepsArray.push([pivotIndex, pivotFinalIndex]);
-    swap(array, pivotIndex, pivotFinalIndex);
-
-    return pivotFinalIndex;
+    return pointer;
   };
 
-  const quickSort = (array, low = 0, high = array.length - 1) => {
-    if (low < high) {
-      const partitionIndex = quickSortPartition(array, low, high);
-      quickSort(array, low, partitionIndex - 1);
-      quickSort(array, partitionIndex + 1, high);
-    }
+  const quickSort = (array, start = 0, end = array.length - 1) => {
+    let pivotIndex = getQuickSortPivot(array, start, end);
+
+    if (start >= end) return array;
+    quickSort(array, start, pivotIndex);
+    quickSort(array, pivotIndex + 1, end);
     setSortingSteps(tempSortingStepsArray);
     if (originalArr) {
       setArr(originalArr);
