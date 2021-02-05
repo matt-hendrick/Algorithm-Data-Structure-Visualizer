@@ -377,7 +377,9 @@ function Sorting() {
 
   return (
     <div>
-      <div>
+      <div
+        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+      >
         <MyButton onClick={handleBubbleSort}>Bubble Sort!</MyButton>
         <MyButton onClick={handleInsertionSort}>Insertion Sort!</MyButton>
         <MyButton onClick={handleSelectionSort}>Selection Sort!</MyButton>
@@ -422,7 +424,13 @@ function Sorting() {
         ) : null}
       </div>
       {currentStep > 0 ? (
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
           <MyButton onClick={togglePause}>
             {isRunning ? 'Pause' : 'Continue'}
           </MyButton>
