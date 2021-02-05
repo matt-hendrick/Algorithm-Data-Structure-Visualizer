@@ -17,6 +17,8 @@ function Sorting() {
   const [isRunning, setIsRunning] = useState(false);
   const [sortingSpeed, setSortingSpeed] = useState(10000);
 
+  let tempSortingStepsArray = [];
+
   useEffect(() => {
     generateArray();
   }, []);
@@ -28,6 +30,7 @@ function Sorting() {
       isRunning &&
       sortingType !== 'Bogo Sort'
     ) {
+      // Bubble/Insertion/Selection/Quick/Heap Sort
       if (
         sortingType === 'Bubble Sort' ||
         sortingType === 'Insertion Sort' ||
@@ -48,9 +51,10 @@ function Sorting() {
           setArr(tempArr);
         }
         setCurrentStep(currentStep + 1);
-      } else if (sortingType === 'Merge Sort') {
+      }
+      // Merge Sort
+      else if (sortingType === 'Merge Sort') {
         if (sortingSteps[currentStep] !== null) {
-          console.log(sortingSteps[currentStep]);
           setArr(sortingSteps[currentStep]);
         }
         setCurrentStep(currentStep + 1);
@@ -81,8 +85,6 @@ function Sorting() {
     setSortingType(null);
     setSortingSpeed(10000);
   };
-
-  let tempSortingStepsArray = [];
 
   const handleBubbleSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
@@ -346,15 +348,34 @@ function Sorting() {
   };
 
   const ItemCard = forwardRef((props, ref) => (
-    <div ref={ref} style={{ backgroundColor: 'blue', width: props.size }}>
-      {props.children}
+    <div
+      style={{
+        height: '200px',
+        marginRight: '3vw',
+        position: 'relative',
+        width: '150px',
+      }}
+    >
+      <div
+        ref={ref}
+        style={{
+          backgroundColor: '#39cccc',
+          height: props.size,
+          color: '#000000',
+          position: 'absolute',
+          bottom: '0',
+          display: 'flex',
+          width: '2vw',
+        }}
+      >
+        <span style={{ alignSelf: 'flex-end' }}>{/* {props.children} */}</span>
+      </div>
     </div>
   ));
 
   return (
     <div>
       <div>
-        <div>Select Placeholder</div>
         <button onClick={handleBubbleSort}>Bubble Sort!</button>
         <button onClick={handleInsertionSort}>Insertion Sort!</button>
         <button onClick={handleSelectionSort}>Selection Sort!</button>
@@ -386,23 +407,19 @@ function Sorting() {
             </button>
           </div>
         ) : null}
-
-        {sortingType ? (
-          <div>
-            <h3>
-              Number of Steps Required to Sort this Array with {sortingType}
-              {sortingType !== 'Bogo Sort'
-                ? `: ${sortingSteps.length}`
-                : " is unknown as Bogo Sort's average run time is O(n!)"}
-            </h3>
-            <h3>Current Step: {currentStep}</h3>
-          </div>
-        ) : null}
       </div>
 
-      <div style={{ display: 'flex' }}>
+      <div
+      // style={{ display: 'flex' }}
+      >
         {originalArr ? (
-          <div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginBottom: '10px',
+            }}
+          >
             {originalArr.map((item) => (
               <ItemCard key={item[1]} size={item[0] * 2}>
                 {item[0]}
@@ -412,20 +429,32 @@ function Sorting() {
         ) : null}
 
         {arr ? (
-          <div style={{ display: 'flex' }}>
-            <div>
+          <div>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
               {arr.map((item) => (
                 <ItemCard key={item[1]} size={item[0] * 2}>
                   {item[0]}
                 </ItemCard>
               ))}
             </div>
-            {sortingSteps[currentStep] === null && isRunning ? (
+            {/* {sortingSteps[currentStep] === null && isRunning ? (
               <div>No Change Made</div>
-            ) : null}
+            ) : null} */}
           </div>
         ) : null}
       </div>
+      {sortingType ? (
+        <div>
+          <h3>
+            Number of steps required to sort this array with{' '}
+            {sortingType.toLowerCase()}
+            {sortingType !== 'Bogo Sort'
+              ? `: ${sortingSteps.length}`
+              : " is unknown as bogo sort's average run time is O(n!)"}
+          </h3>
+          <h3>Current Step: {currentStep}</h3>
+        </div>
+      ) : null}
     </div>
   );
 }

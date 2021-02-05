@@ -17,12 +17,10 @@ function BalancingTree() {
     setMax(updatedMax);
   };
 
-  console.log(max);
   let arr = [];
   for (let i = 0; i < max; i++) arr.push(getRandomInt(1000));
   let avlTree = new AVLTree();
   arr.forEach((item) => avlTree.add(item));
-  console.log(avlTree, arr);
   return (
     <div>
       <Input
