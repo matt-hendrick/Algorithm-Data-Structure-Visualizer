@@ -1,4 +1,6 @@
 import React, { useState, useEffect, forwardRef } from 'react';
+import { Flipper, Flipped } from 'react-flip-toolkit';
+
 import {
   useInterval,
   getRandomInt,
@@ -64,14 +66,14 @@ function Sorting() {
     }
     // Bogo sort
     else if (sortingType === 'Bogo Sort' && isRunning) {
-      let tempArr = originalArr ? [...originalArr] : [...arr];
+      let tempArr = [...arr];
       let sortedArr = [...tempArr];
       sortedArr.sort((a, b) => a[0] - b[0]);
-      if (tempArr !== sortedArr) {
+      if (JSON.stringify(tempArr) !== JSON.stringify(sortedArr)) {
         shuffle(tempArr);
         setArr(tempArr);
         setCurrentStep(currentStep + 1);
-      }
+      } else setIsRunning(false);
     }
   }, sortingSpeed);
 
@@ -409,18 +411,40 @@ function Sorting() {
         ) : null}
 
         {arr ? (
-          <div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <Flipper flipKey={arr.join('')}>
+            <ul
+              style={{
+                display: 'flex',
+                width: '50vh',
+                paddingInlineStart: '0',
+              }}
+            >
               {arr.map((item) => (
-                <ItemCard key={item[1]} size={item[0] * 2}>
-                  {item[0]}
-                </ItemCard>
+                <Flipped key={item[1]} flipId={item[1]}>
+                  <li
+                    style={{
+                      listStyle: 'none',
+                      height: '200px',
+                      marginRight: '3vw',
+                      position: 'relative',
+                      width: '150px',
+                    }}
+                  >
+                    <div
+                      style={{
+                        backgroundColor: '#39cccc',
+                        height: item[0] * 2,
+                        color: '#000000',
+                        position: 'absolute',
+                        bottom: '0',
+                        width: '2vw',
+                      }}
+                    ></div>
+                  </li>
+                </Flipped>
               ))}
-            </div>
-            {/* {sortingSteps[currentStep] === null && isRunning ? (
-              <div>No Change Made</div>
-            ) : null} */}
-          </div>
+            </ul>
+          </Flipper>
         ) : null}
       </div>
       {currentStep > 0 ? (
