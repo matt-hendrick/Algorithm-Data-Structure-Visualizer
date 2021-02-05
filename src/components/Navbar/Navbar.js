@@ -6,8 +6,16 @@ import Nav from 'react-bootstrap/Nav';
 
 function MyNavbar() {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <Navbar.Brand href="/">Algorithm and Structure Visualizer</Navbar.Brand>
+    <Navbar
+      collapseOnSelect
+      expand="md"
+      bg="dark"
+      variant="dark"
+      // style={{ backgroundColor: '#39cccc', color: '#ffffff' }}
+    >
+      <Navbar.Brand href="/">
+        Algorithm and Data Structure Visualizer
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">

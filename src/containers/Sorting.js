@@ -6,6 +6,8 @@ import {
   swap,
 } from '../utility/utilityFunctions';
 
+import MyButton from '../components/MyButton/MyButton';
+
 function Sorting() {
   const [arr, setArr] = useState();
   // originalArr is set to arr when merge sort is run
@@ -376,42 +378,18 @@ function Sorting() {
   return (
     <div>
       <div>
-        <button onClick={handleBubbleSort}>Bubble Sort!</button>
-        <button onClick={handleInsertionSort}>Insertion Sort!</button>
-        <button onClick={handleSelectionSort}>Selection Sort!</button>
-        <button onClick={handleMergeSort}>Merge Sort!</button>
-        <button onClick={handleQuickSort}>Quick Sort!</button>
-        <button onClick={handleHeapSort}>Heap Sort!</button>
-        <button onClick={handleBogoSort}>Bogo Sort!</button>
-        <button onClick={handleShuffle}>Shuffle!</button>
-        <button onClick={generateArray}>Generate a New Array!</button>
-        {currentStep > 0 ? (
-          <div>
-            <button onClick={togglePause}>
-              {isRunning ? 'Pause' : 'Continue'}
-            </button>
-            <button onClick={() => handleSortingSpeedChange(2000)}>
-              Slowest Sorting Speed
-            </button>
-            <button onClick={() => handleSortingSpeedChange(1000)}>
-              Slow Sorting Speed
-            </button>
-            <button onClick={() => handleSortingSpeedChange(500)}>
-              Normal Sorting Speed
-            </button>
-            <button onClick={() => handleSortingSpeedChange(100)}>
-              Fast Sorting Speed
-            </button>
-            <button onClick={() => handleSortingSpeedChange(10)}>
-              Fastest Sorting Speed
-            </button>
-          </div>
-        ) : null}
+        <MyButton onClick={handleBubbleSort}>Bubble Sort!</MyButton>
+        <MyButton onClick={handleInsertionSort}>Insertion Sort!</MyButton>
+        <MyButton onClick={handleSelectionSort}>Selection Sort!</MyButton>
+        <MyButton onClick={handleMergeSort}>Merge Sort!</MyButton>
+        <MyButton onClick={handleQuickSort}>Quick Sort!</MyButton>
+        <MyButton onClick={handleHeapSort}>Heap Sort!</MyButton>
+        <MyButton onClick={handleBogoSort}>Bogo Sort!</MyButton>
+        <MyButton onClick={handleShuffle}>Shuffle!</MyButton>
+        <MyButton onClick={generateArray}>Generate a New Array!</MyButton>
       </div>
 
-      <div
-      // style={{ display: 'flex' }}
-      >
+      <div>
         {originalArr ? (
           <div
             style={{
@@ -443,6 +421,28 @@ function Sorting() {
           </div>
         ) : null}
       </div>
+      {currentStep > 0 ? (
+        <div>
+          <MyButton onClick={togglePause}>
+            {isRunning ? 'Pause' : 'Continue'}
+          </MyButton>
+          <MyButton onClick={() => handleSortingSpeedChange(2000)}>
+            Slowest Sorting Speed
+          </MyButton>
+          <MyButton onClick={() => handleSortingSpeedChange(1000)}>
+            Slow Sorting Speed
+          </MyButton>
+          <MyButton onClick={() => handleSortingSpeedChange(500)}>
+            Normal Sorting Speed
+          </MyButton>
+          <MyButton onClick={() => handleSortingSpeedChange(100)}>
+            Fast Sorting Speed
+          </MyButton>
+          <MyButton onClick={() => handleSortingSpeedChange(10)}>
+            Fastest Sorting Speed
+          </MyButton>
+        </div>
+      ) : null}
       {sortingType ? (
         <div>
           <h3>

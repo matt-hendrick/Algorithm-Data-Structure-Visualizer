@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <Container style={{ marginTop: '50px' }}>
+      <Container style={{ marginTop: '20px' }}>
         {/* <div
         style={{
           display: 'flex',

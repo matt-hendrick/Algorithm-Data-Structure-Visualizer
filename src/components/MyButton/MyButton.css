@@ -1,0 +1,11 @@
+.MyButton {
+  background: #1aab8a;
+  color: #fff;
+  border: none;
+  margin: 2px;
+  font-size: 1em;
+  padding: 0.2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
