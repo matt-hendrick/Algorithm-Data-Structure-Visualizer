@@ -156,6 +156,73 @@ function heapify(heap, i, max) {
   }
 }
 
+// const handleMergeSort = (array) => {
+//   let len = array.length;
+
+//   // creates a second array necessary for merge sort
+//   let buffer = [];
+
+//   for (let size = 1; size < len; size *= 2) {
+//     for (let leftStart = 0; leftStart < len; leftStart += 2 * size) {
+//       let left = leftStart;
+
+//       let right = Math.min(left + size, len);
+
+//       let leftLimit = right;
+
+//       let rightLimit = Math.min(right + size, len);
+
+//       let i = left;
+
+//       while (left < leftLimit && right < rightLimit) {
+//         if (array[left][0] <= array[right][0]) {
+//           buffer[i] = array[left];
+//           left++;
+//           i++;
+//         } else {
+//           buffer[i] = array[right];
+//           right++;
+//           i++;
+//         }
+//       }
+
+//       while (left < leftLimit) {
+//         buffer[i] = array[left];
+//         left++;
+//         i++;
+//       }
+
+//       while (right < rightLimit) {
+//         buffer[i] = array[right];
+//         right++;
+//         i++;
+//       }
+//     }
+//     [array, buffer] = [buffer, array];
+//   }
+//   return array;
+// };
+
+const handleMergeSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2),
+    left = handleMergeSort(arr.slice(0, mid)),
+    right = handleMergeSort(arr.slice(mid));
+
+  return merge(left, right);
+};
+
+function merge(arr1, arr2) {
+  let sorted = [];
+
+  while (arr1.length && arr2.length) {
+    if (arr1[0] < arr2[0]) sorted.push(arr1.shift());
+    else sorted.push(arr2.shift());
+  }
+
+  return sorted.concat(arr1.slice().concat(arr2.slice()));
+}
+
 let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 
 // console.log(handleBubbleSort(array));
@@ -163,4 +230,5 @@ let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 // console.log(handleSelectionSort(array));
 // console.log(handleBogoSort(array));
 // console.log(quickSort(array));
-console.log(handleHeapSort(array));
+// console.log(handleHeapSort(array));
+console.log(handleMergeSort(array));

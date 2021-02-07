@@ -11,6 +11,8 @@ import {
   quickSortDescription,
   heapSortCode,
   heapSortDescription,
+  mergeSortCode,
+  mergeSortDescription,
   bogoSortCode,
   bogoSortDescription,
 } from './SortingTypeInfoText';
@@ -36,6 +38,9 @@ const SortingTypeDescriptions = (props) => {
   } else if (sortingType === 'Heap Sort') {
     sortingDescription = heapSortDescription;
     code = heapSortCode;
+  } else if (sortingType === 'Merge Sort') {
+    sortingDescription = mergeSortDescription;
+    code = mergeSortCode;
   } else if (sortingType === 'Bogo Sort') {
     sortingDescription = bogoSortDescription;
     code = bogoSortCode;

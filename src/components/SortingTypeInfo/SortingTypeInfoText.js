@@ -142,6 +142,28 @@ function heapify(heap, i, max) {
     i = index;
   }
 }`;
+export const mergeSortDescription = `Merge sort is a divide and conquer algorithm that sorts items by breaking down the unsorted array into smaller, subarrays.
+  The algoritms then sorts the subarrays and merges the subarrays together, with items being inserted into a new array in the appropriate position.
+  This process is continued until the new array is sorted.`;
+export const mergeSortCode = `const handleMergeSort = (arr) => {
+    if (arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2),
+      left = handleMergeSort(arr.slice(0, mid)),
+      right = handleMergeSort(arr.slice(mid));
+  
+    return merge(left, right);
+  };
+  
+  function merge(arr1, arr2) {
+    let sorted = [];
+  
+    while (arr1.length && arr2.length) {
+      if (arr1[0] < arr2[0]) sorted.push(arr1.shift());
+      else sorted.push(arr2.shift());
+    }
+  
+    return sorted.concat(arr1.slice().concat(arr2.slice()));
+  }`;
 export const bogoSortDescription =
   'Bogo sort is an inefficient, in-place algorithm that shuffles an array of items until the array is sorted.';
 export const bogoSortCode = `  const handleBogoSort = (array) => {
