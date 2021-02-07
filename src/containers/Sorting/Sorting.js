@@ -1,4 +1,5 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import * as classes from './Sorting.module.css';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
 import {
@@ -6,9 +7,11 @@ import {
   getRandomInt,
   shuffle,
   swap,
-} from '../utility/utilityFunctions';
+} from '../../utility/utilityFunctions';
 
-import MyButton from '../components/MyButton/MyButton';
+import MyButton from '../../components/MyButton/MyButton';
+import SortingTypeDescriptions from '../../components/SortingTypeDescriptions/SortingTypeDescriptions';
+import SortingListItem from '../../components/SortingListItem/SortingListItem';
 
 function Sorting() {
   const [arr, setArr] = useState();
@@ -351,37 +354,9 @@ function Sorting() {
     setIsRunning(!isRunning);
   };
 
-  const ItemCard = forwardRef((props, ref) => (
-    <div
-      style={{
-        height: '200px',
-        marginRight: '3vw',
-        position: 'relative',
-        width: '150px',
-      }}
-    >
-      <div
-        ref={ref}
-        style={{
-          backgroundColor: '#39cccc',
-          height: props.size,
-          color: '#000000',
-          position: 'absolute',
-          bottom: '0',
-          display: 'flex',
-          width: '2vw',
-        }}
-      >
-        <span style={{ alignSelf: 'flex-end' }}>{/* {props.children} */}</span>
-      </div>
-    </div>
-  ));
-
   return (
     <div>
-      <div
-        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
-      >
+      <div className={classes.ButtonRow}>
         <MyButton onClick={handleBubbleSort}>Bubble Sort!</MyButton>
         <MyButton onClick={handleInsertionSort}>Insertion Sort!</MyButton>
         <MyButton onClick={handleSelectionSort}>Selection Sort!</MyButton>
@@ -395,52 +370,28 @@ function Sorting() {
 
       <div>
         {originalArr ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              marginBottom: '10px',
-            }}
-          >
+          <div className={classes.OriginalArrWrapper}>
             {originalArr.map((item) => (
-              <ItemCard key={item[1]} size={item[0] * 2}>
+              <SortingListItem key={item[1]} size={item[0] * 2}>
                 {item[0]}
-              </ItemCard>
+              </SortingListItem>
             ))}
           </div>
         ) : null}
 
         {arr ? (
           <Flipper flipKey={arr.join('')}>
-            <ul
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                paddingInlineStart: '0',
-              }}
-            >
+            <ul className={classes.FlipperUL}>
               {arr.map((item) => (
-                <li
-                  style={{
-                    listStyle: 'none',
-                    height: '200px',
-                    marginRight: '3vw',
-                    position: 'relative',
-                    width: '150px',
-                  }}
-                >
-                  <Flipped key={item[1]} flipId={item[1]}>
+                <li key={item[1]} className={classes.FlipperLI}>
+                  <Flipped flipId={item[1]}>
                     <div
+                      className={classes.FlippedDiv}
                       style={{
-                        backgroundColor: '#39cccc',
                         height: item[0] * 2,
-                        color: '#000000',
-                        position: 'absolute',
-                        bottom: '0',
-                        width: '2vw',
                       }}
                     ></div>
-                  </Flipped>{' '}
+                  </Flipped>
                 </li>
               ))}
             </ul>
@@ -448,13 +399,7 @@ function Sorting() {
         ) : null}
       </div>
       {currentStep > 0 ? (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-          }}
-        >
+        <div className={classes.ButtonRow}>
           <MyButton onClick={togglePause}>
             {isRunning ? 'Pause' : 'Continue'}
           </MyButton>
@@ -477,14 +422,17 @@ function Sorting() {
       ) : null}
       {sortingType ? (
         <div>
-          <h3>
-            Number of steps required to sort this array with{' '}
-            {sortingType.toLowerCase()}
-            {sortingType !== 'Bogo Sort'
-              ? `: ${sortingSteps.length}`
-              : " is unknown as bogo sort's average run time is O(n!)"}
-          </h3>
-          <h3>Current Step: {currentStep}</h3>
+          <div>
+            <h3>
+              Number of steps required to sort this array with{' '}
+              {sortingType.toLowerCase()}
+              {sortingType !== 'Bogo Sort'
+                ? `: ${sortingSteps.length}`
+                : " is unknown as bogo sort's average run time is O(n!)"}
+            </h3>
+            <h3>Current Step: {currentStep}</h3>
+          </div>
+          <SortingTypeDescriptions sortingType={sortingType} />
         </div>
       ) : null}
     </div>

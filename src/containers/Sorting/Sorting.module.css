@@ -1,0 +1,33 @@
+.ButtonRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.OriginalArrWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.FlipperUL {
+  display: flex;
+  justify-content: center;
+  padding-inline-start: 0;
+}
+
+.FlipperLI {
+  list-style: none;
+  height: 200px;
+  margin-right: 3vw;
+  position: relative;
+  width: 150px;
+}
+
+.FlippedDiv {
+  background-color: #39cccc;
+  color: #000000;
+  position: absolute;
+  bottom: 0;
+  width: 2vw;
+}

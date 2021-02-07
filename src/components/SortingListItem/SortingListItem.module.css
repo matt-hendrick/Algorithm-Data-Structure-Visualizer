@@ -1,0 +1,15 @@
+.SortingListItemOuterDiv {
+  height: 200px;
+  margin-right: 3vw;
+  position: relative;
+  width: 150px;
+}
+
+.SortingListItemInnerDiv {
+  background-color: #39cccc;
+  color: #000000;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 2vw;
+}
