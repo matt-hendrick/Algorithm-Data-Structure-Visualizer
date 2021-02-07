@@ -5,11 +5,11 @@ import AVLTree from '../data-structures/AVLTree';
 import CircularNode from '../components/CircularNode';
 import Input from '../components/Input';
 
-function getRandomInt(max) {
+const getRandomInt = (max) => {
   return Math.floor(Math.random() * Math.floor(max));
-}
+};
 
-function BalancingTree() {
+const BalancingTree = () => {
   const [max, setMax] = useState(10);
 
   const handleMaxChange = (event) => {
@@ -47,6 +47,6 @@ function BalancingTree() {
       </div>
     </div>
   );
-}
+};
 
 export default BalancingTree;

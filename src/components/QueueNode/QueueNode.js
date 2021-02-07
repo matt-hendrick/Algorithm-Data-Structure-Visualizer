@@ -1,6 +1,6 @@
 import React from 'react';
 
-function QueueNode(props) {
+const QueueNode = (props) => {
   return (
     <div
       style={{
@@ -12,6 +12,6 @@ function QueueNode(props) {
       {props.children}
     </div>
   );
-}
+};
 
 export default QueueNode;

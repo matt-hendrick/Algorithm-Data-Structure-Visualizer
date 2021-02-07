@@ -12,7 +12,7 @@ import RectangularNode from '../components/StackNode/StackNode';
 
 let stack = new Stack();
 
-function StackDisplay() {
+const StackDisplay = () => {
   const [userValue, setUserValue] = useState('');
   const [middleStackDisplayArray, setMiddleStackDisplayArray] = useState([]);
 
@@ -85,6 +85,6 @@ function StackDisplay() {
       </Row>
     </Container>
   );
-}
+};
 
 export default StackDisplay;

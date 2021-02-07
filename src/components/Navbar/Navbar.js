@@ -4,7 +4,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-function MyNavbar() {
+const MyNavbar = () => {
   return (
     <Navbar
       collapseOnSelect
@@ -30,6 +30,6 @@ function MyNavbar() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
 
 export default MyNavbar;

@@ -9,7 +9,7 @@ import StackDisplay from './containers/StackDisplay';
 import QueueDisplay from './containers/QueueDisplay';
 import Sorting from './containers/Sorting/Sorting';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <NavBar />
@@ -23,6 +23,6 @@ function App() {
       </Container>
     </Router>
   );
-}
+};
 
 export default App;

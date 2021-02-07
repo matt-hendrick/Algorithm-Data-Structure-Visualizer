@@ -7,13 +7,14 @@ import {
   getRandomInt,
   shuffle,
   swap,
+  isSorted,
 } from '../../utility/utilityFunctions';
 
 import MyButton from '../../components/MyButton/MyButton';
-import SortingTypeDescriptions from '../../components/SortingTypeDescriptions/SortingTypeDescriptions';
+import SortingTypeInfo from '../../components/SortingTypeInfo/SortingTypeInfo';
 import SortingListItem from '../../components/SortingListItem/SortingListItem';
 
-function Sorting() {
+const Sorting = () => {
   const [arr, setArr] = useState();
   // originalArr is set to arr when merge sort is run
   // originalArr is displayed alongside the new array built by the merge sort function
@@ -70,9 +71,7 @@ function Sorting() {
     // Bogo sort
     else if (sortingType === 'Bogo Sort' && isRunning) {
       let tempArr = [...arr];
-      let sortedArr = [...tempArr];
-      sortedArr.sort((a, b) => a[0] - b[0]);
-      if (JSON.stringify(tempArr) !== JSON.stringify(sortedArr)) {
+      if (!isSorted(tempArr)) {
         shuffle(tempArr);
         setArr(tempArr);
         setCurrentStep(currentStep + 1);
@@ -161,7 +160,8 @@ function Sorting() {
         }
         // if selection is is not greater than right, adds a null step to the temp array
         else tempSortingStepsArray.push(null);
-        // if selection has been changed and the left pointer is greater than the selection, they are swapped
+        // if selection has been changed and the left pointer is greater than the selection,
+        // the selection and left pointer are swapped
         if (selection !== left && tempArr[selection][0] < tempArr[left][0]) {
           tempSortingStepsArray.push([selection, left]);
           swap(tempArr, selection, left);
@@ -432,11 +432,11 @@ function Sorting() {
             </h3>
             <h3>Current Step: {currentStep}</h3>
           </div>
-          <SortingTypeDescriptions sortingType={sortingType} />
+          <SortingTypeInfo sortingType={sortingType} />
         </div>
       ) : null}
     </div>
   );
-}
+};
 
 export default Sorting;

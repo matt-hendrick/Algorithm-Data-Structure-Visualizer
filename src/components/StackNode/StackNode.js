@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RectangularNode(props) {
+const RectangularNode = (props) => {
   return (
     <div
       style={{
@@ -14,6 +14,6 @@ function RectangularNode(props) {
       <div style={{ paddingTop: '1vh' }}>{props.children}</div>
     </div>
   );
-}
+};
 
 export default RectangularNode;

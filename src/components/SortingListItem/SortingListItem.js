@@ -1,7 +1,7 @@
 import React from 'react';
 import * as classes from './SortingListItem.module.css';
 
-function SortingListItem(props) {
+const SortingListItem = (props) => {
   const { size } = props;
   return (
     <div className={classes.SortingListItemOuterDiv}>
@@ -13,6 +13,6 @@ function SortingListItem(props) {
       ></div>
     </div>
   );
-}
+};
 
 export default SortingListItem;

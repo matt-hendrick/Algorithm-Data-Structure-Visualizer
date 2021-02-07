@@ -12,7 +12,7 @@ import QueueNode from '../components/QueueNode/QueueNode';
 
 let queue = new Queue();
 
-function QueueDisplay() {
+const QueueDisplay = () => {
   const [userValue, setUserValue] = useState('');
   const [queueDisplayArray, setQueueDisplayArray] = useState([]);
 
@@ -85,6 +85,6 @@ function QueueDisplay() {
       </Row>
     </Container>
   );
-}
+};
 
 export default QueueDisplay;
