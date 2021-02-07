@@ -75,6 +75,45 @@ function shuffle(array) {
   return array;
 }
 
+const getQuickSortPivot = (array, start, end) => {
+  let pivot = array[start],
+    pointer = start;
+
+  for (let i = start; i < array.length; i++) {
+    if (array[i][0] < pivot[0]) {
+      pointer++;
+      [array[pointer], array[i]] = [array[i], array[pointer]];
+    }
+  }
+  tempSortingStepsArray.push([start, pointer]);
+  swap(array, start, pointer);
+
+  return pointer;
+};
+
+const quickSort = (array, start = 0, end = array.length - 1) => {
+  let pivotIndex = getQuickSortPivot(array, start, end);
+
+  if (start >= end) return array;
+  quickSort(array, start, pivotIndex);
+  quickSort(array, pivotIndex + 1, end);
+  setSortingSteps(tempSortingStepsArray);
+  if (originalArr) {
+    setArr(originalArr);
+    setOriginalArr();
+  }
+  setSortingType('Quick Sort');
+  setCurrentStep(0);
+  setIsRunning(true);
+  setSortingSpeed(500);
+  return array;
+};
+
+const handleQuickSort = () => {
+  let tempArr = originalArr ? [...originalArr] : [...arr];
+  return quickSort(tempArr);
+};
+
 let array = [3, 2, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100];
 
 // console.log(handleBubbleSort(array));

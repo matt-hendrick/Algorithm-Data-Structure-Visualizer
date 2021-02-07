@@ -242,7 +242,7 @@ const Sorting = () => {
     let pivot = array[start],
       pointer = start;
 
-    for (let i = start; i < array.length; i++) {
+    for (let i = start; i <= end; i++) {
       if (array[i][0] < pivot[0]) {
         pointer++;
         tempSortingStepsArray.push([pointer, i]);
