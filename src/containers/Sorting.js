@@ -415,21 +415,21 @@ function Sorting() {
             <ul
               style={{
                 display: 'flex',
-                width: '50vh',
+                justifyContent: 'center',
                 paddingInlineStart: '0',
               }}
             >
               {arr.map((item) => (
-                <Flipped key={item[1]} flipId={item[1]}>
-                  <li
-                    style={{
-                      listStyle: 'none',
-                      height: '200px',
-                      marginRight: '3vw',
-                      position: 'relative',
-                      width: '150px',
-                    }}
-                  >
+                <li
+                  style={{
+                    listStyle: 'none',
+                    height: '200px',
+                    marginRight: '3vw',
+                    position: 'relative',
+                    width: '150px',
+                  }}
+                >
+                  <Flipped key={item[1]} flipId={item[1]}>
                     <div
                       style={{
                         backgroundColor: '#39cccc',
@@ -440,8 +440,8 @@ function Sorting() {
                         width: '2vw',
                       }}
                     ></div>
-                  </li>
-                </Flipped>
+                  </Flipped>{' '}
+                </li>
               ))}
             </ul>
           </Flipper>
@@ -470,7 +470,7 @@ function Sorting() {
           <MyButton onClick={() => handleSortingSpeedChange(100)}>
             Fast Sorting Speed
           </MyButton>
-          <MyButton onClick={() => handleSortingSpeedChange(10)}>
+          <MyButton onClick={() => handleSortingSpeedChange(50)}>
             Fastest Sorting Speed
           </MyButton>
         </div>
