@@ -304,7 +304,7 @@ const Sorting = () => {
         index = righChild;
       }
 
-      if (index == i) {
+      if (index === i) {
         return;
       }
 

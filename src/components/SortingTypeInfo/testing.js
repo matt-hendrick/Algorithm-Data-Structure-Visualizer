@@ -100,34 +100,32 @@ function getQuickSortPivot(array, start, end) {
   return pointer;
 }
 
-function buildMaxHeap(array) {
-  let i = Math.floor(array.length / 2 - 1);
-
-  // Build a max heap out of
-  // all array elements passed in.
-  while (i >= 0) {
-    heapify(array, i, array.length);
-    i -= 1;
-  }
-}
-
-function heapSort(array) {
-  // Build our max heap.
+const handleHeapSort = (array) => {
+  // creates max heap
   buildMaxHeap(array);
 
-  // Find last element.
+  //gets the last element of the heap
   let lastElement = array.length - 1;
 
-  // Continue heap sorting until we have
-  // just one element left in the array.
   while (lastElement > 0) {
+    //swaps the max item in the heap and the last element
     [array[0], array[lastElement]] = [array[lastElement], array[0]];
 
+    // heapifies the array
     heapify(array, 0, lastElement);
 
     lastElement -= 1;
   }
   return array;
+};
+
+function buildMaxHeap(array) {
+  let i = Math.floor(array.length / 2 - 1);
+
+  while (i >= 0) {
+    heapify(array, i, array.length);
+    i -= 1;
+  }
 }
 
 function heapify(heap, i, max) {
@@ -147,10 +145,11 @@ function heapify(heap, i, max) {
       index = righChild;
     }
 
-    if (index == i) {
+    if (index === i) {
       return;
     }
 
+    // swaps i and the index
     [heap[i], heap[index]] = [heap[index], heap[i]];
 
     i = index;
@@ -164,4 +163,4 @@ let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 // console.log(handleSelectionSort(array));
 // console.log(handleBogoSort(array));
 // console.log(quickSort(array));
-console.log(heapSort(array));
+console.log(handleHeapSort(array));
