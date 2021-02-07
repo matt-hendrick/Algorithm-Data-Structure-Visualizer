@@ -278,37 +278,56 @@ const Sorting = () => {
     return quickSort(tempArr);
   };
 
-  const max_heapify = (tempArr, i, tempArrLength) => {
-    let left = 2 * i;
-    let right = 2 * i + 1;
-    let maximum;
-    if (right < tempArrLength) {
-      if (tempArr[left][0] >= tempArr[right][0]) {
-        maximum = left;
-      } else {
-        maximum = right;
-      }
-    } else if (left < tempArrLength) {
-      maximum = left;
-    } else return;
-    if (tempArr[i][0] < tempArr[maximum][0]) {
-      tempSortingStepsArray.push([i, maximum]);
-      swap(tempArr, i, maximum);
-      max_heapify(tempArr, maximum, tempArrLength);
+  const buildMaxHeap = (array) => {
+    let i = Math.floor(array.length / 2 - 1);
+
+    while (i >= 0) {
+      heapify(array, i, array.length);
+      i -= 1;
     }
-    return;
+  };
+
+  const heapify = (heap, i, max) => {
+    let index, leftChild, righChild;
+
+    while (i < max) {
+      index = i;
+
+      leftChild = 2 * i + 1;
+      righChild = leftChild + 1;
+
+      if (leftChild < max && heap[leftChild][0] > heap[index][0]) {
+        index = leftChild;
+      }
+
+      if (righChild < max && heap[righChild][0] > heap[index][0]) {
+        index = righChild;
+      }
+
+      if (index == i) {
+        return;
+      }
+
+      tempSortingStepsArray.push([i, index]);
+      swap(heap, i, index);
+
+      i = index;
+    }
   };
 
   const handleHeapSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
-    let tempArrLength = tempArr.length;
-    for (let i = Math.floor(tempArrLength / 2) - 1; i >= 0; i--) {
-      max_heapify(tempArr, i, tempArrLength);
-    }
-    for (let i = tempArrLength - 1; i >= 0; i--) {
-      tempSortingStepsArray.push([0, i]);
-      swap(tempArr, 0, i);
-      max_heapify(tempArr, 0, i);
+    buildMaxHeap(tempArr);
+
+    let lastElement = tempArr.length - 1;
+
+    while (lastElement > 0) {
+      tempSortingStepsArray.push([0, lastElement]);
+      swap(tempArr, 0, lastElement);
+
+      heapify(tempArr, 0, lastElement);
+
+      lastElement -= 1;
     }
     setSortingSteps(tempSortingStepsArray);
     if (originalArr) {

@@ -75,48 +75,93 @@ function shuffle(array) {
   return array;
 }
 
-const getQuickSortPivot = (array, start, end) => {
+const handleQuickSort = (array, start = 0, end = array.length - 1) => {
+  let pivotIndex = getQuickSortPivot(array, start, end);
+
+  if (start >= end) return array;
+  handleQuickSort(array, start, pivotIndex);
+  handleQuickSort(array, pivotIndex + 1, end);
+
+  return array;
+};
+
+function getQuickSortPivot(array, start, end) {
   let pivot = array[start],
     pointer = start;
 
-  for (let i = start; i < array.length; i++) {
-    if (array[i][0] < pivot[0]) {
+  for (let i = start; i <= end; i++) {
+    if (array[i] < pivot) {
       pointer++;
       [array[pointer], array[i]] = [array[i], array[pointer]];
     }
   }
-  tempSortingStepsArray.push([start, pointer]);
-  swap(array, start, pointer);
+  [array[start], array[pointer]] = [array[pointer], array[start]];
 
   return pointer;
-};
+}
 
-const quickSort = (array, start = 0, end = array.length - 1) => {
-  let pivotIndex = getQuickSortPivot(array, start, end);
+function buildMaxHeap(array) {
+  let i = Math.floor(array.length / 2 - 1);
 
-  if (start >= end) return array;
-  quickSort(array, start, pivotIndex);
-  quickSort(array, pivotIndex + 1, end);
-  setSortingSteps(tempSortingStepsArray);
-  if (originalArr) {
-    setArr(originalArr);
-    setOriginalArr();
+  // Build a max heap out of
+  // all array elements passed in.
+  while (i >= 0) {
+    heapify(array, i, array.length);
+    i -= 1;
   }
-  setSortingType('Quick Sort');
-  setCurrentStep(0);
-  setIsRunning(true);
-  setSortingSpeed(500);
+}
+
+function heapSort(array) {
+  // Build our max heap.
+  buildMaxHeap(array);
+
+  // Find last element.
+  let lastElement = array.length - 1;
+
+  // Continue heap sorting until we have
+  // just one element left in the array.
+  while (lastElement > 0) {
+    [array[0], array[lastElement]] = [array[lastElement], array[0]];
+
+    heapify(array, 0, lastElement);
+
+    lastElement -= 1;
+  }
   return array;
-};
+}
 
-const handleQuickSort = () => {
-  let tempArr = originalArr ? [...originalArr] : [...arr];
-  return quickSort(tempArr);
-};
+function heapify(heap, i, max) {
+  let index, leftChild, righChild;
 
-let array = [3, 2, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100];
+  while (i < max) {
+    index = i;
+
+    leftChild = 2 * i + 1;
+    righChild = leftChild + 1;
+
+    if (leftChild < max && heap[leftChild] > heap[index]) {
+      index = leftChild;
+    }
+
+    if (righChild < max && heap[righChild] > heap[index]) {
+      index = righChild;
+    }
+
+    if (index == i) {
+      return;
+    }
+
+    [heap[i], heap[index]] = [heap[index], heap[i]];
+
+    i = index;
+  }
+}
+
+let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 
 // console.log(handleBubbleSort(array));
 // console.log(handleInsertionSort(array));
 // console.log(handleSelectionSort(array));
-console.log(handleBogoSort(array));
+// console.log(handleBogoSort(array));
+// console.log(quickSort(array));
+console.log(heapSort(array));

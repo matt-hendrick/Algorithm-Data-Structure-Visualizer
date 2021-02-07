@@ -7,6 +7,8 @@ import {
   insertionSortDescription,
   selectionSortCode,
   selectionSortDescription,
+  quickSortCode,
+  quickSortDescription,
   bogoSortCode,
   bogoSortDescription,
 } from './SortingTypeInfoText';
@@ -26,6 +28,9 @@ const SortingTypeDescriptions = (props) => {
   } else if (sortingType === 'Selection Sort') {
     sortingDescription = selectionSortDescription;
     code = selectionSortCode;
+  } else if (sortingType === 'Quick Sort') {
+    sortingDescription = quickSortDescription;
+    code = quickSortCode;
   } else if (sortingType === 'Bogo Sort') {
     sortingDescription = bogoSortDescription;
     code = bogoSortCode;
