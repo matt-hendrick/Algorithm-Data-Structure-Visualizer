@@ -21,7 +21,7 @@ const SortingTypeDescriptions = (props) => {
   let sortingDescription;
   let code;
 
-  const { sortingType } = props;
+  const { sortingType, sortingSteps, currentStep } = props;
 
   if (sortingType === 'Bubble Sort') {
     sortingDescription = bubbleSortDescription;
@@ -47,13 +47,25 @@ const SortingTypeDescriptions = (props) => {
   }
 
   return (
-    <div className={classes.SortingTypeWrapper}>
-      <pre className={classes.SortingTypeCodeBlock}>
-        <code>{code}</code>
-      </pre>
-      <div className={classes.SortingTypeDescriptionBlock}>
-        <h4>{sortingType}</h4>
-        <div>{sortingDescription}</div>
+    <div>
+      <div>
+        <h3>
+          Number of steps required to sort this array with{' '}
+          {sortingType.toLowerCase()}
+          {sortingType !== 'Bogo Sort'
+            ? `: ${sortingSteps.length}`
+            : " is unknown as bogo sort's average run time is O(n!)"}
+        </h3>
+        <h3>Current Step: {currentStep}</h3>
+      </div>
+      <div className={classes.SortingTypeWrapper}>
+        <pre className={classes.SortingTypeCodeBlock}>
+          <code>{code}</code>
+        </pre>
+        <div className={classes.SortingTypeDescriptionBlock}>
+          <h4>{sortingType}</h4>
+          <div>{sortingDescription}</div>
+        </div>
       </div>
     </div>
   );

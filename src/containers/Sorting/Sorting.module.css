@@ -16,9 +16,22 @@
   padding-inline-start: 0;
 }
 
-.FlipperLI {
+.FlipperUL {
+  display: flex;
+  justify-content: center;
+  padding-inline-start: 0;
+}
+
+.ArrFlipperLI {
   list-style: none;
   height: 200px;
+  margin-right: 3vw;
+  position: relative;
+  width: 150px;
+}
+
+.PointerFlipperLI {
+  list-style: none;
   margin-right: 3vw;
   position: relative;
   width: 150px;
@@ -30,4 +43,13 @@
   position: absolute;
   bottom: 0;
   width: 2vw;
+}
+
+.ArrowUp {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  /* margin-right: 5px; */
+  border-bottom: 5px solid #1aab8a;
 }
