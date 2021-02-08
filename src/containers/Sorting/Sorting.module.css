@@ -6,6 +6,7 @@
 
 .OriginalArrWrapper {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   margin-bottom: 10px;
 }
@@ -25,14 +26,12 @@
 .ArrFlipperLI {
   list-style: none;
   height: 200px;
-  margin-right: 3vw;
   position: relative;
   width: 150px;
 }
 
 .PointerFlipperLI {
   list-style: none;
-  margin-right: 3vw;
   position: relative;
   width: 150px;
 }
@@ -41,15 +40,22 @@
   background-color: #39cccc;
   color: #000000;
   position: absolute;
+  margin: auto;
   bottom: 0;
   width: 2vw;
+  left: 0;
+  right: 0;
 }
 
 .ArrowUp {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  /* margin-right: 5px; */
   border-bottom: 5px solid #1aab8a;
 }

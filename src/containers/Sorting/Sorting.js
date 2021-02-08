@@ -131,8 +131,8 @@ const Sorting = () => {
       setArr(originalArr);
       setOriginalArr();
     }
-    setCurrentPointer();
     setCurrentStep(0);
+    setCurrentPointer();
     setIsRunning(true);
     setSortingType('Bubble Sort');
     setSortingSpeed(500);
@@ -267,22 +267,14 @@ const Sorting = () => {
       pointer = start;
 
     for (let i = start; i <= end; i++) {
-      tempPointerStepsArray.push([
-        array[pointer][1],
-        array[i][1],
-        array[start][1],
-      ]);
+      tempPointerStepsArray.push([pointer, i, start]);
       if (array[i][0] < pivot[0]) {
         pointer++;
         tempSortingStepsArray.push([pointer, i]);
         swap(array, pointer, i);
       } else tempSortingStepsArray.push(null);
     }
-    tempPointerStepsArray.push([
-      array[start][1],
-      array[pointer][1],
-      array[start][1],
-    ]);
+    tempPointerStepsArray.push([start, pointer, start]);
     tempSortingStepsArray.push([start, pointer]);
     swap(array, start, pointer);
 
@@ -343,7 +335,7 @@ const Sorting = () => {
       if (index === i) {
         return;
       }
-
+      // tempPointerStepsArray.push([i, index]);
       tempSortingStepsArray.push([i, index]);
       swap(heap, i, index);
 
@@ -358,6 +350,7 @@ const Sorting = () => {
     let lastElement = tempArr.length - 1;
 
     while (lastElement > 0) {
+      // tempPointerStepsArray.push([0, lastElement]);
       tempSortingStepsArray.push([0, lastElement]);
       swap(tempArr, 0, lastElement);
 
@@ -366,11 +359,14 @@ const Sorting = () => {
       lastElement -= 1;
     }
     setSortingSteps(tempSortingStepsArray);
+    setPointerSteps(null);
+    // setPointerSteps(tempPointerStepsArray);
     if (originalArr) {
       setArr(originalArr);
       setOriginalArr();
     }
     setCurrentStep(0);
+    setCurrentPointer();
     setIsRunning(true);
     setSortingType('Heap Sort');
     setSortingSpeed(500);
@@ -451,24 +447,68 @@ const Sorting = () => {
   }
 
   if (arr && currentPointer) {
-    pointerDisplay = (
-      <Flipper flipKey={arr.join('')}>
-        <ul className={classes.FlipperUL}>
-          {arr.map((item) => (
-            <li key={item[1]} className={classes.PointerFlipperLI}>
-              <Flipped flipId={item[1]}>
-                {item[1] === currentPointer[0] ||
-                item[1] === currentPointer[1] ? (
-                  <div className={classes.ArrowUp}></div>
-                ) : item[1] === currentPointer[2] ? (
-                  <div>pivot</div>
-                ) : null}
-              </Flipped>
-            </li>
-          ))}
-        </ul>
-      </Flipper>
-    );
+    if (
+      sortingType === 'Bubble Sort' ||
+      sortingType === 'Insertion Sort' ||
+      sortingType === 'Selection Sort'
+    ) {
+      pointerDisplay = (
+        <Flipper flipKey={arr.join('')}>
+          <ul className={classes.FlipperUL}>
+            {arr.map((item) => (
+              <li key={item[1]} className={classes.PointerFlipperLI}>
+                <Flipped flipId={item[1]}>
+                  {item[1] === currentPointer[0] ||
+                  item[1] === currentPointer[1] ? (
+                    <div className={classes.ArrowUp}></div>
+                  ) : null}
+                </Flipped>
+              </li>
+            ))}
+          </ul>
+        </Flipper>
+      );
+    } else if (sortingType === 'Quick Sort') {
+      pointerDisplay = (
+        <Flipper flipKey={arr.join('')}>
+          <ul className={classes.FlipperUL}>
+            {arr.map((item) => (
+              <li key={item[1]} className={classes.PointerFlipperLI}>
+                <Flipped flipId={item[1]}>
+                  {item[1] === currentPointer[0] ||
+                  item[1] === currentPointer[1] ? (
+                    <div className={classes.ArrowUp}></div>
+                  ) : item[1] === currentPointer[2] ? (
+                    <div className={classes.ArrowUp}>Pivot</div>
+                  ) : null}
+                </Flipped>
+              </li>
+            ))}
+          </ul>
+        </Flipper>
+      );
+    }
+    // else if (sortingType === 'Heap Sort') {
+    //   pointerDisplay = (
+    //     <Flipper flipKey={arr.join('')}>
+    //       <ul className={classes.FlipperUL}>
+    //         {arr.map((item) => (
+    //           <li key={item[1]} className={classes.PointerFlipperLI}>
+    //             <Flipped flipId={item[1]}>
+    //               {item[1] === currentPointer[0] ? (
+    //                 <div className={classes.ArrowUp}>First</div>
+    //               ) : item[1] === currentPointer[1] ? (
+    //                 <div className={classes.ArrowUp}>Second</div>
+    //               ) : item[1] === currentPointer[2] ? (
+    //                 <div className={classes.ArrowUp}>Third</div>
+    //               ) : null}
+    //             </Flipped>
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     </Flipper>
+    //   );
+    // }
   }
 
   if (currentStep > 0) {
