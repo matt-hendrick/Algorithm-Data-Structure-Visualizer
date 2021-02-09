@@ -1,49 +1,34 @@
 import React from 'react';
 import * as classes from './SortingTypeInfo.module.css';
 import {
-  bubbleSortCode,
-  bubbleSortDescription,
-  insertionSortCode,
-  insertionSortDescription,
-  selectionSortCode,
-  selectionSortDescription,
-  quickSortCode,
-  quickSortDescription,
-  heapSortCode,
-  heapSortDescription,
-  mergeSortCode,
-  mergeSortDescription,
-  bogoSortCode,
-  bogoSortDescription,
+  bubbleSortInfo,
+  insertionSortInfo,
+  selectionSortInfo,
+  quickSortInfo,
+  heapSortInfo,
+  mergeSortInfo,
+  bogoSortInfo,
 } from './SortingTypeInfoText';
 
 const SortingTypeDescriptions = (props) => {
-  let sortingDescription;
-  let code;
+  let sortingInfo;
 
   const { sortingType, sortingSteps, currentStep } = props;
 
   if (sortingType === 'Bubble Sort') {
-    sortingDescription = bubbleSortDescription;
-    code = bubbleSortCode;
+    sortingInfo = bubbleSortInfo;
   } else if (sortingType === 'Insertion Sort') {
-    sortingDescription = insertionSortDescription;
-    code = insertionSortCode;
+    sortingInfo = insertionSortInfo;
   } else if (sortingType === 'Selection Sort') {
-    sortingDescription = selectionSortDescription;
-    code = selectionSortCode;
+    sortingInfo = selectionSortInfo;
   } else if (sortingType === 'Quick Sort') {
-    sortingDescription = quickSortDescription;
-    code = quickSortCode;
+    sortingInfo = quickSortInfo;
   } else if (sortingType === 'Heap Sort') {
-    sortingDescription = heapSortDescription;
-    code = heapSortCode;
+    sortingInfo = heapSortInfo;
   } else if (sortingType === 'Merge Sort') {
-    sortingDescription = mergeSortDescription;
-    code = mergeSortCode;
+    sortingInfo = mergeSortInfo;
   } else if (sortingType === 'Bogo Sort') {
-    sortingDescription = bogoSortDescription;
-    code = bogoSortCode;
+    sortingInfo = bogoSortInfo;
   }
 
   return (
@@ -60,11 +45,12 @@ const SortingTypeDescriptions = (props) => {
       </div>
       <div className={classes.SortingTypeWrapper}>
         <pre className={classes.SortingTypeCodeBlock}>
-          <code>{code}</code>
+          <code>{sortingInfo.code}</code>
         </pre>
         <div className={classes.SortingTypeDescriptionBlock}>
           <h4>{sortingType}</h4>
-          <div>{sortingDescription}</div>
+          <div>{sortingInfo.description}</div>
+          {sortingInfo.list}
         </div>
       </div>
     </div>

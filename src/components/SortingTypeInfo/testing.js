@@ -223,6 +223,30 @@ function merge(arr1, arr2) {
   return sorted.concat(arr1.slice().concat(arr2.slice()));
 }
 
+const handleShellSort = (array) => {
+  let n = array.length;
+
+  //Start with a really large gap, and then reduce the gap until there isn't any
+  //With this, the gap starts as half of the arrayay length, and then half of that every time
+  for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+    //Do a insertion sort for each of the section the gap ends up dividing
+    for (let i = gap; i < n; i += 1) {
+      //We store the current varible
+      let tempVar = array[i];
+
+      //This is the insection sort to sort the section into order
+      let j;
+      for (j = i; j >= gap && array[j - gap] > tempVar; j -= gap) {
+        array[j] = array[j - gap];
+      }
+
+      array[j] = tempVar;
+    }
+  }
+
+  return array;
+};
+
 let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 
 // console.log(handleBubbleSort(array));
@@ -231,4 +255,5 @@ let array = [3, 2, 243, 44, 99, 5, 5, 4, 5, 6, 1, 2, 3, 100, 1231];
 // console.log(handleBogoSort(array));
 // console.log(quickSort(array));
 // console.log(handleHeapSort(array));
-console.log(handleMergeSort(array));
+// console.log(handleMergeSort(array));
+console.log(handleShellSort(array));

@@ -1,6 +1,7 @@
-export const bubbleSortDescription = `Bubble sort is an in-place sorting algorithm that sorts items by comparing each adjacent pair of items in turn,
-   swapping the items if necessary, and repeating iterating through the items until no swaps are done.`;
-export const bubbleSortCode = `const handleBubbleSort = (array) => {
+export const bubbleSortInfo = {
+  description: `Bubble sort is an in-place sorting algorithm that sorts items by comparing each adjacent pair of items in turn,
+   swapping the items if necessary, and repeating iterating through the items until no swaps are done.`,
+  code: `const handleBubbleSort = (array) => {
     for (let i = 1; i < array.length; i++) {
       let swapped = false;
       for (let current = 0; current < array.length - i; current++) {
@@ -18,12 +19,28 @@ export const bubbleSortCode = `const handleBubbleSort = (array) => {
       if (!swapped) break;
     }
     return array;
-  };`;
-export const insertionSortDescription = `Insertion sort is an in-place sorting algorithm that sorts items by building up a sorted subarray. 
+  };`,
+  list: (
+    <ul>
+      <li>Stable</li>
+      <li>Adaptive</li>
+      <li>
+        Average Time Complexity: O(n<sup>2</sup>) swaps and comparisons
+      </li>
+      <li>
+        Worst Time Complexity: O(n<sup>2</sup>) swaps and comparisons
+      </li>
+      <li>Best Time Complexity: O(n) comparisons and O(1) swaps</li>
+      <li>Space Complexity: O(1)</li>
+    </ul>
+  ),
+};
+export const insertionSortInfo = {
+  description: `Insertion sort is an in-place sorting algorithm that sorts items by building up a sorted subarray. 
   The algorithm sequentially compares items with the preceding items in the sorted subarray. 
   If items preceding the examined item are less than the examined item,
-   the examined item is swapped with the lesser items until the item is in its appropriate place in the sorted portion of the array.`;
-export const insertionSortCode = `const handleInsertionSort = (array) => {
+   the examined item is swapped with the lesser items until the item is in its appropriate place in the sorted portion of the array.`,
+  code: `const handleInsertionSort = (array) => {
     for (let right = 1; right < array.length; right++) {
       for (
         let left = right;
@@ -35,11 +52,27 @@ export const insertionSortCode = `const handleInsertionSort = (array) => {
       }
     }
     return array;
-  };`;
-export const selectionSortDescription = `Selection sort is an in-place sorting algorithm that sorts items by building up a sorted subarray. 
+  };`,
+  list: (
+    <ul>
+      <li>Stable</li>
+      <li>Adaptive</li>
+      <li>
+        Average Time Complexity: O(n<sup>2</sup>) swaps and comparisons
+      </li>
+      <li>
+        Worst-case Time Complexity: O(n<sup>2</sup>) swaps and comparisons
+      </li>
+      <li>Best-case Time Complexity: O(n) comparisons and O(1) swaps</li>
+      <li>Space Complexity: O(1)</li>
+    </ul>
+  ),
+};
+export const selectionSortInfo = {
+  description: `Selection sort is an in-place sorting algorithm that sorts items by building up a sorted subarray. 
   The algorithm sequentially iterates through the unsorted portion of the array and, if the left-most item is greater than the compared item,
-   the two items are swapped.`;
-export const selectionSortCode = `const handleSelectionSort = (array) => {
+   the two items are swapped.`,
+  code: `const handleSelectionSort = (array) => {
     for (let left = 0; left < array.length; left++) {
       let selection = left;
       // iterates through every item to the right of the left pointer
@@ -55,11 +88,29 @@ export const selectionSortCode = `const handleSelectionSort = (array) => {
       }
     }
     return array;
-  };`;
-export const quickSortDescription = ` Quick sort is a divide and conquer, in-place sorting algorithm that divides an array of items on a pivot item. The algorithm then
+  };`,
+  list: (
+    <ul>
+      <li>Not Stable</li>
+      <li>Not Adaptive</li>
+      <li>
+        Average Time Complexity: O(n<sup>2</sup>) comparisons and O(n) swaps
+      </li>
+      <li>
+        Worst-case Time Complexity: O(n<sup>2</sup>) comparisons and O(n) swaps
+      </li>
+      <li>
+        Best-case Time Complexity: O(n<sup>2</sup>) comparisons and O(1) swaps
+      </li>
+      <li>Space Complexity: O(1)</li>
+    </ul>
+  ),
+};
+export const quickSortInfo = {
+  description: ` Quick sort is a divide and conquer, in-place sorting algorithm that divides an array of items on a pivot item. The algorithm then
  partitions the array so all items smaller than the pivot are to the left of the pivot and all items greater than the pivot are to the right of the pivot. 
- This process is repeated until the array is sorted.`;
-export const quickSortCode = `const handleQuickSort = (array, start = 0, end = array.length - 1) => {
+ This process is repeated until the array is sorted.`,
+  code: `const handleQuickSort = (array, start = 0, end = array.length - 1) => {
   let pivotIndex = getQuickSortPivot(array, start, end);
 
   if (start >= end) return array;
@@ -82,12 +133,29 @@ function getQuickSortPivot(array, start, end) {
   [array[start], array[pointer]] = [array[pointer], array[start]];
 
   return pointer;
-}`;
-export const heapSortDescription = `Heap sort is an in-place sorting algorithm that uses a binary heap to sort items.
+}`,
+  list: (
+    <ul>
+      <li>Not Stable</li>
+      <li>Not Adaptive</li>
+      <li>Average Time Complexity: O(n log n)</li>
+      <li>
+        Worst-case Time Complexity: O(n<sup>2</sup>)
+      </li>
+      <li>Best-case Time Complexity: O(n log n)</li>
+      <li>
+        Space Complexity: O(n) or O(log n) depending on the type of quick sort
+        algorithm chosen
+      </li>
+    </ul>
+  ),
+};
+export const heapSortInfo = {
+  description: `Heap sort is an in-place sorting algorithm that uses a binary heap to sort items.
   The algorithm builds a max heap from an array. The max item is then stored at the root of the heap, 
   the item previously in that position is swapped and placed at the top of the heap, and the heap size is reduced by one.
-  The array is heapified again. This process is repeated until the array is sorted. `;
-export const heapSortCode = `const handleHeapSort = (array) => {
+  The array is heapified again. This process is repeated until the array is sorted. `,
+  code: `const handleHeapSort = (array) => {
   // creates max heap
   buildMaxHeap(array);
 
@@ -141,11 +209,23 @@ function heapify(heap, i, max) {
 
     i = index;
   }
-}`;
-export const mergeSortDescription = `Merge sort is a divide and conquer algorithm that sorts items by breaking down the unsorted array into smaller, subarrays.
+}`,
+  list: (
+    <ul>
+      <li>Not Stable</li>
+      <li>Slightly Adaptive</li>
+      <li>Average Time Complexity: O(n log n)</li>
+      <li>Worst-case Time Complexity: O(n log n)</li>
+      <li>Best-case Time Complexity: O(n log n)</li>
+      <li>Space Complexity: O(1)</li>
+    </ul>
+  ),
+};
+export const mergeSortInfo = {
+  description: `Merge sort is a divide and conquer algorithm that sorts items by breaking down the unsorted array into smaller, subarrays.
   The algoritms then sorts the subarrays and merges the subarrays together, with items being inserted into a new array in the appropriate position.
-  This process is continued until the new array is sorted.`;
-export const mergeSortCode = `const handleMergeSort = (arr) => {
+  This process is continued until the new array is sorted.`,
+  code: `const handleMergeSort = (arr) => {
     if (arr.length <= 1) return arr;
     let mid = Math.floor(arr.length / 2),
       left = handleMergeSort(arr.slice(0, mid)),
@@ -163,10 +243,22 @@ export const mergeSortCode = `const handleMergeSort = (arr) => {
     }
   
     return sorted.concat(arr1.slice().concat(arr2.slice()));
-  }`;
-export const bogoSortDescription =
-  'Bogo sort is an inefficient, in-place algorithm that shuffles an array of items until the array is sorted.';
-export const bogoSortCode = `  const handleBogoSort = (array) => {
+  }`,
+  list: (
+    <ul>
+      <li>Stable</li>
+      <li>Not Adaptive</li>
+      <li>Average Time Complexity: O(n log n)</li>
+      <li>Worst-case Time Complexity: O(n log n)</li>
+      <li>Best-case Time Complexity: O(n log n)</li>
+      <li>Space Complexity: O(n)</li>
+    </ul>
+  ),
+};
+export const bogoSortInfo = {
+  description:
+    'Bogo sort is an inefficient, in-place algorithm that shuffles an array of items until the array is sorted.',
+  code: `  const handleBogoSort = (array) => {
     while (!isSorted(array)) {
       shuffle(array);
     }
@@ -188,4 +280,15 @@ export const bogoSortCode = `  const handleBogoSort = (array) => {
       [array[index], array[newIndex]] = [array[newIndex], array[index]];
     }
     return array;
-  }`;
+  }`,
+  list: (
+    <ul>
+      <li>Not Stable</li>
+      <li>Not Adaptive</li>
+      <li>Average Time Complexity: O((n+1)!)</li>
+      <li>Worst-case Time Complexity: O((n+1)!)</li>
+      <li>Best-case Time Complexity: O(n)</li>
+      <li>Space Complexity: O(1)</li>
+    </ul>
+  ),
+};

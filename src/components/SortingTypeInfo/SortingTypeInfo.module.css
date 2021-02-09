@@ -1,3 +1,11 @@
+ul {
+  list-style: disc;
+}
+
+li::marker {
+  color: #1aab8a;
+}
+
 .SortingTypeWrapper {
   display: flex;
   font-size: 0.75em;
