@@ -106,6 +106,52 @@ const Sorting = () => {
     setSortingSpeed(10000);
   };
 
+  // sets state to begin sorting
+  const startSorting = (nameOfSortingType) => {
+    // options shared by all sorting algos
+    setCurrentStep(0);
+    setCurrentPointer(0);
+    setIsRunning(true);
+    setSortingType(nameOfSortingType);
+    setSortingSpeed(500);
+
+    // Non Bogo sort set sorting steps
+    if (nameOfSortingType !== 'Bogo Sort') {
+      setSortingSteps(tempSortingStepsArray);
+    }
+    // Bogo sort clear out sorting steps
+    else {
+      setSortingSteps(null);
+    }
+
+    // Sorting algos with pointers
+    if (
+      nameOfSortingType === 'Bubble Sort' ||
+      nameOfSortingType === 'Insertion Sort' ||
+      nameOfSortingType === 'Selection Sort'
+    ) {
+      setPointerSteps(tempPointerStepsArray);
+    }
+    // Clear pointer steps if selected sorting algo does not have pointers set up
+    else {
+      setPointerSteps(null);
+    }
+
+    // Non Merge Sort sorting options
+    if (nameOfSortingType !== 'Merge Sort') {
+      if (originalArr) {
+        setArr(originalArr);
+        setOriginalArr();
+      }
+    }
+    // Merge Sort Specific options
+    if (nameOfSortingType === 'Merge Sort') {
+      if (arr.length === 25) {
+        setOriginalArr(arr);
+      }
+    }
+  };
+
   const handleBubbleSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
 
@@ -128,17 +174,7 @@ const Sorting = () => {
 
       if (!swapped) break;
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(tempPointerStepsArray);
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setCurrentStep(0);
-    setCurrentPointer();
-    setIsRunning(true);
-    setSortingType('Bubble Sort');
-    setSortingSpeed(500);
+    startSorting('Bubble Sort');
   };
 
   const handleInsertionSort = () => {
@@ -156,17 +192,7 @@ const Sorting = () => {
         swap(tempArr, left - 1, left);
       }
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(tempPointerStepsArray);
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setCurrentPointer();
-    setCurrentStep(0);
-    setIsRunning(true);
-    setSortingType('Insertion Sort');
-    setSortingSpeed(500);
+    startSorting('Insertion Sort');
   };
 
   const handleSelectionSort = () => {
@@ -192,17 +218,7 @@ const Sorting = () => {
         else tempSortingStepsArray.push(null);
       }
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(tempPointerStepsArray);
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setCurrentStep(0);
-    setCurrentPointer();
-    setIsRunning(true);
-    setSortingType('Selection Sort');
-    setSortingSpeed(500);
+    startSorting('Selection Sort');
   };
 
   const handleMergeSort = () => {
@@ -225,7 +241,6 @@ const Sorting = () => {
         let i = left;
 
         while (left < leftLimit && right < rightLimit) {
-          // tempPointerStepsArray.push([left, right]);
           if (tempArr[left][0] <= tempArr[right][0]) {
             buffer[i] = tempArr[left];
             tempSortingStepsArray.push([...buffer]);
@@ -240,7 +255,6 @@ const Sorting = () => {
         }
 
         while (left < leftLimit) {
-          // tempPointerStepsArray.push([left, leftLimit]);
           buffer[i] = tempArr[left];
           tempSortingStepsArray.push([...buffer]);
           left++;
@@ -248,7 +262,6 @@ const Sorting = () => {
         }
 
         while (right < rightLimit) {
-          // tempPointerStepsArray.push([right, rightLimit]);
           buffer[i] = tempArr[right];
           tempSortingStepsArray.push([...buffer]);
           right++;
@@ -257,17 +270,7 @@ const Sorting = () => {
       }
       [tempArr, buffer] = [buffer, tempArr];
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(null);
-    if (arr.length === 25) {
-      setOriginalArr(arr);
-    }
-    setSortingType('Merge Sort');
-    setCurrentStep(24);
-    // setCurrentPointer(24);
-    setCurrentPointer();
-    setIsRunning(true);
-    setSortingSpeed(500);
+    startSorting('Merge Sort');
   };
 
   const getQuickSortPivot = (array, start, end) => {
@@ -275,14 +278,12 @@ const Sorting = () => {
       pointer = start;
 
     for (let i = start; i <= end; i++) {
-      // tempPointerStepsArray.push([pointer, i, pivot[1]]);
       if (array[i][0] < pivot[0]) {
         pointer++;
         tempSortingStepsArray.push([pointer, i]);
         swap(array, pointer, i);
       } else tempSortingStepsArray.push(null);
     }
-    // tempPointerStepsArray.push([start, pointer, pivot[1]]);
     tempSortingStepsArray.push([start, pointer]);
     swap(array, start, pointer);
 
@@ -295,17 +296,7 @@ const Sorting = () => {
       quickSort(array, start, pivotIndex);
       quickSort(array, pivotIndex + 1, end);
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(tempPointerStepsArray);
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setSortingType('Quick Sort');
-    setCurrentStep(0);
-    setCurrentPointer();
-    setIsRunning(true);
-    setSortingSpeed(500);
+    startSorting('Quick Sort');
     return array;
   };
 
@@ -343,7 +334,6 @@ const Sorting = () => {
       if (index === i) {
         return;
       }
-      // tempPointerStepsArray.push([i, index]);
       tempSortingStepsArray.push([i, index]);
       swap(heap, i, index);
 
@@ -358,7 +348,6 @@ const Sorting = () => {
     let lastElement = tempArr.length - 1;
 
     while (lastElement > 0) {
-      // tempPointerStepsArray.push([0, lastElement]);
       tempSortingStepsArray.push([0, lastElement]);
       swap(tempArr, 0, lastElement);
 
@@ -366,31 +355,11 @@ const Sorting = () => {
 
       lastElement -= 1;
     }
-    setSortingSteps(tempSortingStepsArray);
-    setPointerSteps(null);
-    // setPointerSteps(tempPointerStepsArray);
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setCurrentStep(0);
-    setCurrentPointer();
-    setIsRunning(true);
-    setSortingType('Heap Sort');
-    setSortingSpeed(500);
+    startSorting('Heap Sort');
   };
 
   const handleBogoSort = () => {
-    if (originalArr) {
-      setArr(originalArr);
-      setOriginalArr();
-    }
-    setCurrentPointer();
-    setPointerSteps([]);
-    setCurrentStep(0);
-    setIsRunning(true);
-    setSortingType('Bogo Sort');
-    setSortingSpeed(500);
+    startSorting('Bogo Sort');
   };
 
   const handleShuffle = () => {
@@ -480,72 +449,6 @@ const Sorting = () => {
         </Flipper>
       );
     }
-    // else if (sortingType === 'Merge Sort') {
-    //   pointerDisplay = (
-    //     <Flipper flipKey={arr.join('')}>
-    //       <ul className={classes.FlipperUL}>
-    //         {arr.map((item) => (
-    //           <li key={item[1]} className={classes.PointerFlipperLI}>
-    //             <Flipped flipId={item[1]}>
-    //               {item[1] === currentPointer[0] ? (
-    //                 <div className={classes.ArrowUp}>Left</div>
-    //               ) : item[1] === currentPointer[1] ? (
-    //                 <div className={classes.ArrowUp}>Right</div>
-    //               ) : null}
-    //             </Flipped>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </Flipper>
-    //   );
-    // }
-    else if (sortingType === 'Quick Sort') {
-      pointerDisplay = (
-        <Flipper flipKey={arr.join('')}>
-          <ul className={classes.FlipperUL}>
-            {arr.map((item) => (
-              <li
-                key={item[1] + currentStep}
-                className={classes.PointerFlipperLI}
-              >
-                <Flipped flipId={item[1]}>
-                  {item[1] === currentPointer[2] ? (
-                    <div className={classes.ArrowUp}>Pivot</div>
-                  ) : item[1] === currentPointer[0] ? (
-                    <div className={classes.ArrowUp}>Left</div>
-                  ) : item[1] === currentPointer[1] ? (
-                    <div className={classes.ArrowUp}>Right</div>
-                  ) : null}
-                </Flipped>
-              </li>
-            ))}
-          </ul>
-        </Flipper>
-      );
-    }
-    // else if (sortingType === 'Heap Sort') {
-    //   pointerDisplay = (
-    //     <Flipper flipKey={arr.join('')}>
-    //       <ul className={classes.FlipperUL}>
-    //         {arr.map((item) => (
-    //           <li key={item[1]} className={classes.PointerFlipperLI}>
-    //             <Flipped flipId={item[1]}>
-    //               {item[1] === currentPointer[0] ? (
-    //                 <div className={classes.ArrowUp}>First</div>
-    //               ) : item[1] === currentPointer[1] ? (
-    //                 <div className={classes.ArrowUp}>Second</div>
-    //               ) : item[1] === currentPointer[2] ? (
-    //                 <div className={classes.ArrowUp}>Third</div>
-    //               ) : item[1] === currentPointer[3] ? (
-    //                 <div className={classes.ArrowUp}>Fourth</div>
-    //               ) : null}
-    //             </Flipped>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </Flipper>
-    //   );
-    // }
   }
 
   if (currentStep > 0) {
