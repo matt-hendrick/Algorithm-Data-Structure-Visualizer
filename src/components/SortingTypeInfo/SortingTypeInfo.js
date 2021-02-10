@@ -39,7 +39,7 @@ const SortingTypeDescriptions = (props) => {
           {sortingType.toLowerCase()}
           {sortingType !== 'Bogo Sort'
             ? `: ${sortingSteps.length}`
-            : " is unknown as bogo sort's average run time is O(n!)"}
+            : " is unknown as bogo sort's average run time is O((n+1)!)"}
         </h3>
         <h3>Current Step: {currentStep}</h3>
       </div>
