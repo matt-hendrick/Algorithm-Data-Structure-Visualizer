@@ -1,10 +1,4 @@
-export class LinkedListNode {
-  constructor(val = null, next = null, prev = null) {
-    this.val = val;
-    this.next = next;
-    this.prev = prev;
-  }
-}
+import { Node } from './Node';
 
 export class LinkedList {
   constructor(node = null) {
@@ -12,13 +6,13 @@ export class LinkedList {
   }
 
   addFirst(val) {
-    const tempNode = new LinkedListNode(val, this.head);
+    const tempNode = new Node(val, this.head);
     this.head = tempNode;
   }
 
   addLast(val) {
     let curr = this.head;
-    const tempNode = new LinkedListNode(val);
+    const tempNode = new Node(val);
     while (curr.next) {
       curr = curr.next;
     }

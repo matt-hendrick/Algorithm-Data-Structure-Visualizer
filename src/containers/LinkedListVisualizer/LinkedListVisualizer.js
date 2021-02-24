@@ -1,49 +1,50 @@
 import React, { useState } from 'react';
-import { LinkedList, LinkedListNode } from '../../dataStructures/LinkedList';
+import { LinkedList } from '../../dataStructures/LinkedList';
+import { Node } from '../../dataStructures/Node';
 import MyButton from '../../components/MyButton/MyButton';
 
 function LinkedListVisualizer() {
   const [list, setList] = useState(null);
   const [arr, setArr] = useState(null);
-  const [addValue, setAddValue] = useState('');
+  const [newNodeValue, setNewNodeValue] = useState('');
 
   const updateAddNodeValue = (event) => {
     const updatedValue = event.target.value;
-    setAddValue(updatedValue);
+    setNewNodeValue(updatedValue);
   };
 
-  const submitAddFirst = () => {
-    if (addValue !== '') {
+  const addFirst = () => {
+    if (newNodeValue !== '') {
       if (!list) {
-        const newNode = new LinkedListNode(addValue);
+        const newNode = new Node(newNodeValue);
         let newList = new LinkedList(newNode);
         setList(newList);
         setArr(newList.toArray());
-        setAddValue('');
+        setNewNodeValue('');
       } else {
         let newList = new LinkedList(list.head);
-        newList.addFirst(addValue);
+        newList.addFirst(newNodeValue);
         setList(newList);
         setArr(newList.toArray());
-        setAddValue('');
+        setNewNodeValue('');
       }
     }
   };
 
-  const submitAddLast = () => {
-    if (addValue !== '') {
+  const addLast = () => {
+    if (newNodeValue !== '') {
       if (!list) {
-        const newNode = new LinkedListNode(addValue);
+        const newNode = new Node(newNodeValue);
         let newList = new LinkedList(newNode);
         setList(newList);
         setArr(newList.toArray());
-        setAddValue('');
+        setNewNodeValue('');
       } else {
         let newList = new LinkedList(list.head);
-        newList.addLast(addValue);
+        newList.addLast(newNodeValue);
         setList(newList);
         setArr(newList.toArray());
-        setAddValue('');
+        setNewNodeValue('');
       }
     }
   };
@@ -82,11 +83,11 @@ function LinkedListVisualizer() {
       >
         <input
           onChange={updateAddNodeValue}
-          value={addValue}
+          value={newNodeValue}
           placeholder="Enter a new node value"
         />
-        <MyButton onClick={submitAddFirst}>Add to Front of List</MyButton>
-        <MyButton onClick={submitAddLast}>Add to End of List</MyButton>
+        <MyButton onClick={addFirst}>Add to Front of List</MyButton>
+        <MyButton onClick={addLast}>Add to End of List</MyButton>
         <MyButton onClick={removeFirst}>Remove from Front of List</MyButton>
         <MyButton onClick={removeLast}>Remove from End of List</MyButton>
         <MyButton onClick={reverseList}>Reverse List</MyButton>
