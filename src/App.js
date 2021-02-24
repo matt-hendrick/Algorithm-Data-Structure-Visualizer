@@ -8,6 +8,7 @@ import NavBar from './components/Navbar/Navbar';
 import Sorting from './containers/Sorting/Sorting';
 import LinkedListVisualizer from './containers/LinkedListVisualizer/LinkedListVisualizer';
 import StackVisualizer from './containers/StackVisualizer/StackVisualizer';
+import QueueVisualizer from './containers/QueueVisualizer/QueueVisualizer';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/sorting" component={Sorting} />
           <Route exact path="/linkedlist" component={LinkedListVisualizer} />
           <Route exact path="/stack" component={StackVisualizer} />
+          <Route exact path="/queue" component={QueueVisualizer} />
         </Switch>
       </Container>
     </Router>

@@ -22,6 +22,7 @@ const MyNavbar = () => {
           <Nav.Link href="/sorting">Sorting</Nav.Link>
           <Nav.Link href="/linkedlist">Linked List</Nav.Link>
           <Nav.Link href="/stack">Stack</Nav.Link>
+          <Nav.Link href="/queue">Queue</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

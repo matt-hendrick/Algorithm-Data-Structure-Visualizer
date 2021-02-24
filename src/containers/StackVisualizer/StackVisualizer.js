@@ -59,10 +59,10 @@ function StackVisualizer() {
             height: '65vh',
           }}
         >
-          <div style={{ width: '20%' }}></div>
+          <div style={{ width: '15%' }}></div>
           <div
             style={{
-              width: '60%',
+              width: '70%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -79,7 +79,7 @@ function StackVisualizer() {
               );
             })}{' '}
           </div>
-          <div style={{ width: '20%' }}></div>
+          <div style={{ width: '15%' }}></div>
         </div>
       ) : null}
     </div>
