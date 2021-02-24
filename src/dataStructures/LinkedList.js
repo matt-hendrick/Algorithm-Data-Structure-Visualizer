@@ -70,6 +70,17 @@ export class LinkedList {
     }
   }
 
+  reverseList() {
+    let curr = this.head;
+    let prev = null;
+
+    while (curr) {
+      [curr.next, curr, prev] = [prev, curr.next, curr];
+    }
+
+    this.head = prev;
+  }
+
   size() {
     let count = 0;
     let curr = this.head;

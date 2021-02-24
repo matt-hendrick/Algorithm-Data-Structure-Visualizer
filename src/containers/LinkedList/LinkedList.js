@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LinkedList, LinkedListNode } from '../../dataStructures/LinkedList';
+import MyButton from '../../components/MyButton/MyButton';
 
 function LinkedListVisualizer() {
   const [list, setList] = useState(null);
@@ -11,8 +12,7 @@ function LinkedListVisualizer() {
     setAddValue(updatedValue);
   };
 
-  const submitAddFirst = (event) => {
-    event.preventDefault();
+  const submitAddFirst = () => {
     if (addValue !== '') {
       if (!list) {
         const newNode = new LinkedListNode(addValue);
@@ -30,8 +30,7 @@ function LinkedListVisualizer() {
     }
   };
 
-  const submitAddLast = (event) => {
-    event.preventDefault();
+  const submitAddLast = () => {
     if (addValue !== '') {
       if (!list) {
         const newNode = new LinkedListNode(addValue);
@@ -49,8 +48,7 @@ function LinkedListVisualizer() {
     }
   };
 
-  const removeFirst = (event) => {
-    event.preventDefault();
+  const removeFirst = () => {
     if (list) {
       let newList = new LinkedList(list.head);
       newList.removeFirst();
@@ -59,28 +57,40 @@ function LinkedListVisualizer() {
     }
   };
 
-  const removeLast = (event) => {
-    event.preventDefault();
+  const removeLast = () => {
     if (list) {
       let newList = new LinkedList(list.head);
       newList.removeLast();
       setList(newList);
       setArr(newList.toArray());
-      setAddValue('');
+    }
+  };
+
+  const reverseList = () => {
+    if (list) {
+      let newList = new LinkedList(list.head);
+      newList.reverseList();
+      setList(newList);
+      setArr(newList.toArray());
     }
   };
 
   return (
     <div>
-      <form>
-        <input onChange={updateAddNodeValue} value={addValue} />
-        <button onClick={submitAddFirst}>Add to Front of List</button>
-        <button onClick={submitAddLast}>Add to End of List</button>
-      </form>
-      <form>
-        <button onClick={removeFirst}>Remove from Front of List</button>
-        <button onClick={removeLast}>Remove from End of List</button>
-      </form>
+      <div
+        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+      >
+        <input
+          onChange={updateAddNodeValue}
+          value={addValue}
+          placeholder="Enter a new node value"
+        />
+        <MyButton onClick={submitAddFirst}>Add to Front of List</MyButton>
+        <MyButton onClick={submitAddLast}>Add to End of List</MyButton>
+        <MyButton onClick={removeFirst}>Remove from Front of List</MyButton>
+        <MyButton onClick={removeLast}>Remove from End of List</MyButton>
+        <MyButton onClick={reverseList}>Reverse List</MyButton>
+      </div>
       {arr ? (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {arr.map((val, index) => {
