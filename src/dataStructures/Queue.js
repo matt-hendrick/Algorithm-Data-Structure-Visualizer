@@ -3,7 +3,7 @@ import { Node } from './Node';
 export class Queue {
   constructor(first = null, last = null) {
     this.first = first;
-    this.last = last;
+    this.last = last ? last : first;
   }
 
   add(val) {
