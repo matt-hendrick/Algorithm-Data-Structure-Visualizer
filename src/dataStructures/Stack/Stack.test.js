@@ -1,5 +1,5 @@
 import { Stack } from './Stack';
-import { Node } from './Node';
+import { Node } from '../Node/Node';
 
 describe('Stack Class tests', () => {
   it(`Stack initializes/adds/removes/turns to Array correctly`, () => {

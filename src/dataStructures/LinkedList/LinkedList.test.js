@@ -1,5 +1,5 @@
 import { LinkedList } from './LinkedList';
-import { Node } from './Node';
+import { Node } from '../Node/Node';
 
 describe('LinkedList Class tests', () => {
   it(`Singly linked LinkedList initializes, adds/removes/gets First, 

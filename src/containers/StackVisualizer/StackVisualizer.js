@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack } from '../../dataStructures/Stack';
+import { Stack } from '../../dataStructures/Stack/Stack';
 import MyButton from '../../components/MyButton/MyButton';
 
 function StackVisualizer() {

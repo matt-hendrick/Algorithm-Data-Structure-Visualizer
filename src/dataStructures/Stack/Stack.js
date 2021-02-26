@@ -1,6 +1,6 @@
-import { Node } from './Node';
+import { Node } from '../Node/Node';
 
-export class Queue {
+export class Stack {
   constructor(first = null, last = null) {
     this.first = first;
     this.last = last ? last : first;
@@ -12,8 +12,9 @@ export class Queue {
       this.first = tempNode;
       this.last = tempNode;
     } else {
-      this.last.next = tempNode;
-      this.last = tempNode;
+      const tempFirst = this.first;
+      this.first = tempNode;
+      this.first.next = tempFirst;
     }
   }
 

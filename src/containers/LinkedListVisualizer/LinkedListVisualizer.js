@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LinkedList } from '../../dataStructures/LinkedList';
+import { LinkedList } from '../../dataStructures/LinkedList/LinkedList';
 import { Node } from '../../dataStructures/Node';
 import MyButton from '../../components/MyButton/MyButton';
 
