@@ -1,5 +1,5 @@
-import { Node } from '../Node/Node';
-export class LinkedList {
+import Node from '../Node/Node';
+export default class LinkedList {
   constructor(node = null) {
     this.head = node;
   }

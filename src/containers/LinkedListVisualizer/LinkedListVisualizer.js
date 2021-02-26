@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { LinkedList } from '../../dataStructures/LinkedList/LinkedList';
-import { Node } from '../../dataStructures/Node/Node';
+import LinkedList from '../../dataStructures/LinkedList/LinkedList';
+import Node from '../../dataStructures/Node/Node';
 import MyButton from '../../components/MyButton/MyButton';
 
 function LinkedListVisualizer() {

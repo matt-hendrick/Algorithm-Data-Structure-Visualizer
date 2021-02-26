@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Queue } from '../../dataStructures/Queue/Queue';
+import Queue from '../../dataStructures/Queue/Queue';
 import MyButton from '../../components/MyButton/MyButton';
 
 function QueueVisualizer() {

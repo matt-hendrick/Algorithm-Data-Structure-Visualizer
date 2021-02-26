@@ -1,6 +1,6 @@
-import { Node } from '../Node/Node';
+import Node from '../Node/Node';
 
-export class Queue {
+export default class Queue {
   constructor(first = null, last = null) {
     this.first = first;
     this.last = last ? last : first;

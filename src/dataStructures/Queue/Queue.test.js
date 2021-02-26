@@ -1,5 +1,5 @@
-import { Queue } from './Queue';
-import { Node } from '../Node/Node';
+import Queue from './Queue';
+import Node from '../Node/Node';
 
 describe('Queue Class tests', () => {
   it(`Queue initializes/adds/removes/turns to Array correctly`, () => {
