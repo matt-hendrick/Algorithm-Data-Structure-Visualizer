@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import * as classes from './LinkedListVisualizer.module.css';
+
+// Data Structures
 import LinkedList from '../../dataStructures/LinkedList/LinkedList';
 import Node from '../../dataStructures/Node/Node';
+
+// Components
 import MyButton from '../../components/MyButton/MyButton';
 
 function LinkedListVisualizer() {
@@ -78,9 +83,7 @@ function LinkedListVisualizer() {
 
   return (
     <div>
-      <div
-        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
-      >
+      <div className={classes.ButtonRow}>
         <input
           onChange={updateAddNodeValue}
           value={newNodeValue}
@@ -92,19 +95,26 @@ function LinkedListVisualizer() {
         <MyButton onClick={removeLast}>Remove from End of the List</MyButton>
         <MyButton onClick={reverseList}>Reverse the List</MyButton>
       </div>
-      {arr ? (
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {arr.map((val, index) => {
-            return (
-              <div key={[val, index]} style={{ display: 'flex' }}>
-                <div>(====</div>
-                <div style={{ border: '1px solid black' }}>{val}</div>
-                <div>====)</div>
-              </div>
-            );
-          })}{' '}
+      <div className={classes.LinkedListContainer}>
+        <div className={classes.BorderColumn}>List Start</div>
+        <div className={classes.LinkedListColumn}>
+          {arr
+            ? arr.map((val, index) => {
+                return (
+                  <div key={[val, index]} className={classes.LinkedListNode}>
+                    <div className={classes.LinkedListValWrapper}>
+                      <div className={classes.LinkedListVal}>{val}</div>
+                    </div>
+                    {index !== arr.length - 1 ? (
+                      <div className={classes.LinkedListArrow}>{'>'}</div>
+                    ) : null}
+                  </div>
+                );
+              })
+            : null}
         </div>
-      ) : null}
+        <div className={classes.BorderColumn}>List End</div>
+      </div>
     </div>
   );
 }

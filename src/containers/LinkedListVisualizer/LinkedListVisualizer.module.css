@@ -1,0 +1,59 @@
+.ButtonRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.LinkedListContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.BorderColumn {
+  width: 15%;
+  background-color: #ea5455;
+  color: white;
+  text-align: center;
+}
+
+.LinkedListColumn {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.LinkedListNode {
+  display: flex;
+  width: 20%;
+  height: 5vh;
+}
+
+.LinkedListValWrapper {
+  width: 80%;
+  height: 5vh;
+  border: 1px solid white;
+  background-color: #39cccc;
+  text-align: center;
+  font-size: 1.1em;
+  color: white;
+}
+
+.LinkedListVal {
+  padding-top: 1vh;
+}
+
+.LinkedListArrow {
+  width: 10%;
+  padding-top: 1vh;
+  padding-left: 0.5vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .LinkedListNode {
+    display: flex;
+    width: 30%;
+    height: 5vh;
+  }
+}
