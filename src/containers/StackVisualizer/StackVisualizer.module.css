@@ -1,0 +1,36 @@
+.ButtonRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.StackDisplayContainer {
+  display: flex;
+  height: 70vh;
+}
+
+.EmptyBorderColumn {
+  width: 15%;
+}
+
+.StackColumn {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.StackNode {
+  display: 'flex';
+  width: 50%;
+  height: 5vh;
+  border: 1px solid white;
+  background-color: #39cccc;
+  text-align: center;
+  color: white;
+}
+
+.StackVal {
+  padding-top: 0.65vh;
+}
