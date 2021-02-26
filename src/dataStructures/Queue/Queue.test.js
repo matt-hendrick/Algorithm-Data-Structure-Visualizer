@@ -39,5 +39,27 @@ describe('Queue Class tests', () => {
     const newQueueArray = newQueue.toArray();
 
     expect(newQueueArray).toEqual([3, 5]);
+
+    newQueue.remove();
+    newQueue.remove();
+
+    expect(newQueue).toEqual({
+      first: null,
+      last: null,
+    });
+
+    newQueue.remove();
+
+    expect(newQueue).toEqual({
+      first: null,
+      last: null,
+    });
+
+    newQueue.add(1);
+
+    expect(newQueue).toEqual({
+      first: { next: null, prev: null, val: 1 },
+      last: { next: null, prev: null, val: 1 },
+    });
   });
 });

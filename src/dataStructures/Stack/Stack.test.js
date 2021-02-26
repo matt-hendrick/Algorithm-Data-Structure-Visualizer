@@ -47,5 +47,27 @@ describe('Stack Class tests', () => {
     const newStackArray = newStack.toArray();
 
     expect(newStackArray).toEqual([3, 1]);
+
+    newStack.remove();
+    newStack.remove();
+
+    expect(newStack).toEqual({
+      first: null,
+      last: null,
+    });
+
+    newStack.remove();
+
+    expect(newStack).toEqual({
+      first: null,
+      last: null,
+    });
+
+    newStack.add(1);
+
+    expect(newStack).toEqual({
+      first: { next: null, prev: null, val: 1 },
+      last: { next: null, prev: null, val: 1 },
+    });
   });
 });
