@@ -50,7 +50,7 @@ function QueueVisualizer() {
           placeholder="Enter a new node value"
         />
         <MyButton onClick={addNode}>Add to Queue</MyButton>
-        <MyButton onClick={removeNode}>Remove from Front of List</MyButton>
+        <MyButton onClick={removeNode}>Remove from Queue</MyButton>
       </div>
       <div
         style={{

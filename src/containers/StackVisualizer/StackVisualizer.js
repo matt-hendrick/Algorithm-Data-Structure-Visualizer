@@ -50,7 +50,7 @@ function StackVisualizer() {
           placeholder="Enter a new node value"
         />
         <MyButton onClick={addNode}>Add to Stack</MyButton>
-        <MyButton onClick={removeNode}>Remove from Front of List</MyButton>
+        <MyButton onClick={removeNode}>Remove from Stack</MyButton>
       </div>
       {arr ? (
         <div

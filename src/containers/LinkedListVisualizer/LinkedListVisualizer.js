@@ -86,11 +86,11 @@ function LinkedListVisualizer() {
           value={newNodeValue}
           placeholder="Enter a new node value"
         />
-        <MyButton onClick={addFirst}>Add to Front of List</MyButton>
-        <MyButton onClick={addLast}>Add to End of List</MyButton>
-        <MyButton onClick={removeFirst}>Remove from Front of List</MyButton>
-        <MyButton onClick={removeLast}>Remove from End of List</MyButton>
-        <MyButton onClick={reverseList}>Reverse List</MyButton>
+        <MyButton onClick={addFirst}>Add to Front of the List</MyButton>
+        <MyButton onClick={addLast}>Add to End of the List</MyButton>
+        <MyButton onClick={removeFirst}>Remove from Front of the List</MyButton>
+        <MyButton onClick={removeLast}>Remove from End of the List</MyButton>
+        <MyButton onClick={reverseList}>Reverse the List</MyButton>
       </div>
       {arr ? (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
