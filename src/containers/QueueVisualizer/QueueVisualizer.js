@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import * as classes from './QueueVisualizer.module.css';
+
+// Data Structures
 import Queue from '../../dataStructures/Queue/Queue';
+
+// Components
 import MyButton from '../../components/MyButton/MyButton';
 
 function QueueVisualizer() {
@@ -41,9 +46,7 @@ function QueueVisualizer() {
 
   return (
     <div>
-      <div
-        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
-      >
+      <div className={classes.ButtonRow}>
         <input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -52,33 +55,20 @@ function QueueVisualizer() {
         <MyButton onClick={addNode}>Add to Queue</MyButton>
         <MyButton onClick={removeNode}>Remove from Queue</MyButton>
       </div>
-      <div
-        style={{
-          display: 'flex',
-        }}
-      >
-        <div style={{ width: '15%' }}>Start of the Queue</div>
-        <div
-          style={{
-            width: '70%',
-            display: 'flex',
-            justifyContent: 'space-around',
-            flexWrap: 'wrap',
-          }}
-        >
+      <div className={classes.QueueContainer}>
+        <div className={classes.BorderColumn}>Queue Start</div>
+        <div className={classes.QueueColumn}>
           {arr
             ? arr.map((val, index) => {
                 return (
-                  <div key={[val, index]} style={{ display: 'flex' }}>
-                    <div>(====</div>
-                    <div style={{ border: '1px solid black' }}>{val}</div>
-                    <div>====)</div>
+                  <div key={[val, index]} className={classes.QueueNode}>
+                    <div className={classes.QueueVal}>{val}</div>
                   </div>
                 );
               })
             : null}
         </div>
-        <div style={{ width: '15%' }}>End of the Queue</div>
+        <div className={classes.BorderColumn}>Queue End</div>
       </div>
     </div>
   );

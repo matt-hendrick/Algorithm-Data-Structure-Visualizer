@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import * as classes from './StackVisualizer.module.css';
 
-// Components
+// Data Structures
 import Stack from '../../dataStructures/Stack/Stack';
+
+// Components
 import MyButton from '../../components/MyButton/MyButton';
 import Alert from '../../components/Alert/Alert';
 
@@ -26,10 +28,13 @@ function StackVisualizer() {
         setStack(newStack);
         setArr(newStack.toArray());
         setNewNodeValue('');
-      } else if (stack.toArray().length >= 14) {
+      }
+      // if user attempts to add a 15th node, set flag for stack overflow alert and reset state
+      else if (stack.toArray().length >= 14) {
         setStackOverflow(true);
         setStack(null);
         setArr(null);
+        setNewNodeValue('');
       } else {
         let newStack = new Stack(stack.first, stack.last);
         newStack.add(newNodeValue);
@@ -72,7 +77,7 @@ function StackVisualizer() {
                   <div className={classes.StackVal}>{val}</div>
                 </div>
               );
-            })}{' '}
+            })}
           </div>
           <div className={classes.EmptyBorderColumn}></div>
         </div>
