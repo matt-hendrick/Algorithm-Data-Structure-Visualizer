@@ -32,4 +32,41 @@ describe('StackVisualizer tests', () => {
 
     expect(node).not.toBeInTheDocument();
   });
+
+  it('StackVisualizer displays Stack Overflow alert if user attempts to add 15th node', () => {
+    render(<StackVisualizer />);
+
+    userEvent.type(screen.getByRole('textbox'), '1');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '2');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '3');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '4');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '5');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '6');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '7');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '8');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '9');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '10');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '11');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '12');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '13');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '14');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+    userEvent.type(screen.getByRole('textbox'), '15');
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+
+    expect(screen.getByText(/stack overflow/i)).toBeInTheDocument();
+  });
 });
