@@ -86,7 +86,9 @@ function StackVisualizer() {
           <div className={classes.EmptyBorderColumn}></div>
         </div>
       ) : (
-        <h6>Add a new Node to visualize a new Stack</h6>
+        <h6 className={classes.EnterNodePrompt}>
+          Add a new Node to visualize a new Stack
+        </h6>
       )}
     </div>
   );

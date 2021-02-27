@@ -35,3 +35,8 @@
 .StackVal {
   padding-top: 0.65vh;
 }
+
+.EnterNodePrompt {
+  padding-top: 10vh;
+  text-align: center;
+}
