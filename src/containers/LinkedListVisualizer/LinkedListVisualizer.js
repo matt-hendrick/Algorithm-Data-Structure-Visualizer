@@ -106,7 +106,10 @@ function LinkedListVisualizer() {
                       <div className={classes.LinkedListVal}>{val}</div>
                     </div>
                     {index !== arr.length - 1 ? (
-                      <div className={classes.LinkedListArrow}>{'>'}</div>
+                      <div className={classes.LinkedListArrowShaft}></div>
+                    ) : null}
+                    {index !== arr.length - 1 ? (
+                      <div className={classes.LinkedListArrowHead}></div>
                     ) : null}
                   </div>
                 );
