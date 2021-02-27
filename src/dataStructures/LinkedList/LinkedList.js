@@ -10,12 +10,15 @@ export default class LinkedList {
   }
 
   addLast(val) {
-    let curr = this.head;
     const tempNode = new Node(val);
-    while (curr.next) {
-      curr = curr.next;
+    if (!this.head) this.head = tempNode;
+    else {
+      let curr = this.head;
+      while (curr.next) {
+        curr = curr.next;
+      }
+      curr.next = tempNode;
     }
-    curr.next = tempNode;
   }
 
   getFirst() {

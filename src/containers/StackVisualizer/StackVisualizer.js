@@ -64,8 +64,12 @@ function StackVisualizer() {
           value={newNodeValue}
           placeholder="Enter a new node value"
         />
-        <MyButton onClick={addNode}>Add to Stack</MyButton>
-        <MyButton onClick={removeNode}>Remove from Stack</MyButton>
+        <MyButton onClick={addNode} disabled={!newNodeValue}>
+          Add to Stack
+        </MyButton>
+        <MyButton onClick={removeNode} disabled={!arr}>
+          Remove from Stack
+        </MyButton>
       </div>
       {arr ? (
         <div className={classes.StackDisplayContainer}>

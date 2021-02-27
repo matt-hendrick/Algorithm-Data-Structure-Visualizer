@@ -19,6 +19,7 @@ function LinkedListVisualizer() {
   };
 
   const addFirst = () => {
+    console.log('ran');
     if (newNodeValue !== '') {
       if (!list) {
         const newNode = new Node(newNodeValue);
@@ -89,11 +90,21 @@ function LinkedListVisualizer() {
           value={newNodeValue}
           placeholder="Enter a new node value"
         />
-        <MyButton onClick={addFirst}>Add to Front of the List</MyButton>
-        <MyButton onClick={addLast}>Add to End of the List</MyButton>
-        <MyButton onClick={removeFirst}>Remove from Front of the List</MyButton>
-        <MyButton onClick={removeLast}>Remove from End of the List</MyButton>
-        <MyButton onClick={reverseList}>Reverse the List</MyButton>
+        <MyButton onClick={addFirst} disabled={!newNodeValue}>
+          Add to Front of the List
+        </MyButton>
+        <MyButton onClick={addLast} disabled={!newNodeValue}>
+          Add to End of the List
+        </MyButton>
+        <MyButton onClick={removeFirst} disabled={!arr}>
+          Remove from Front of the List
+        </MyButton>
+        <MyButton onClick={removeLast} disabled={!arr}>
+          Remove from End of the List
+        </MyButton>
+        <MyButton onClick={reverseList} disabled={!arr}>
+          Reverse the List
+        </MyButton>
       </div>
       <div className={classes.LinkedListContainer}>
         <div className={classes.BorderColumn}>List Start</div>

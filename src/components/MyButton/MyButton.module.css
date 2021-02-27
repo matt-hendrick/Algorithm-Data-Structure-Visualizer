@@ -9,3 +9,15 @@
   transition: 800ms ease all;
   outline: none;
 }
+
+.MyButtonDisabled {
+  background: #80d6c2;
+  color: #fff;
+  border: none;
+  margin: 2px;
+  font-size: 1em;
+  padding: 0.2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}

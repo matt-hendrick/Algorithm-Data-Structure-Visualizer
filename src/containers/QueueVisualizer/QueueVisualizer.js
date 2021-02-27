@@ -52,8 +52,12 @@ function QueueVisualizer() {
           value={newNodeValue}
           placeholder="Enter a new node value"
         />
-        <MyButton onClick={addNode}>Add to Queue</MyButton>
-        <MyButton onClick={removeNode}>Remove from Queue</MyButton>
+        <MyButton onClick={addNode} disabled={!newNodeValue}>
+          Add to Queue
+        </MyButton>
+        <MyButton onClick={removeNode} disabled={!arr}>
+          Remove from Queue
+        </MyButton>
       </div>
       <div className={classes.QueueContainer}>
         <div className={classes.BorderColumn}>Queue Start</div>
