@@ -109,23 +109,25 @@ function LinkedListVisualizer() {
       <div className={classes.LinkedListContainer}>
         <div className={classes.BorderColumn}>List Start</div>
         <div className={classes.LinkedListColumn}>
-          {arr
-            ? arr.map((val, index) => {
-                return (
-                  <div key={[val, index]} className={classes.LinkedListNode}>
-                    <div className={classes.LinkedListValWrapper}>
-                      <div className={classes.LinkedListVal}>{val}</div>
-                    </div>
-                    {index !== arr.length - 1 ? (
-                      <div className={classes.LinkedListArrowShaft}></div>
-                    ) : null}
-                    {index !== arr.length - 1 ? (
-                      <div className={classes.LinkedListArrowHead}></div>
-                    ) : null}
+          {arr ? (
+            arr.map((val, index) => {
+              return (
+                <div key={[val, index]} className={classes.LinkedListNode}>
+                  <div className={classes.LinkedListValWrapper}>
+                    <div className={classes.LinkedListVal}>{val}</div>
                   </div>
-                );
-              })
-            : null}
+                  {index !== arr.length - 1 ? (
+                    <div className={classes.LinkedListArrowShaft}></div>
+                  ) : null}
+                  {index !== arr.length - 1 ? (
+                    <div className={classes.LinkedListArrowHead}></div>
+                  ) : null}
+                </div>
+              );
+            })
+          ) : (
+            <h6>Add a new Node to visualize a new Linked List</h6>
+          )}
         </div>
         <div className={classes.BorderColumn}>List End</div>
       </div>

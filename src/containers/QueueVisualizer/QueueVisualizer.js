@@ -62,15 +62,17 @@ function QueueVisualizer() {
       <div className={classes.QueueContainer}>
         <div className={classes.BorderColumn}>Queue Start</div>
         <div className={classes.QueueColumn}>
-          {arr
-            ? arr.map((val, index) => {
-                return (
-                  <div key={[val, index]} className={classes.QueueNode}>
-                    <div className={classes.QueueVal}>{val}</div>
-                  </div>
-                );
-              })
-            : null}
+          {arr ? (
+            arr.map((val, index) => {
+              return (
+                <div key={[val, index]} className={classes.QueueNode}>
+                  <div className={classes.QueueVal}>{val}</div>
+                </div>
+              );
+            })
+          ) : (
+            <h6>Add a new Node to visualize a new Queue</h6>
+          )}
         </div>
         <div className={classes.BorderColumn}>Queue End</div>
       </div>
