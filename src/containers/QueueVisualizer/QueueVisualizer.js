@@ -71,7 +71,9 @@ function QueueVisualizer() {
               );
             })
           ) : (
-            <h6>Add a new Node to visualize a new Queue</h6>
+            <h6 className={classes.EnterNodePrompt}>
+              Add a new Node to visualize a new Queue
+            </h6>
           )}
         </div>
         <div className={classes.BorderColumn}>Queue End</div>

@@ -126,7 +126,9 @@ function LinkedListVisualizer() {
               );
             })
           ) : (
-            <h6>Add a new Node to visualize a new Linked List</h6>
+            <h6 className={classes.EnterNodePrompt}>
+              Add a new Node to visualize a new Linked List
+            </h6>
           )}
         </div>
         <div className={classes.BorderColumn}>List End</div>

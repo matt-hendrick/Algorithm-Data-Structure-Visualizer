@@ -38,3 +38,7 @@
 .QueueVal {
   padding-top: 0.65vh;
 }
+
+.EnterNodePrompt {
+  text-align: center;
+}
