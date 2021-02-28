@@ -8,7 +8,7 @@ import Queue from '../../dataStructures/Queue/Queue';
 import MyButton from '../../components/MyButton/MyButton';
 
 function QueueVisualizer() {
-  const [stack, setQueue] = useState(null);
+  const [queue, setQueue] = useState(null);
   const [arr, setArr] = useState(null);
   const [newNodeValue, setNewNodeValue] = useState('');
 
@@ -19,14 +19,14 @@ function QueueVisualizer() {
 
   const addNode = () => {
     if (newNodeValue !== '') {
-      if (!stack) {
+      if (!queue) {
         let newQueue = new Queue();
         newQueue.add(newNodeValue);
         setQueue(newQueue);
         setArr(newQueue.toArray());
         setNewNodeValue('');
       } else {
-        let newQueue = new Queue(stack.first, stack.last);
+        let newQueue = new Queue(queue.first, queue.last);
         newQueue.add(newNodeValue);
         setQueue(newQueue);
         setArr(newQueue.toArray());
@@ -36,8 +36,8 @@ function QueueVisualizer() {
   };
 
   const removeNode = () => {
-    if (stack.first) {
-      let newQueue = new Queue(stack.first, stack.last);
+    if (queue.first) {
+      let newQueue = new Queue(queue.first, queue.last);
       newQueue.remove();
       setQueue(newQueue);
       setArr(newQueue.toArray());
