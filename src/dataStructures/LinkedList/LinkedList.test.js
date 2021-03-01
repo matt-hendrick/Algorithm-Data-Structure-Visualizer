@@ -2,7 +2,7 @@ import LinkedList from './LinkedList';
 import Node from '../Node/Node';
 
 describe('LinkedList Class tests', () => {
-  it(`Singly linked LinkedList initializes, adds/removes/gets First, 
+  it(`Linked LinkedList initializes, adds/removes/gets First, 
   adds/removes/gets Last, and clears correctly`, () => {
     const newNode = new Node(1);
     let newList = new LinkedList(newNode);
