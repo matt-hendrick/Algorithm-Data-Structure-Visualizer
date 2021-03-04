@@ -25,4 +25,19 @@ export default class BinaryTree {
       else this.insertNode(node.right, newNode);
     }
   }
+
+  toLevelOrderArray() {
+    let arr = [];
+    let queue = [];
+    if (this.root) {
+      queue.push(this.root);
+      while (queue.length > 0) {
+        let tempNode = queue.shift();
+        arr.push(tempNode.val);
+        if (tempNode.left) queue.push(tempNode.left);
+        if (tempNode.right) queue.push(tempNode.right);
+      }
+      return arr;
+    } else return null;
+  }
 }

@@ -6,6 +6,7 @@ import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
 function BinaryTreeVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState(0);
   const [tree, setTree] = useState(null);
+  const [arr, setArr] = useState(null);
 
   const insertNode = () => {
     const intNodeVal = parseInt(newNodeValue);
@@ -14,10 +15,12 @@ function BinaryTreeVisualizer() {
         let tempTree = new BinaryTree();
         tempTree.insert(intNodeVal);
         setTree(tempTree);
+        setArr(tempTree.toLevelOrderArray());
       } else {
         let tempTree = new BinaryTree(tree.root);
         tempTree.insert(intNodeVal);
         setTree(tempTree);
+        setArr(tempTree.toLevelOrderArray());
       }
     }
   };
@@ -27,16 +30,19 @@ function BinaryTreeVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  console.log('Tree', tree);
+  console.log('Tree', tree, arr);
 
   return (
     <div>
-      <input
-        value={newNodeValue}
-        placeholder="Enter a new Node value"
-        onChange={updateNewNodeValue}
-      />
-      <button onClick={insertNode}>Insert Node</button>
+      <div>
+        <input
+          value={newNodeValue}
+          placeholder="Enter a new Node value"
+          onChange={updateNewNodeValue}
+        />
+        <button onClick={insertNode}>Insert Node</button>
+      </div>
+      {arr ? arr.map((item) => <div>{item}</div>) : null}
     </div>
   );
 }
