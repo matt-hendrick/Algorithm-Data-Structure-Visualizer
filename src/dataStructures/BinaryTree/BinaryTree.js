@@ -26,18 +26,45 @@ export default class BinaryTree {
     }
   }
 
+  // recursive level order func
+  // may use to assign level to every node
   toLevelOrderArray() {
+    if (!this.root) return [];
+
     let arr = [];
-    let queue = [];
-    if (this.root) {
-      queue.push(this.root);
-      while (queue.length > 0) {
-        let tempNode = queue.shift();
-        arr.push(tempNode.val);
-        if (tempNode.left) queue.push(tempNode.left);
-        if (tempNode.right) queue.push(tempNode.right);
+
+    const traverse = (node, level = 0) => {
+      if (!node) {
+        if (arr[level]) arr.push(['No Node']);
+        return null;
       }
-      return arr;
-    } else return null;
+      // for each level, creates a new blank subarray
+      if (!arr[level]) arr[level] = [];
+      //for each node in level, push to that level's subarray
+      arr[level].push(node.val);
+      // increment level
+      level++;
+      traverse(node.left, level);
+      traverse(node.right, level);
+    };
+
+    traverse(this.root);
+
+    return arr;
   }
+
+  // toLevelOrderArray() {
+  //   let arr = [];
+  //   let queue = [];
+  //   if (this.root) {
+  //     queue.push(this.root);
+  //     while (queue.length > 0) {
+  //       let tempNode = queue.shift();
+  //       arr.push(tempNode.val);
+  //       if (tempNode.left) queue.push(tempNode.left);
+  //       if (tempNode.right) queue.push(tempNode.right);
+  //     }
+  //     return arr;
+  //   } else return null;
+  // }
 }

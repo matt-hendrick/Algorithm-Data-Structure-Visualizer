@@ -15,12 +15,12 @@ function BinaryTreeVisualizer() {
         let tempTree = new BinaryTree();
         tempTree.insert(intNodeVal);
         setTree(tempTree);
-        setArr(tempTree.toLevelOrderArray());
+        setArr(tempTree.alternateLevelOrderArray());
       } else {
         let tempTree = new BinaryTree(tree.root);
         tempTree.insert(intNodeVal);
         setTree(tempTree);
-        setArr(tempTree.toLevelOrderArray());
+        setArr(tempTree.alternateLevelOrderArray());
       }
     }
   };
@@ -34,7 +34,13 @@ function BinaryTreeVisualizer() {
 
   return (
     <div>
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
         <input
           value={newNodeValue}
           placeholder="Enter a new Node value"
@@ -42,7 +48,23 @@ function BinaryTreeVisualizer() {
         />
         <button onClick={insertNode}>Insert Node</button>
       </div>
-      {arr ? arr.map((item) => <div>{item}</div>) : null}
+      {arr ? (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'center',
+          }}
+        >
+          {arr.map((item, index) =>
+            item.map((subitem) => (
+              <div key={subitem + index} style={{ maxWidth: `${index * 30}%` }}>
+                {subitem}, level {index}
+              </div>
+            ))
+          )}
+        </div>
+      ) : null}
     </div>
   );
 }
