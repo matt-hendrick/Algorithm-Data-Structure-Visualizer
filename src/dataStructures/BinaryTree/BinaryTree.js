@@ -35,7 +35,7 @@ export default class BinaryTree {
 
     const traverse = (node, level = 0) => {
       if (!node) {
-        if (arr[level]) arr.push(['No Node']);
+        if (arr[level]) arr[level].push(['null']);
         return null;
       }
       // for each level, creates a new blank subarray

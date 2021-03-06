@@ -15,12 +15,12 @@ function BinaryTreeVisualizer() {
         let tempTree = new BinaryTree();
         tempTree.insert(intNodeVal);
         setTree(tempTree);
-        setArr(tempTree.alternateLevelOrderArray());
+        setArr(tempTree.toLevelOrderArray());
       } else {
         let tempTree = new BinaryTree(tree.root);
         tempTree.insert(intNodeVal);
         setTree(tempTree);
-        setArr(tempTree.alternateLevelOrderArray());
+        setArr(tempTree.toLevelOrderArray());
       }
     }
   };
@@ -48,23 +48,32 @@ function BinaryTreeVisualizer() {
         />
         <button onClick={insertNode}>Insert Node</button>
       </div>
-      {arr ? (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'center',
-          }}
-        >
-          {arr.map((item, index) =>
-            item.map((subitem) => (
-              <div key={subitem + index} style={{ maxWidth: `${index * 30}%` }}>
-                {subitem}, level {index}
-              </div>
-            ))
-          )}
-        </div>
-      ) : null}
+      {arr
+        ? arr.map((item, index) => (
+            <div
+              style={{
+                display: 'flex',
+                textAlign: 'center',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              {item.map((subitem) => (
+                <div
+                  key={subitem + index}
+                  style={{ width: `${index * 30 + 10}%`, margin: 'auto' }}
+                >
+                  <div>
+                    {subitem}, level {index}
+                  </div>
+                  <br />
+                  <div>// \\</div>
+                  <br />
+                </div>
+              ))}
+            </div>
+          ))
+        : null}
     </div>
   );
 }
