@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import * as classes from './BinaryTreeVisualizer.module.scss';
+
 // Data Structures
 import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
 
@@ -48,32 +50,29 @@ function BinaryTreeVisualizer() {
         />
         <button onClick={insertNode}>Insert Node</button>
       </div>
-      {arr
-        ? arr.map((item, index) => (
-            <div
-              style={{
-                display: 'flex',
-                textAlign: 'center',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              {item.map((subitem) => (
-                <div
-                  key={subitem + index}
-                  style={{ width: `${index * 30 + 10}%`, margin: 'auto' }}
-                >
-                  <div>
-                    {subitem}, level {index}
-                  </div>
-                  <br />
-                  <div>// \\</div>
-                  <br />
-                </div>
-              ))}
-            </div>
-          ))
-        : null}
+      <div className={classes.tree}>
+        {arr
+          ? arr.map((item, index) => (
+              <ul
+                style={{
+                  display: 'flex',
+                  textAlign: 'center',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                {item.map((subitem) => (
+                  <li
+                    key={subitem + index}
+                    style={{ width: `${index * 30 + 10}%`, margin: 'auto' }}
+                  >
+                    <div>{subitem}</div>
+                  </li>
+                ))}
+              </ul>
+            ))
+          : null}
+      </div>
     </div>
   );
 }
