@@ -19,7 +19,6 @@ function LinkedListVisualizer() {
   };
 
   const addFirst = () => {
-    console.log('ran');
     if (newNodeValue !== '') {
       if (!list) {
         const newNode = new Node(newNodeValue);

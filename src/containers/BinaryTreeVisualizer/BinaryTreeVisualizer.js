@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import * as classes from './BinaryTreeVisualizer.module.scss';
 
+// Components
+import MyButton from '../../components/MyButton/MyButton';
+
 // Data Structures
 import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
 
@@ -32,41 +35,28 @@ function BinaryTreeVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  console.log('Tree', tree, arr);
-
   return (
     <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}
-      >
+      <div className={classes.ButtonRow}>
         <input
           value={newNodeValue}
           placeholder="Enter a new Node value"
           onChange={updateNewNodeValue}
         />
-        <button onClick={insertNode}>Insert Node</button>
+        <MyButton onClick={insertNode} disabled={!newNodeValue}>
+          Insert Node
+        </MyButton>
       </div>
-      <div className={classes.tree}>
+      <div className={classes.Tree}>
         {arr
           ? arr.map((item, index) => (
-              <ul
-                style={{
-                  display: 'flex',
-                  textAlign: 'center',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
+              <ul key={item + index}>
                 {item.map((subitem) => (
                   <li
-                    key={subitem + index}
-                    style={{ width: `${index * 30 + 10}%`, margin: 'auto' }}
+                    key={subitem + index + item}
+                    style={{ width: `${index * 30 + 10}%` }}
                   >
-                    <div>{subitem}</div>
+                    <button disabled>{subitem}</button>
                   </li>
                 ))}
               </ul>
