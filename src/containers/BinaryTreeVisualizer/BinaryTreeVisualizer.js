@@ -57,6 +57,14 @@ function BinaryTreeVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
+  console.log(arr);
+
+  const isNewNodeValueInTree = () => {
+    if (arr?.length > 0 && arr.flat().includes(parseInt(newNodeValue)))
+      return true;
+    else return false;
+  };
+
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -65,18 +73,24 @@ function BinaryTreeVisualizer() {
           placeholder="Enter a new Node value"
           onChange={updateNewNodeValue}
         />
-        <MyButton onClick={insertNode} disabled={!newNodeValue}>
+        <MyButton
+          onClick={insertNode}
+          disabled={!newNodeValue || isNewNodeValueInTree()}
+        >
           Insert Specified Node
         </MyButton>
-        <MyButton onClick={removeNode} disabled={!newNodeValue || !tree}>
+        <MyButton
+          onClick={removeNode}
+          disabled={!newNodeValue || !tree || !isNewNodeValueInTree()}
+        >
           Remove Specified Node
         </MyButton>
-        <MyButton onClick={invertTree} disabled={!tree}>
+        <MyButton onClick={invertTree} disabled={!tree || arr?.length < 2}>
           Invert Tree
         </MyButton>
       </div>
       <div className={classes.Tree}>
-        {arr.length > 0 ? (
+        {arr?.length > 0 ? (
           arr.map((item, index) => (
             <ul key={item + index}>
               {item.map((subitem) => (
