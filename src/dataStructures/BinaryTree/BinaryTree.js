@@ -53,18 +53,12 @@ export default class BinaryTree {
     return arr;
   }
 
-  // toLevelOrderArray() {
-  //   let arr = [];
-  //   let queue = [];
-  //   if (this.root) {
-  //     queue.push(this.root);
-  //     while (queue.length > 0) {
-  //       let tempNode = queue.shift();
-  //       arr.push(tempNode.val);
-  //       if (tempNode.left) queue.push(tempNode.left);
-  //       if (tempNode.right) queue.push(tempNode.right);
-  //     }
-  //     return arr;
-  //   } else return null;
-  // }
+  invertTree() {
+    const invert = (root) => {
+      if (!root) return root;
+      [root.left, root.right] = [invert(root.right), invert(root.left)];
+      return root;
+    };
+    invert(this.root);
+  }
 }
