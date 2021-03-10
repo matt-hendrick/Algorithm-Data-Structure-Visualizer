@@ -32,6 +32,17 @@ function BinaryTreeVisualizer() {
     }
   };
 
+  const removeNode = () => {
+    const intNodeVal = parseInt(newNodeValue);
+    if (newNodeValue) {
+      let tempTree = new BinaryTree(tree.root);
+      tempTree.remove(intNodeVal);
+      setTree(tempTree);
+      setArr(tempTree.toLevelOrderArray());
+      setNewNodeValue('');
+    }
+  };
+
   const invertTree = () => {
     if (tree) {
       let tempTree = new BinaryTree(tree.root);
@@ -55,14 +66,17 @@ function BinaryTreeVisualizer() {
           onChange={updateNewNodeValue}
         />
         <MyButton onClick={insertNode} disabled={!newNodeValue}>
-          Insert Node
+          Insert Specified Node
+        </MyButton>
+        <MyButton onClick={removeNode} disabled={!newNodeValue || !tree}>
+          Remove Specified Node
         </MyButton>
         <MyButton onClick={invertTree} disabled={!tree}>
           Invert Tree
         </MyButton>
       </div>
       <div className={classes.Tree}>
-        {arr ? (
+        {arr.length > 0 ? (
           arr.map((item, index) => (
             <ul key={item + index}>
               {item.map((subitem) => (

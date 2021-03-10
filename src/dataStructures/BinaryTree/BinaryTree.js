@@ -26,8 +26,46 @@ export default class BinaryTree {
     }
   }
 
-  // recursive level order func
-  // may use to assign level to every node
+  remove(val) {
+    if (!Number.isInteger(val)) return;
+    this.root = this.removeNode(this.root, val);
+  }
+
+  removeNode(node, val) {
+    if (!node) return null;
+    else if (val < node.val) {
+      node.left = this.removeNode(node.left, val);
+      return node;
+    } else if (val > node.val) {
+      node.right = this.removeNode(node.right, val);
+      return node;
+    } else {
+      if (!node.left && !node.right) {
+        node = null;
+        return node;
+      }
+
+      if (!node.left) {
+        node = node.right;
+        return node;
+      } else if (!node.right) {
+        node = node.left;
+        return node;
+      }
+
+      const aux = this.findMinimumNode(node.right);
+      node.val = aux.val;
+
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
+    }
+  }
+
+  findMinimumNode(node) {
+    if (node.left === null) return node;
+    else return this.findMinimumNode(node.left);
+  }
+
   toLevelOrderArray() {
     if (!this.root) return [];
 
