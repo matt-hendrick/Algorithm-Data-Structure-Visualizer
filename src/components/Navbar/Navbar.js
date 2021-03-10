@@ -3,6 +3,7 @@ import React from 'react';
 // Bootstrap
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const MyNavbar = () => {
   return (
@@ -19,11 +20,15 @@ const MyNavbar = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/sorting">Sorting</Nav.Link>
-          <Nav.Link href="/linkedlist">Linked List</Nav.Link>
-          <Nav.Link href="/stack">Stack</Nav.Link>
-          <Nav.Link href="/queue">Queue</Nav.Link>
-          <Nav.Link href="/binarytree">Binary Tree</Nav.Link>
+          <NavDropdown title="Algorithms" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/sorting">Sorting</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Data Structures" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/linkedlist">Linked List</NavDropdown.Item>
+            <NavDropdown.Item href="/stack">Stack</NavDropdown.Item>
+            <NavDropdown.Item href="/queue">Queue</NavDropdown.Item>
+            <NavDropdown.Item href="/binarytree">Binary Tree</NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
