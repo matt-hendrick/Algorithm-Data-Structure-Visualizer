@@ -57,8 +57,6 @@ function BinaryTreeVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  console.log(arr);
-
   const isNewNodeValueInTree = () => {
     if (arr?.length > 0 && arr.flat().includes(parseInt(newNodeValue)))
       return true;

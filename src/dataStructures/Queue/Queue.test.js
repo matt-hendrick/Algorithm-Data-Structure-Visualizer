@@ -7,33 +7,33 @@ describe('Queue Class tests', () => {
     let newQueue = new Queue(newNode);
 
     expect(newQueue).toEqual({
-      first: { next: null, prev: null, val: 1 },
-      last: { next: null, prev: null, val: 1 },
+      first: { next: null, val: 1 },
+      last: { next: null, val: 1 },
     });
 
     newQueue.add(3);
 
     expect(newQueue).toEqual({
-      first: { next: { next: null, prev: null, val: 3 }, prev: null, val: 1 },
-      last: { next: null, prev: null, val: 3 },
+      first: { next: { next: null, val: 3 }, val: 1 },
+      last: { next: null, val: 3 },
     });
 
     newQueue.add(5);
 
     expect(newQueue).toEqual({
       first: {
-        next: { next: { next: null, prev: null, val: 5 }, prev: null, val: 3 },
-        prev: null,
+        next: { next: { next: null, val: 5 }, val: 3 },
+
         val: 1,
       },
-      last: { next: null, prev: null, val: 5 },
+      last: { next: null, val: 5 },
     });
 
     newQueue.remove();
 
     expect(newQueue).toEqual({
-      first: { next: { next: null, prev: null, val: 5 }, prev: null, val: 3 },
-      last: { next: null, prev: null, val: 5 },
+      first: { next: { next: null, val: 5 }, val: 3 },
+      last: { next: null, val: 5 },
     });
 
     const newQueueArray = newQueue.toArray();
@@ -58,8 +58,8 @@ describe('Queue Class tests', () => {
     newQueue.add(1);
 
     expect(newQueue).toEqual({
-      first: { next: null, prev: null, val: 1 },
-      last: { next: null, prev: null, val: 1 },
+      first: { next: null, val: 1 },
+      last: { next: null, val: 1 },
     });
   });
 });
