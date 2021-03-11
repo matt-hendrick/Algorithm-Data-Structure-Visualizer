@@ -6,15 +6,25 @@ import HomeCard from '../../components/HomeCard/HomeCard';
 function Home() {
   return (
     <div style={{ display: 'flex', textAlign: 'center' }}>
-      <div style={{ width: '50%' }}>
-        <h3>Algorithms</h3>
+      <div style={{ width: '50%', border: '1px solid black', padding: '5px' }}>
+        <h3
+          style={{
+            backgroundColor: '#39cccc',
+            color: '#fff',
+            width: '50%',
+            height: '10%',
+            margin: 'auto',
+          }}
+        >
+          Algorithms
+        </h3>
         <div
           style={{
             display: 'flex',
             // flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignContent: 'space-between',
+            justifyContent: 'space-around',
+            alignContent: 'space-around',
             height: '40vh',
           }}
         >
@@ -22,15 +32,25 @@ function Home() {
         </div>
       </div>
 
-      <div style={{ width: '50%' }}>
-        <h3>Data Structures</h3>
+      <div style={{ width: '50%', border: '1px solid black', padding: '5px' }}>
+        <h3
+          style={{
+            backgroundColor: '#39cccc',
+            color: '#fff',
+            width: '50%',
+            height: '10%',
+            margin: 'auto',
+          }}
+        >
+          Data Structures
+        </h3>
         <div
           style={{
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignContent: 'space-between',
+            justifyContent: 'space-around',
+            alignContent: 'space-around',
             height: '40vh',
           }}
         >

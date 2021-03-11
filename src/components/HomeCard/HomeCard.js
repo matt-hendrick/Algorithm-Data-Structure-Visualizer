@@ -4,14 +4,16 @@ function HomeCard(props) {
   return (
     <div
       style={{
-        border: '1px solid black',
-        width: '30%',
+        width: '34%',
         textAlign: 'center',
-        textDecoration: 'none',
+        backgroundColor: '#39cccc',
+        color: '#fff',
       }}
     >
       <h5>
-        <a href={props.link}>{props.header}</a>
+        <a href={props.link} style={{ color: '#fff' }}>
+          {props.header}
+        </a>
       </h5>
     </div>
   );
