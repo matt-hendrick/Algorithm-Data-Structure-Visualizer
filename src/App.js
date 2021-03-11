@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import NavBar from './components/Navbar/Navbar';
 
 // Pages
+import Home from './containers/Home/Home';
 import Sorting from './containers/Sorting/Sorting';
 import LinkedListVisualizer from './containers/LinkedListVisualizer/LinkedListVisualizer';
 import StackVisualizer from './containers/StackVisualizer/StackVisualizer';
@@ -20,7 +21,7 @@ const App = () => {
       <NavBar />
       <Container style={{ marginTop: '20px' }}>
         <Switch>
-          <Route exact path="/" component={Sorting} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/sorting" component={Sorting} />
           <Route exact path="/linkedlist" component={LinkedListVisualizer} />
           <Route exact path="/stack" component={StackVisualizer} />

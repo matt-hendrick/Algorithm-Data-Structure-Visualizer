@@ -7,13 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const MyNavbar = () => {
   return (
-    <Navbar
-      collapseOnSelect
-      expand="md"
-      bg="dark"
-      variant="dark"
-      // style={{ backgroundColor: '#39cccc', color: '#ffffff' }}
-    >
+    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Navbar.Brand href="/">
         Algorithm and Data Structure Visualizer
       </Navbar.Brand>
