@@ -14,17 +14,18 @@ function Home() {
   return (
     <div style={{ display: 'flex', textAlign: 'center' }}>
       <div style={{ width: '50%', padding: '5px' }}>
-        <h3
+        <h4
           style={{
-            backgroundColor: '#39cccc',
+            backgroundColor: '#1aab8a',
             color: '#fff',
-            width: '50%',
-            height: '10%',
+            width: '75%',
+            height: '13%',
             margin: 'auto',
+            fontSize: '1em',
           }}
         >
-          Algorithms
-        </h3>
+          Algorithm Visualizer Links
+        </h4>
         <div
           style={{
             display: 'flex',
@@ -43,17 +44,18 @@ function Home() {
       </div>
 
       <div style={{ width: '50%', padding: '5px' }}>
-        <h3
+        <h4
           style={{
-            backgroundColor: '#39cccc',
+            backgroundColor: '#1aab8a',
             color: '#fff',
-            width: '50%',
-            height: '10%',
+            width: '75%',
+            height: '13%',
             margin: 'auto',
+            fontSize: '1em',
           }}
         >
-          Data Structures
-        </h3>
+          Data Structure Visualizer Links
+        </h4>
         <div
           style={{
             display: 'flex',

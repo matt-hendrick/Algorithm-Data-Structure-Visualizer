@@ -6,7 +6,7 @@ function HomeCard(props) {
       style={{
         width: '45%',
         textAlign: 'center',
-        backgroundColor: '#39cccc',
+        backgroundColor: '#1aab8a',
         color: '#fff',
         padding: '5px',
       }}
@@ -15,7 +15,7 @@ function HomeCard(props) {
         <img src={props.image} alt={props.header} style={{ width: '60%' }} />
       </a>
       <h5>
-        <a href={props.link} style={{ color: '#fff' }}>
+        <a href={props.link} style={{ color: '#fff', fontSize: '.7em' }}>
           {props.header}
         </a>
       </h5>
