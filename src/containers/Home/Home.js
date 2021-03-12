@@ -5,11 +5,15 @@ import HomeCard from '../../components/HomeCard/HomeCard';
 
 // Images
 import BinaryTreeImage from '../../images/BinaryTreeImage.png';
+import LinkedListImage from '../../images/LinkedListImage.png';
+import StackImage from '../../images/StackImage.png';
+import QueueImage from '../../images/QueueImage.png';
+import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
   return (
     <div style={{ display: 'flex', textAlign: 'center' }}>
-      <div style={{ width: '50%', border: '1px solid black', padding: '5px' }}>
+      <div style={{ width: '50%', padding: '5px' }}>
         <h3
           style={{
             backgroundColor: '#39cccc',
@@ -24,18 +28,21 @@ function Home() {
         <div
           style={{
             display: 'flex',
-            // flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'space-around',
             alignContent: 'space-around',
             height: '40vh',
           }}
         >
-          <HomeCard link="/sorting" header="Sorting Algorithm Visualizer" />
+          <HomeCard
+            link="/sorting"
+            header="Sorting Algorithm Visualizer"
+            image={QuicksortGif}
+          />
         </div>
       </div>
 
-      <div style={{ width: '50%', border: '1px solid black', padding: '5px' }}>
+      <div style={{ width: '50%', padding: '5px' }}>
         <h3
           style={{
             backgroundColor: '#39cccc',
@@ -57,9 +64,21 @@ function Home() {
             height: '40vh',
           }}
         >
-          <HomeCard link="/linkedlist" header="Linked List Visualizer" />
-          <HomeCard link="/stack" header="Stack Visualizer" />
-          <HomeCard link="/queue" header="Queue Visualizer" />
+          <HomeCard
+            link="/linkedlist"
+            header="Linked List Visualizer"
+            image={LinkedListImage}
+          />
+          <HomeCard
+            link="/stack"
+            header="Stack Visualizer"
+            image={StackImage}
+          />
+          <HomeCard
+            link="/queue"
+            header="Queue Visualizer"
+            image={QueueImage}
+          />
           <HomeCard
             link="/binarytree"
             header="Binary Tree Visualizer"
