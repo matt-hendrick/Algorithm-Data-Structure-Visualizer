@@ -3,6 +3,9 @@ import React from 'react';
 // Components
 import HomeCard from '../../components/HomeCard/HomeCard';
 
+// Images
+import BinaryTreeImage from '../../images/BinaryTreeImage.png';
+
 function Home() {
   return (
     <div style={{ display: 'flex', textAlign: 'center' }}>
@@ -57,7 +60,11 @@ function Home() {
           <HomeCard link="/linkedlist" header="Linked List Visualizer" />
           <HomeCard link="/stack" header="Stack Visualizer" />
           <HomeCard link="/queue" header="Queue Visualizer" />
-          <HomeCard link="/binarytree" header="Binary Tree Visualizer" />
+          <HomeCard
+            link="/binarytree"
+            header="Binary Tree Visualizer"
+            image={BinaryTreeImage}
+          />
         </div>
       </div>
     </div>

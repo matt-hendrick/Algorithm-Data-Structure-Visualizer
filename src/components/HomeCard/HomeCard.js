@@ -10,6 +10,7 @@ function HomeCard(props) {
         color: '#fff',
       }}
     >
+      <img src={props.image} alt={props.header} style={{ width: '50%' }} />
       <h5>
         <a href={props.link} style={{ color: '#fff' }}>
           {props.header}
