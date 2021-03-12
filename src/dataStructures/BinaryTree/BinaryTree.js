@@ -72,12 +72,14 @@ export default class BinaryTree {
     let arr = [];
 
     const traverse = (node, level = 0) => {
+      // for each level, creates a new blank subarray
+      if (!arr[level]) arr[level] = [];
+
       if (!node) {
+        // if arr[level] already exists, adds a null node for each non-existent node found
         if (arr[level]) arr[level].push(['null']);
         return null;
       }
-      // for each level, creates a new blank subarray
-      if (!arr[level]) arr[level] = [];
       //for each node in level, push to that level's subarray
       arr[level].push(node.val);
       // increment level
@@ -88,6 +90,15 @@ export default class BinaryTree {
 
     traverse(this.root);
 
+    // checks if all nodes in last level are null
+    if (
+      arr[arr.length - 1].some((node) => {
+        return node !== null;
+      })
+    ) {
+      // if all elements are null, removes the last level
+      arr.pop();
+    }
     return arr;
   }
 
@@ -98,5 +109,9 @@ export default class BinaryTree {
       return root;
     };
     invert(this.root);
+  }
+
+  clearTree() {
+    this.root = null;
   }
 }

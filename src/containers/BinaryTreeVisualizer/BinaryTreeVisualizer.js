@@ -52,6 +52,13 @@ function BinaryTreeVisualizer() {
     }
   };
 
+  const clearTree = () => {
+    if (tree) {
+      setTree(null);
+      setArr(null);
+    }
+  };
+
   const updateNewNodeValue = (event) => {
     const updatedNodeValue = event.target.value;
     setNewNodeValue(updatedNodeValue);
@@ -85,6 +92,9 @@ function BinaryTreeVisualizer() {
         </MyButton>
         <MyButton onClick={invertTree} disabled={!tree || arr?.length < 2}>
           Invert Tree
+        </MyButton>
+        <MyButton onClick={clearTree} disabled={!tree || arr?.length < 1}>
+          Clear Tree
         </MyButton>
       </div>
       <div className={classes.Tree}>
