@@ -1,0 +1,25 @@
+.HomeFlexContainer {
+  display: flex;
+  text-align: center;
+}
+
+.HomeAlgoDSBox {
+  width: 50%;
+  padding: 5px;
+}
+
+.HomeHeader {
+  color: #1aab8a;
+  width: 75%;
+  height: 13%;
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.HomeCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  height: 40vh;
+}

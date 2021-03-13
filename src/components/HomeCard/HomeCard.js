@@ -1,21 +1,19 @@
 import React from 'react';
 
+import * as classes from './HomeCard.module.css';
+
 function HomeCard(props) {
   return (
-    <div
-      style={{
-        width: '45%',
-        textAlign: 'center',
-        backgroundColor: '#1aab8a',
-        color: '#fff',
-        padding: '5px',
-      }}
-    >
+    <div className={classes.HomeCardBox}>
       <a href={props.link}>
-        <img src={props.image} alt={props.header} style={{ width: '60%' }} />
+        <img
+          src={props.image}
+          alt={props.header}
+          className={classes.HomeCardImage}
+        />
       </a>
       <h5>
-        <a href={props.link} style={{ color: '#fff', fontSize: '.7em' }}>
+        <a href={props.link} className={classes.HomeCardLink}>
           {props.header}
         </a>
       </h5>

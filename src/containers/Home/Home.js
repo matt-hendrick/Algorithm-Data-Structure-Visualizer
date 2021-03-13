@@ -1,5 +1,7 @@
 import React from 'react';
 
+import * as classes from './Home.module.css';
+
 // Components
 import HomeCard from '../../components/HomeCard/HomeCard';
 
@@ -12,60 +14,21 @@ import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
   return (
-    <div style={{ display: 'flex', textAlign: 'center' }}>
-      <div style={{ width: '50%', padding: '5px' }}>
-        <h4
-          style={{
-            backgroundColor: '#1aab8a',
-            color: '#fff',
-            width: '75%',
-            height: '13%',
-            margin: 'auto',
-            fontSize: '1em',
-          }}
-        >
-          Algorithm Visualizer Links
-        </h4>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            alignContent: 'space-around',
-            height: '40vh',
-          }}
-        >
+    <div className={classes.HomeFlexContainer}>
+      <div className={classes.HomeAlgoDSBox}>
+        <h4 className={classes.HomeHeader}>Algorithm Visualizer Links</h4>
+        <div className={classes.HomeCardWrapper}>
           <HomeCard
             link="/sorting"
-            header="Sorting Algorithm Visualizer"
+            header="Sorting Algorithms Visualizer"
             image={QuicksortGif}
           />
         </div>
       </div>
 
-      <div style={{ width: '50%', padding: '5px' }}>
-        <h4
-          style={{
-            backgroundColor: '#1aab8a',
-            color: '#fff',
-            width: '75%',
-            height: '13%',
-            margin: 'auto',
-            fontSize: '1em',
-          }}
-        >
-          Data Structure Visualizer Links
-        </h4>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            alignContent: 'space-around',
-            height: '40vh',
-          }}
-        >
+      <div className={classes.HomeAlgoDSBox}>
+        <h4 className={classes.HomeHeader}>Data Structure Visualizer Links</h4>
+        <div className={classes.HomeCardWrapper}>
           <HomeCard
             link="/linkedlist"
             header="Linked List Visualizer"

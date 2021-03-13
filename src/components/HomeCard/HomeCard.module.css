@@ -1,0 +1,14 @@
+.HomeCardBox {
+  width: 45%;
+  text-align: center;
+  padding: 5px;
+}
+
+.HomeCardImage {
+  width: 60%;
+}
+
+.HomeCardLink {
+  color: #1aab8a;
+  font-size: 0.8em;
+}
