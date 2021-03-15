@@ -18,7 +18,7 @@ export default class Heap {
   }
 
   remove(index = 0) {
-    if (!this.size) return;
+    if (this.size < 1) return;
     swap(this.arr, index, this.size - 1);
     this.arr.pop();
     this.bubbleDown();
@@ -50,7 +50,7 @@ export default class Heap {
   }
 
   toLevelOrderArray() {
-    if (!this.arr) return [];
+    if (this.size < 1) return [];
 
     let levelArr = [];
 
@@ -87,13 +87,12 @@ export default class Heap {
 
   getLeftChild = (index) => 2 * index + 1;
   getRightChild = (index) => 2 * index + 2;
-  getHigherChild = (index) => {
-    this.getRightChild(index) < this.arr &&
+  getHigherChild = (index) =>
+    this.getRightChild(index) < this.size &&
     this.compareFunction(this.getLeftChild(index), this.getRightChild(index)) >
       0
       ? this.getRightChild(index)
       : this.getLeftChild(index);
-  };
 
   toMinHeap() {
     return;

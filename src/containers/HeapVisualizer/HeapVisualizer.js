@@ -45,8 +45,6 @@ function HeapVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  console.log(heap?.toLevelOrderArray());
-
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -59,7 +57,7 @@ function HeapVisualizer() {
           Insert Node
         </MyButton>
         <MyButton onClick={removeNode} disabled={!heap}>
-          Remove Node
+          Remove Root Node
         </MyButton>
       </div>
       <div className={classes.Tree}>
