@@ -11,8 +11,7 @@ import Heap from '../../dataStructures/Heap/Heap';
 function HeapVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [heap, setHeap] = useState(null);
-
-  console.log(heap);
+  const [arr, setArr] = useState(null);
 
   const insertNode = () => {
     const intNodeVal = parseInt(newNodeValue);
@@ -21,20 +20,23 @@ function HeapVisualizer() {
         let tempHeap = new Heap();
         tempHeap.insert(intNodeVal);
         setHeap(tempHeap);
+        setArr(tempHeap.toLevelOrderArray());
         setNewNodeValue('');
       } else {
         let tempHeap = new Heap(heap.arr);
         tempHeap.insert(intNodeVal);
         setHeap(tempHeap);
+        setArr(tempHeap.toLevelOrderArray());
         setNewNodeValue('');
       }
     }
   };
 
   const removeNode = () => {
-    let tempTree = new Heap(heap.arr);
-    tempTree.remove();
-    setHeap(tempTree);
+    let tempHeap = new Heap(heap.arr);
+    tempHeap.remove();
+    setHeap(tempHeap);
+    setArr(tempHeap.toLevelOrderArray());
     setNewNodeValue('');
   };
 
@@ -42,6 +44,8 @@ function HeapVisualizer() {
     const updatedNodeValue = event.target.value;
     setNewNodeValue(updatedNodeValue);
   };
+
+  console.log(heap?.toLevelOrderArray());
 
   return (
     <div>
@@ -59,14 +63,19 @@ function HeapVisualizer() {
         </MyButton>
       </div>
       <div className={classes.Tree}>
-        {heap?.arr?.length > 0 ? (
-          <ul>
-            {heap.arr.map((item, index) => (
-              <li key={index + item} style={{ width: `${index * 30 + 10}%` }}>
-                <button disabled>{item}</button>
-              </li>
-            ))}
-          </ul>
+        {arr?.length > 0 ? (
+          arr.map((item, index) => (
+            <ul key={item + index}>
+              {item.map((subitem) => (
+                <li
+                  key={subitem + index + item}
+                  style={{ width: `${index * 30 + 10}%` }}
+                >
+                  <button disabled>{subitem}</button>
+                </li>
+              ))}
+            </ul>
+          ))
         ) : (
           <h6 className={classes.EnterNodePrompt}>
             Add a new Node to visualize a new Binary Tree
