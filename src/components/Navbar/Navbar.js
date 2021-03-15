@@ -18,11 +18,11 @@ const MyNavbar = () => {
             <NavDropdown.Item href="/sorting">Sorting</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Data Structures" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/linkedlist">Linked List</NavDropdown.Item>
-            <NavDropdown.Item href="/stack">Stack</NavDropdown.Item>
-            <NavDropdown.Item href="/queue">Queue</NavDropdown.Item>
-            <NavDropdown.Item href="/binarytree">Binary Tree</NavDropdown.Item>
-            <NavDropdown.Item href="/heap">Heap</NavDropdown.Item>
+            <NavDropdown.Item href="/linkedlist">Linked Lists</NavDropdown.Item>
+            <NavDropdown.Item href="/stack">Stacks</NavDropdown.Item>
+            <NavDropdown.Item href="/queue">Queues</NavDropdown.Item>
+            <NavDropdown.Item href="/binarytree">Binary Trees</NavDropdown.Item>
+            <NavDropdown.Item href="/heap">Heaps</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
