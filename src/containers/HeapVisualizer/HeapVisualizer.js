@@ -12,18 +12,25 @@ function HeapVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [heap, setHeap] = useState(null);
   const [arr, setArr] = useState(null);
+  const [isMinHeap, setIsMinHeap] = useState(true);
 
   const insertNode = () => {
     const intNodeVal = parseInt(newNodeValue);
     if (Number.isInteger(intNodeVal)) {
       if (!heap) {
-        let tempHeap = new Heap();
+        let tempHeap = new Heap(
+          [],
+          isMinHeap ? (a, b) => a - b : (a, b) => b - a
+        );
         tempHeap.insert(intNodeVal);
         setHeap(tempHeap);
         setArr(tempHeap.toLevelOrderArray());
         setNewNodeValue('');
       } else {
-        let tempHeap = new Heap(heap.arr);
+        let tempHeap = new Heap(
+          heap.arr,
+          isMinHeap ? (a, b) => a - b : (a, b) => b - a
+        );
         tempHeap.insert(intNodeVal);
         setHeap(tempHeap);
         setArr(tempHeap.toLevelOrderArray());
@@ -33,17 +40,36 @@ function HeapVisualizer() {
   };
 
   const removeNode = () => {
-    let tempHeap = new Heap(heap.arr);
+    let tempHeap = new Heap(
+      heap.arr,
+      isMinHeap ? (a, b) => a - b : (a, b) => b - a
+    );
     tempHeap.remove();
     setHeap(tempHeap);
     setArr(tempHeap.toLevelOrderArray());
     setNewNodeValue('');
   };
 
+  const changeHeapType = () => {
+    if (isMinHeap) {
+      setIsMinHeap(false);
+      let tempHeap = new Heap(heap.arr, (a, b) => b - a);
+      setHeap(tempHeap);
+      setArr(tempHeap.toLevelOrderArray());
+    } else {
+      setIsMinHeap(true);
+      let tempHeap = new Heap(heap.arr, (a, b) => a - b);
+      setHeap(tempHeap);
+      setArr(tempHeap.toLevelOrderArray());
+    }
+  };
+
   const updateNewNodeValue = (event) => {
     const updatedNodeValue = event.target.value;
     setNewNodeValue(updatedNodeValue);
   };
+
+  console.log(isMinHeap, arr);
 
   return (
     <div>
@@ -58,6 +84,9 @@ function HeapVisualizer() {
         </MyButton>
         <MyButton onClick={removeNode} disabled={!heap}>
           Remove Root Node
+        </MyButton>
+        <MyButton onClick={changeHeapType} disabled={!heap}>
+          {isMinHeap ? 'Convert to Max Heap' : 'Convert to Min Heap'}
         </MyButton>
       </div>
       <div className={classes.Tree}>

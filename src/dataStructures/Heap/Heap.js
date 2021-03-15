@@ -6,6 +6,8 @@ export default class Heap {
     this.compareFunction = (index1, index2) => {
       return compareFunction(this.arr[index1], this.arr[index2]);
     };
+    this.bubbleDown();
+    this.bubbleUp();
   }
 
   get size() {
