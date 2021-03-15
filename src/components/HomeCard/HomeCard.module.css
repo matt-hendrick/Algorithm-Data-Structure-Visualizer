@@ -10,5 +10,14 @@
 
 .HomeCardLink {
   color: #1aab8a;
-  font-size: 0.8em;
+  font-size: 1.2em;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .HomeCardLink {
+    color: #1aab8a;
+    font-size: 0.65em;
+  }
+  
 }

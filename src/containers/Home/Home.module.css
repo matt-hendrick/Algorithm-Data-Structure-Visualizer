@@ -13,7 +13,7 @@
   width: 75%;
   height: 13%;
   margin: auto;
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 .HomeCardWrapper {
@@ -21,5 +21,17 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around;
-  height: 40vh;
+  height: 60vh;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .HomeHeader {
+    font-size: 1em;
+  }
+
+  .HomeCardWrapper {
+    height: 40vh;
+    margin-top: 50px;
+  }
 }

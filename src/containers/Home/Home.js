@@ -10,6 +10,7 @@ import BinaryTreeImage from '../../images/BinaryTreeImage.png';
 import LinkedListImage from '../../images/LinkedListImage.png';
 import StackImage from '../../images/StackImage.png';
 import QueueImage from '../../images/QueueImage.png';
+import HeapImage from '../../images/HeapImage.png';
 import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
@@ -49,6 +50,7 @@ function Home() {
             header="Binary Tree Visualizer"
             image={BinaryTreeImage}
           />
+          <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
         </div>
       </div>
     </div>
