@@ -22,6 +22,7 @@ const MyNavbar = () => {
             <NavDropdown.Item href="/stack">Stack</NavDropdown.Item>
             <NavDropdown.Item href="/queue">Queue</NavDropdown.Item>
             <NavDropdown.Item href="/binarytree">Binary Tree</NavDropdown.Item>
+            <NavDropdown.Item href="/heap">Heap</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
