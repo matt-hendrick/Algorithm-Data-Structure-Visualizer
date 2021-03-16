@@ -6,12 +6,10 @@ export default class Heap {
     this.compareFunction = (index1, index2) => {
       return compareFunction(this.arr[index1], this.arr[index2]);
     };
-    this.bubbleDown();
-    this.bubbleUp();
   }
 
-  get size() {
-    return this.arr.length;
+  peek() {
+    return this.arr[0];
   }
 
   insert(val) {
@@ -20,14 +18,14 @@ export default class Heap {
   }
 
   remove(index = 0) {
-    if (this.size < 1) return;
-    swap(this.arr, index, this.size - 1);
+    if (this.arr.length < 1) return;
+    swap(this.arr, index, this.arr.length - 1);
     this.arr.pop();
     this.bubbleDown();
   }
 
   bubbleUp() {
-    let index = this.size - 1;
+    let index = this.arr.length - 1;
     const getParent = (index) => Math.ceil(index / 2 - 1);
     while (
       getParent(index) >= 0 &&
@@ -42,7 +40,7 @@ export default class Heap {
     let curr = startingIndex;
 
     while (
-      this.getLeftChild(curr) < this.size &&
+      this.getLeftChild(curr) < this.arr.length &&
       this.compareFunction(curr, this.getHigherChild(curr)) > 0
     ) {
       const next = this.getHigherChild(curr);
@@ -52,7 +50,7 @@ export default class Heap {
   }
 
   toLevelOrderArray() {
-    if (this.size < 1) return [];
+    if (this.arr.length < 1) return [];
 
     let levelArr = [];
 
@@ -60,7 +58,7 @@ export default class Heap {
       // for each level, creates a new blank subarray
       if (!levelArr[level]) levelArr[level] = [];
 
-      if (node < 0 || node > this.size - 1) {
+      if (node < 0 || node > this.arr.length - 1) {
         // if arr[level] already exists, adds a null node for each non-existent node found
         if (levelArr[level]) levelArr[level].push(['null']);
         return null;
@@ -90,17 +88,9 @@ export default class Heap {
   getLeftChild = (index) => 2 * index + 1;
   getRightChild = (index) => 2 * index + 2;
   getHigherChild = (index) =>
-    this.getRightChild(index) < this.size &&
+    this.getRightChild(index) < this.arr.length &&
     this.compareFunction(this.getLeftChild(index), this.getRightChild(index)) >
       0
       ? this.getRightChild(index)
       : this.getLeftChild(index);
-
-  toMinHeap() {
-    return;
-  }
-
-  toMaxHeap() {
-    return;
-  }
 }

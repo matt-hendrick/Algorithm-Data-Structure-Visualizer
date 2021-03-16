@@ -54,11 +54,17 @@ function HeapVisualizer() {
     if (isMinHeap) {
       setIsMinHeap(false);
       let tempHeap = new Heap(heap.arr, (a, b) => b - a);
+      let tempVal = tempHeap.peek();
+      tempHeap.remove();
+      tempHeap.insert(tempVal);
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
     } else {
       setIsMinHeap(true);
       let tempHeap = new Heap(heap.arr, (a, b) => a - b);
+      let tempVal = tempHeap.peek();
+      tempHeap.remove();
+      tempHeap.insert(tempVal);
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
     }
@@ -89,7 +95,12 @@ function HeapVisualizer() {
           {isMinHeap ? 'Convert to Max Heap' : 'Convert to Min Heap'}
         </MyButton>
       </div>
-      <div className={classes.Tree}>
+      {heap ? (
+        <h6 className={classes.HeapTypeHeader}>
+          {isMinHeap ? 'Min Heap' : 'Max Heap'}
+        </h6>
+      ) : null}
+      <div className={classes.Heap}>
         {arr?.length > 0 ? (
           arr.map((item, index) => (
             <ul key={item + index}>
@@ -105,7 +116,7 @@ function HeapVisualizer() {
           ))
         ) : (
           <h6 className={classes.EnterNodePrompt}>
-            Add a new Node to visualize a new Binary Tree
+            Add a new Node to visualize a new Heap
           </h6>
         )}
       </div>

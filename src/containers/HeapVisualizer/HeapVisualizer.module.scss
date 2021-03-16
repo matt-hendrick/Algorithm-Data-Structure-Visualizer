@@ -9,7 +9,7 @@
   text-align: center;
 }
 
-.Tree ul {
+.Heap ul {
   position: relative;
   padding: 1em 0;
   white-space: nowrap;
@@ -24,7 +24,7 @@
   }
 }
 
-.Tree li {
+.Heap li {
   display: inline-block;
   vertical-align: top;
   text-align: center;
@@ -67,7 +67,7 @@
   }
 }
 
-.Tree ul ul::before {
+.Heap ul ul::before {
   content: '';
   position: absolute;
   top: 0;
@@ -77,7 +77,7 @@
   height: 1em;
 }
 
-.Tree li button {
+.Heap li button {
   border: 1px solid #39cccc;
   background-color: #39cccc;
   color: #fff;
@@ -85,4 +85,8 @@
   padding: 0.5em 0.75em;
   border-radius: 100%;
   position: relative;
+}
+
+.HeapTypeHeader{
+  text-align: center;
 }
