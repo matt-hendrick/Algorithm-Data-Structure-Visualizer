@@ -1,7 +1,7 @@
 import BinaryTree from './BinaryTree';
 
 describe('BinaryTree Class tests', () => {
-  it('BinaryTree initializes correctly', () => {});
+  it('BinaryTree works correctly', () => {});
   let testTree = new BinaryTree();
 
   expect(testTree).toEqual({ root: null });
@@ -87,6 +87,20 @@ describe('BinaryTree Class tests', () => {
   expect(testTree).toEqual({ root: { left: null, right: null, val: 2 } });
 
   testTree.remove(2);
+
+  expect(testTree).toEqual({ root: null });
+
+  testTree.insert(1);
+
+  expect(testTree).toEqual({
+    root: {
+      left: null,
+      right: null,
+      val: 1,
+    },
+  });
+
+  testTree.clear();
 
   expect(testTree).toEqual({ root: null });
 });

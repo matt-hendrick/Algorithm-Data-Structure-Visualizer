@@ -111,7 +111,7 @@ export default class BinaryTree {
     invert(this.root);
   }
 
-  clearTree() {
+  clear() {
     this.root = null;
   }
 }

@@ -82,16 +82,23 @@ export default class Heap {
     return levelArr;
   }
 
-  getLeftChild = (index) => 2 * index + 1;
-  getRightChild = (index) => 2 * index + 2;
-  getHigherChild = (index) =>
-    this.getRightChild(index) < this.arr.length &&
-    this.compareFunction(this.getLeftChild(index), this.getRightChild(index)) >
-      0
+  getLeftChild(index) {
+    return 2 * index + 1;
+  }
+  getRightChild(index) {
+    return 2 * index + 2;
+  }
+  getHigherChild(index) {
+    return this.getRightChild(index) < this.arr.length &&
+      this.compareFunction(
+        this.getLeftChild(index),
+        this.getRightChild(index)
+      ) > 0
       ? this.getRightChild(index)
       : this.getLeftChild(index);
+  }
 
-  switchHeapType() {
+  reorderHeap() {
     this.arr = this.arr.sort(this.rawCompareFunction);
     this.bubbleDown();
     this.bubbleUp();
