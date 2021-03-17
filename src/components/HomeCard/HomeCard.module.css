@@ -23,6 +23,10 @@
 
 
 @media only screen and (max-width: 600px) {
+  .HomeCardBox {
+    width: 100%;
+  }
+
   .HomeCardLink {
     color: #1aab8a;
     font-size: 0.65em;
