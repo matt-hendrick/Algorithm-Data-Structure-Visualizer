@@ -54,17 +54,13 @@ function HeapVisualizer() {
     if (isMinHeap) {
       setIsMinHeap(false);
       let tempHeap = new Heap(heap.arr, (a, b) => b - a);
-      let tempVal = tempHeap.peek();
-      tempHeap.remove();
-      tempHeap.insert(tempVal);
+      tempHeap.switchHeapType();
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
     } else {
       setIsMinHeap(true);
       let tempHeap = new Heap(heap.arr, (a, b) => a - b);
-      let tempVal = tempHeap.peek();
-      tempHeap.remove();
-      tempHeap.insert(tempVal);
+      tempHeap.switchHeapType();
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
     }

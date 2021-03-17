@@ -3,13 +3,10 @@ import { swap } from '../../utility/utilityFunctions';
 export default class Heap {
   constructor(arr = [], compareFunction = (a, b) => a - b) {
     this.arr = arr;
+    this.rawCompareFunction = compareFunction;
     this.compareFunction = (index1, index2) => {
       return compareFunction(this.arr[index1], this.arr[index2]);
     };
-  }
-
-  peek() {
-    return this.arr[0];
   }
 
   insert(val) {
@@ -93,4 +90,10 @@ export default class Heap {
       0
       ? this.getRightChild(index)
       : this.getLeftChild(index);
+
+  switchHeapType() {
+    this.arr = this.arr.sort(this.rawCompareFunction);
+    this.bubbleDown();
+    this.bubbleUp();
+  }
 }
