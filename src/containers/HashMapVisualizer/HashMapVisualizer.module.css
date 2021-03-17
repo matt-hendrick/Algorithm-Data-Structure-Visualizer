@@ -1,0 +1,12 @@
+.ButtonRow {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .EnterNodePrompt {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  

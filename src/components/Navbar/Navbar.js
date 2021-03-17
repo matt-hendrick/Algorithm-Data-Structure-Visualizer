@@ -23,6 +23,7 @@ const MyNavbar = () => {
             <NavDropdown.Item href="/queue">Queues</NavDropdown.Item>
             <NavDropdown.Item href="/binarytree">Binary Trees</NavDropdown.Item>
             <NavDropdown.Item href="/heap">Heaps</NavDropdown.Item>
+            <NavDropdown.Item href="/hashMap">HashMaps</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
