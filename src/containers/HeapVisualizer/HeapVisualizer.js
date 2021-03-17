@@ -78,8 +78,6 @@ function HeapVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  console.log(isMinHeap, arr);
-
   return (
     <div>
       <div className={classes.ButtonRow}>
