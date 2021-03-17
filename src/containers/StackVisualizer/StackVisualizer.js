@@ -14,11 +14,6 @@ function StackVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [stackOverFlow, setStackOverflow] = useState(false);
 
-  const updateNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
-  };
-
   const addNode = () => {
     setStackOverflow(false);
     if (newNodeValue !== '') {
@@ -55,6 +50,19 @@ function StackVisualizer() {
     }
   };
 
+  const clearStack = () => {
+    if (stack) {
+      setStack(null);
+      setArr(null);
+      setStackOverflow(false);
+    }
+  };
+
+  const updateNodeValue = (event) => {
+    const updatedValue = event.target.value;
+    setNewNodeValue(updatedValue);
+  };
+
   return (
     <div>
       {stackOverFlow ? <Alert /> : null}
@@ -69,6 +77,9 @@ function StackVisualizer() {
         </MyButton>
         <MyButton onClick={removeNode} disabled={!arr}>
           Remove from Stack
+        </MyButton>
+        <MyButton onClick={clearStack} disabled={!arr}>
+          Clear Stack
         </MyButton>
       </div>
       {arr ? (

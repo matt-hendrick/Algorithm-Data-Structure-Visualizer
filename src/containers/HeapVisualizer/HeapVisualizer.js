@@ -66,6 +66,13 @@ function HeapVisualizer() {
     }
   };
 
+  const clearHeap = () => {
+    if (heap) {
+      setHeap(null);
+      setArr(null);
+    }
+  };
+
   const updateNewNodeValue = (event) => {
     const updatedNodeValue = event.target.value;
     setNewNodeValue(updatedNodeValue);
@@ -89,6 +96,9 @@ function HeapVisualizer() {
         </MyButton>
         <MyButton onClick={changeHeapType} disabled={!heap}>
           {isMinHeap ? 'Convert to Max Heap' : 'Convert to Min Heap'}
+        </MyButton>
+        <MyButton onClick={clearHeap} disabled={!heap}>
+          Clear Heap
         </MyButton>
       </div>
       {heap ? (

@@ -12,11 +12,6 @@ function QueueVisualizer() {
   const [arr, setArr] = useState(null);
   const [newNodeValue, setNewNodeValue] = useState('');
 
-  const updateNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
-  };
-
   const addNode = () => {
     if (newNodeValue !== '') {
       if (!queue) {
@@ -44,6 +39,18 @@ function QueueVisualizer() {
     }
   };
 
+  const clearQueue = () => {
+    if (queue) {
+      setQueue(null);
+      setArr(null);
+    }
+  };
+
+  const updateNodeValue = (event) => {
+    const updatedValue = event.target.value;
+    setNewNodeValue(updatedValue);
+  };
+
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -57,6 +64,9 @@ function QueueVisualizer() {
         </MyButton>
         <MyButton onClick={removeNode} disabled={!arr}>
           Remove from Queue
+        </MyButton>
+        <MyButton onClick={clearQueue} disabled={!arr}>
+          Clear Queue
         </MyButton>
       </div>
       <div className={classes.QueueContainer}>

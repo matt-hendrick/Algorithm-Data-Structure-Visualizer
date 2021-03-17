@@ -13,11 +13,6 @@ function LinkedListVisualizer() {
   const [arr, setArr] = useState(null);
   const [newNodeValue, setNewNodeValue] = useState('');
 
-  const updateAddNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
-  };
-
   const addFirst = () => {
     if (newNodeValue !== '') {
       if (!list) {
@@ -81,6 +76,18 @@ function LinkedListVisualizer() {
     }
   };
 
+  const clearList = () => {
+    if (list) {
+      setList(null);
+      setArr(null);
+    }
+  };
+
+  const updateAddNodeValue = (event) => {
+    const updatedValue = event.target.value;
+    setNewNodeValue(updatedValue);
+  };
+
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -103,6 +110,9 @@ function LinkedListVisualizer() {
         </MyButton>
         <MyButton onClick={reverseList} disabled={!arr}>
           Reverse the List
+        </MyButton>
+        <MyButton onClick={clearList} disabled={!arr}>
+          Clear List
         </MyButton>
       </div>
       <div className={classes.LinkedListContainer}>

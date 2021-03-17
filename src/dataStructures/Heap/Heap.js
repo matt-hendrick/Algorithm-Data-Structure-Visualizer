@@ -96,4 +96,8 @@ export default class Heap {
     this.bubbleDown();
     this.bubbleUp();
   }
+
+  clear() {
+    this.arr = [];
+  }
 }
