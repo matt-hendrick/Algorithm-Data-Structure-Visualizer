@@ -45,3 +45,9 @@
   padding: 5px;
   max-width: 100%;
 }
+
+@media (max-width: 800px) {
+  .HashMapBucketContainer {
+    width: 40%;
+  }
+}
