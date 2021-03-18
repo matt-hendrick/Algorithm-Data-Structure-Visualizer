@@ -108,27 +108,14 @@ function HashMapVisualizer() {
                     <div className={classes.HashMapItemsContainer}>
                       {bucket.map((item, index) => (
                         <div className={classes.HashMapItem}>
-                          Item #{index + 1} = {item.key}, {item.value}
+                          Key: {item.key}, Value: {item.value}
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <div
-                    style={{
-                      margin: '10px',
-                      padding: '5px',
-                      width: '20%',
-                      border: '1px solid #80d6c2',
-                    }}
-                  >
-                    <h5
-                      style={{
-                        backgroundColor: '#39cccc',
-                        color: '#ffffff',
-                        padding: '5px',
-                      }}
-                    >
+                  <div className={classes.HashMapBucketContainer}>
+                    <h5 className={classes.HashMapBucketHeader}>
                       Bucket # {index + 1}
                     </h5>
                     <div>No items in this bucket</div>
