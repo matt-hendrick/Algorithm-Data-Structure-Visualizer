@@ -9,36 +9,37 @@
   text-align: center;
 }
 
-.HashMapInfoHeader {
+.HashTableInfoHeader {
   text-align: center;
+  margin-top: 10px;
 }
 
-.HashMapBucketsContainer {
+.HashTableBucketsContainer {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
 }
 
-.HashMapBucketContainer {
+.HashTableBucketContainer {
   margin: 10px;
   padding: 5px;
   width: 20%;
   border: 1px solid #1aab8a;
 }
 
-.HashMapBucketHeader {
+.HashTableBucketHeader {
   background-color: #39cccc;
   color: #ffffff;
   padding: 5px;
 }
 
-.HashMapItemsContainer {
+.HashTableItemsContainer {
   display: flex;
   flex-direction: column;
 }
 
-.HashMapItem {
+.HashTableItem {
   background-color: #1aab8a;
   color: #ffffff;
   margin: auto auto 5px auto;
@@ -47,7 +48,7 @@
 }
 
 @media (max-width: 800px) {
-  .HashMapBucketContainer {
+  .HashTableBucketContainer {
     width: 40%;
   }
 }

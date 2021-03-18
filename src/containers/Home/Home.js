@@ -11,7 +11,7 @@ import LinkedListImage from '../../images/LinkedListImage.png';
 import StackImage from '../../images/StackImage.png';
 import QueueImage from '../../images/QueueImage.png';
 import HeapImage from '../../images/HeapImage.png';
-import HashMapImage from '../../images/HashMapImage.png';
+import HashTableImage from '../../images/HashTableImage.png';
 import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
@@ -53,9 +53,9 @@ function Home() {
           />
           <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
           <HomeCard
-            link="/hashmap"
-            header="HashMap Visualizer"
-            image={HashMapImage}
+            link="/hashtable"
+            header="Hash Table Visualizer"
+            image={HashTableImage}
           />
         </div>
       </div>
