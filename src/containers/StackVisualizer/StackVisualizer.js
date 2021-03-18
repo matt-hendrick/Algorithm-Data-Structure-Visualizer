@@ -17,7 +17,7 @@ function StackVisualizer() {
   const addNode = () => {
     setStackOverflow(false);
     if (newNodeValue !== '') {
-      if (!stack) {
+      if (!stack || !stack.first) {
         let newStack = new Stack();
         newStack.add(newNodeValue);
         setStack(newStack);
