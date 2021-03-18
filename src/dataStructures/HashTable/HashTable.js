@@ -80,7 +80,7 @@ export default class HashTable {
       this.buckets[bucketIndex][itemIndex].value = value;
     }
 
-    // rehash if necessary
+    // rehash if size/length is greater than loadFactor
     if (this.loadFactor > 0 && this.getLoadFactor() > this.loadFactor) {
       this.rehash(this.buckets.length * 2);
     }
@@ -118,7 +118,7 @@ export default class HashTable {
       return false;
     }
 
-    // if there are collisions in key's bucket, decrement collisions counter
+    // if there are collisions in the key's bucket, decrement collisions counter
     if (this.buckets[bucketIndex].length > 1 && this.collisions > 0) {
       this.collisions--;
     }
@@ -132,15 +132,17 @@ export default class HashTable {
   }
 
   rehash(newCapacity) {
+    // creates a new HashTable, double the previous capacity
     const newMap = new HashTable(newCapacity);
 
+    // for each key in keys, adds key/value pair
     this.keys.forEach((key) => {
       if (key) {
         newMap.set(key.content, this.get(key.content));
       }
     });
 
-    // update bucket
+    // update buckets, collisions, and keys
     this.buckets = newMap.buckets;
     this.collisions = newMap.collisions;
     this.keys = newMap.keys;
