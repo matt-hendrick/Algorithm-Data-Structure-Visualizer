@@ -21,7 +21,14 @@ function HashMapVisualizer() {
       setNewKey('');
       setNewValue('');
     } else {
-      let tempHashMap = hashMap;
+      let tempHashMap = new HashMap(
+        hashMap.initialCapacity,
+        hashMap.buckets,
+        hashMap.loadFactor,
+        hashMap.size,
+        hashMap.collisions,
+        hashMap.keys
+      );
       tempHashMap.set(newKey, newValue);
       setHashMap(tempHashMap);
       setNewKey('');
@@ -31,7 +38,14 @@ function HashMapVisualizer() {
 
   const removeNode = () => {
     if (newKey) {
-      let tempHashMap = hashMap;
+      let tempHashMap = new HashMap(
+        hashMap.initialCapacity,
+        hashMap.buckets,
+        hashMap.loadFactor,
+        hashMap.size,
+        hashMap.collisions,
+        hashMap.keys
+      );
       tempHashMap.remove(newKey);
       setHashMap(tempHashMap);
       setNewKey('');
@@ -71,17 +85,25 @@ function HashMapVisualizer() {
         </MyButton>
       </div>
       <div>
-        {hashMap ? (
-          hashMap.buckets.map((bucket, index) => (
+        {hashMap?.size > 0 ? (
+          <div>
             <div>
-              <div>Bucket # {index}</div>
-              {bucket.map((item) => (
-                <div>
-                  {item.key}, {item.value}
-                </div>
-              ))}
+              HashMap Size: {hashMap.size}, HashMap Buckets:
+              {hashMap.buckets.length}, HashMap Collisions: {hashMap.collisions}
             </div>
-          ))
+            {hashMap.buckets.map((bucket, index) =>
+              bucket.length > 0 ? (
+                <div>
+                  <div>Bucket # {index}</div>
+                  {bucket.map((item) => (
+                    <div>
+                      {item.key}, {item.value}
+                    </div>
+                  ))}
+                </div>
+              ) : null
+            )}
+          </div>
         ) : (
           <h6 className={classes.EnterNodePrompt}>
             Add a new Node to visualize a new HashMap
