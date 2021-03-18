@@ -13,7 +13,7 @@
 .BorderColumn {
   width: 15%;
   background-color: #ea5455;
-  color: white;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
   background-color: #39cccc;
   text-align: center;
   font-size: 1.1em;
-  color: white;
+  color: #ffffff;
 }
 
 .LinkedListVal {
@@ -50,7 +50,7 @@
   height: 1vh;
   border: 1px solid white;
   background-color: #39cccc;
-  color: white;
+  color: #ffffff;
 }
 
 .LinkedListArrowHead {

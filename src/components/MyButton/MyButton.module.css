@@ -1,6 +1,6 @@
 .MyButton {
   background: #1aab8a;
-  color: #fff;
+  color: #ffffff;
   border: none;
   margin: 2px;
   font-size: 1em;
@@ -12,7 +12,7 @@
 
 .MyButtonDisabled {
   background: #80d6c2;
-  color: #fff;
+  color: #ffffff;
   border: none;
   margin: 2px;
   font-size: 1em;

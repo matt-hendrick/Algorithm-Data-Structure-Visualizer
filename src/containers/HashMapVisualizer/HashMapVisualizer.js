@@ -62,8 +62,6 @@ function HashMapVisualizer() {
     setNewValue(updatedValue);
   };
 
-  console.log(hashMap);
-
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -91,18 +89,27 @@ function HashMapVisualizer() {
               HashMap Size: {hashMap.size}, HashMap Buckets:
               {hashMap.buckets.length}, HashMap Collisions: {hashMap.collisions}
             </div>
-            {hashMap.buckets.map((bucket, index) =>
-              bucket.length > 0 ? (
-                <div>
-                  <div>Bucket # {index}</div>
-                  {bucket.map((item) => (
-                    <div>
-                      {item.key}, {item.value}
-                    </div>
-                  ))}
-                </div>
-              ) : null
-            )}
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {hashMap.buckets.map((bucket, index) =>
+                bucket.length > 0 ? (
+                  <div
+                    style={{
+                      margin: '10px',
+                      padding: '5px',
+                      backgroundColor: '#39cccc',
+                      color: '#ffffff',
+                    }}
+                  >
+                    <h5>Bucket # {index + 1}</h5>
+                    {bucket.map((item, index) => (
+                      <div>
+                        Item #{index + 1} = {item.key}, {item.value}
+                      </div>
+                    ))}
+                  </div>
+                ) : null
+              )}
+            </div>
           </div>
         ) : (
           <h6 className={classes.EnterNodePrompt}>
