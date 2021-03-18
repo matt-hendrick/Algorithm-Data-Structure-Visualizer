@@ -53,7 +53,9 @@ export default class HashTable {
       // if any of the items are the key, return the bucketIndex and the itemIndex
       const item = bucketItems[itemIndex];
       if (item.key === key) {
-        return { bucketIndex, itemIndex };
+        // extracts index of item in keys
+        const keyIndex = item.keyIndex;
+        return { bucketIndex, itemIndex, keyIndex };
       }
     }
 
@@ -150,5 +152,13 @@ export default class HashTable {
 
   getLoadFactor() {
     return this.size / this.buckets.length;
+  }
+
+  clear() {
+    this.buckets = new Array(16);
+    this.loadFactor = 0.75;
+    this.size = 0;
+    this.collisions = 0;
+    this.keys = [];
   }
 }
