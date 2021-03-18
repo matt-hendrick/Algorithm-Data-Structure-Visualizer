@@ -24,7 +24,7 @@
   margin-top: 30px;
 }
 
-@media only screen and (max-width: 600px) {
+@media  (max-width: 800px) {
   .HomeHeader {
     font-size: 1em;
   }
