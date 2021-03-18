@@ -82,11 +82,13 @@ function HashTableVisualizer() {
     <div>
       <div className={classes.ButtonRow}>
         <input
+          id="KeyInput"
           value={newKey}
           placeholder="Enter a new key"
           onChange={updateNewKey}
         />
         <input
+          id="ValueInput"
           value={newValue}
           placeholder="Enter a new value"
           onChange={updateNewValue}
@@ -115,20 +117,23 @@ function HashTableVisualizer() {
             <div className={classes.HashTableBucketsContainer}>
               {arr.map((bucket, index) =>
                 bucket?.length > 0 ? (
-                  <div className={classes.HashTableBucketContainer}>
+                  <div
+                    className={classes.HashTableBucketContainer}
+                    key={bucket.join('') + index}
+                  >
                     <h5 className={classes.HashTableBucketHeader}>
                       Bucket # {index + 1}
                     </h5>
                     <div className={classes.HashTableItemsContainer}>
                       {bucket.map((item, index) => (
-                        <div className={classes.HashTableItem}>
+                        <div className={classes.HashTableItem} key={item.key}>
                           Key: {item.key}, Value: {item.value}
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <div className={classes.HashTableBucketContainer}>
+                  <div className={classes.HashTableBucketContainer} key={index}>
                     <h5 className={classes.HashTableBucketHeader}>
                       Bucket # {index + 1}
                     </h5>
