@@ -1,12 +1,47 @@
 .ButtonRow {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .EnterNodePrompt {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.EnterNodePrompt {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.HashMapInfoHeader {
+  text-align: center;
+}
+
+.HashMapBucketsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+
+.HashMapBucketContainer {
+  margin: 10px;
+  padding: 5px;
+  width: 20%;
+  border: 1px solid #1aab8a;
+}
+
+.HashMapBucketHeader {
+  background-color: #39cccc;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.HashMapItemsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.HashMapItem {
+  background-color: #1aab8a;
+  color: #ffffff;
+  margin: auto auto 5px auto;
+  padding: 5px;
+  max-width: 100%;
+}

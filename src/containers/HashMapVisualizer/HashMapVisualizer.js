@@ -12,12 +12,15 @@ function HashMapVisualizer() {
   const [newKey, setNewKey] = useState('');
   const [newValue, setNewValue] = useState('');
   const [hashMap, setHashMap] = useState(null);
+  const [arr, setArr] = useState(null);
 
   const insertNode = () => {
     if (!hashMap) {
       let tempHashMap = new HashMap();
       tempHashMap.set(newKey, newValue);
       setHashMap(tempHashMap);
+      let tempArr = Array.from(tempHashMap.buckets, (item) => item || null);
+      setArr(tempArr);
       setNewKey('');
       setNewValue('');
     } else {
@@ -31,6 +34,8 @@ function HashMapVisualizer() {
       );
       tempHashMap.set(newKey, newValue);
       setHashMap(tempHashMap);
+      let tempArr = Array.from(tempHashMap.buckets, (item) => item || null);
+      setArr(tempArr);
       setNewKey('');
       setNewValue('');
     }
@@ -48,6 +53,8 @@ function HashMapVisualizer() {
       );
       tempHashMap.remove(newKey);
       setHashMap(tempHashMap);
+      let tempArr = Array.from(tempHashMap.buckets, (item) => item || null);
+      setArr(tempArr);
       setNewKey('');
     }
   };
@@ -61,6 +68,8 @@ function HashMapVisualizer() {
     const updatedValue = event.target.value;
     setNewValue(updatedValue);
   };
+
+  console.log(arr);
 
   return (
     <div>
@@ -85,29 +94,46 @@ function HashMapVisualizer() {
       <div>
         {hashMap?.size > 0 ? (
           <div>
-            <div>
-              HashMap Size: {hashMap.size}, HashMap Buckets:
+            <h4 className={classes.HashMapInfoHeader}>
+              HashMap Size: {hashMap.size}, HashMap Buckets:{' '}
               {hashMap.buckets.length}, HashMap Collisions: {hashMap.collisions}
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {hashMap.buckets.map((bucket, index) =>
-                bucket.length > 0 ? (
+            </h4>
+            <div className={classes.HashMapBucketsContainer}>
+              {arr.map((bucket, index) =>
+                bucket?.length > 0 ? (
+                  <div className={classes.HashMapBucketContainer}>
+                    <h5 className={classes.HashMapBucketHeader}>
+                      Bucket # {index + 1}
+                    </h5>
+                    <div className={classes.HashMapItemsContainer}>
+                      {bucket.map((item, index) => (
+                        <div className={classes.HashMapItem}>
+                          Item #{index + 1} = {item.key}, {item.value}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
                   <div
                     style={{
                       margin: '10px',
                       padding: '5px',
-                      backgroundColor: '#39cccc',
-                      color: '#ffffff',
+                      width: '20%',
+                      border: '1px solid #80d6c2',
                     }}
                   >
-                    <h5>Bucket # {index + 1}</h5>
-                    {bucket.map((item, index) => (
-                      <div>
-                        Item #{index + 1} = {item.key}, {item.value}
-                      </div>
-                    ))}
+                    <h5
+                      style={{
+                        backgroundColor: '#39cccc',
+                        color: '#ffffff',
+                        padding: '5px',
+                      }}
+                    >
+                      Bucket # {index + 1}
+                    </h5>
+                    <div>No items in this bucket</div>
                   </div>
-                ) : null
+                )
               )}
             </div>
           </div>
