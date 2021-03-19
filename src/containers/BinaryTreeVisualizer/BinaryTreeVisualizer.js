@@ -14,33 +14,27 @@ function BinaryTreeVisualizer() {
   const [arr, setArr] = useState(null);
 
   const insertNode = () => {
-    const intNodeVal = parseInt(newNodeValue);
-    if (Number.isInteger(intNodeVal)) {
-      if (!tree) {
-        let tempTree = new BinaryTree();
-        tempTree.insert(intNodeVal);
-        setTree(tempTree);
-        setArr(tempTree.toLevelOrderArray());
-        setNewNodeValue('');
-      } else {
-        let tempTree = new BinaryTree(tree.root);
-        tempTree.insert(intNodeVal);
-        setTree(tempTree);
-        setArr(tempTree.toLevelOrderArray());
-        setNewNodeValue('');
-      }
-    }
-  };
-
-  const removeNode = () => {
-    const intNodeVal = parseInt(newNodeValue);
-    if (newNodeValue) {
+    if (!tree) {
+      let tempTree = new BinaryTree();
+      tempTree.insert(newNodeValue);
+      setTree(tempTree);
+      setArr(tempTree.toLevelOrderArray());
+      setNewNodeValue('');
+    } else {
       let tempTree = new BinaryTree(tree.root);
-      tempTree.remove(intNodeVal);
+      tempTree.insert(newNodeValue);
       setTree(tempTree);
       setArr(tempTree.toLevelOrderArray());
       setNewNodeValue('');
     }
+  };
+
+  const removeNode = () => {
+    let tempTree = new BinaryTree(tree.root);
+    tempTree.remove(newNodeValue);
+    setTree(tempTree);
+    setArr(tempTree.toLevelOrderArray());
+    setNewNodeValue('');
   };
 
   const invertTree = () => {
@@ -60,8 +54,13 @@ function BinaryTreeVisualizer() {
   };
 
   const updateNewNodeValue = (event) => {
-    const updatedNodeValue = event.target.value;
-    setNewNodeValue(updatedNodeValue);
+    if (Number.isInteger(parseInt(event.target.value))) {
+      const updatedNodeValue = parseInt(event.target.value);
+      setNewNodeValue(updatedNodeValue);
+    } else if (event.target.value === '' || event.target.value === '-') {
+      const updatedNodeValue = event.target.value;
+      setNewNodeValue(updatedNodeValue);
+    } else return;
   };
 
   return (
@@ -74,13 +73,13 @@ function BinaryTreeVisualizer() {
         />
         <MyButton
           onClick={insertNode}
-          disabled={!newNodeValue || tree?.has(parseInt(newNodeValue))}
+          disabled={!newNodeValue || tree?.has(newNodeValue)}
         >
           Insert Specified Node
         </MyButton>
         <MyButton
           onClick={removeNode}
-          disabled={!newNodeValue || !tree || !tree.has(parseInt(newNodeValue))}
+          disabled={!newNodeValue || !tree || !tree.has(newNodeValue)}
         >
           Remove Specified Node
         </MyButton>

@@ -15,27 +15,24 @@ function HeapVisualizer() {
   const [isMinHeap, setIsMinHeap] = useState(true);
 
   const insertNode = () => {
-    const intNodeVal = parseInt(newNodeValue);
-    if (Number.isInteger(intNodeVal)) {
-      if (!heap) {
-        let tempHeap = new Heap(
-          [],
-          isMinHeap ? (a, b) => a - b : (a, b) => b - a
-        );
-        tempHeap.insert(intNodeVal);
-        setHeap(tempHeap);
-        setArr(tempHeap.toLevelOrderArray());
-        setNewNodeValue('');
-      } else {
-        let tempHeap = new Heap(
-          heap.arr,
-          isMinHeap ? (a, b) => a - b : (a, b) => b - a
-        );
-        tempHeap.insert(intNodeVal);
-        setHeap(tempHeap);
-        setArr(tempHeap.toLevelOrderArray());
-        setNewNodeValue('');
-      }
+    if (!heap) {
+      let tempHeap = new Heap(
+        [],
+        isMinHeap ? (a, b) => a - b : (a, b) => b - a
+      );
+      tempHeap.insert(newNodeValue);
+      setHeap(tempHeap);
+      setArr(tempHeap.toLevelOrderArray());
+      setNewNodeValue('');
+    } else {
+      let tempHeap = new Heap(
+        heap.arr,
+        isMinHeap ? (a, b) => a - b : (a, b) => b - a
+      );
+      tempHeap.insert(newNodeValue);
+      setHeap(tempHeap);
+      setArr(tempHeap.toLevelOrderArray());
+      setNewNodeValue('');
     }
   };
 
@@ -74,8 +71,13 @@ function HeapVisualizer() {
   };
 
   const updateNewNodeValue = (event) => {
-    const updatedNodeValue = event.target.value;
-    setNewNodeValue(updatedNodeValue);
+    if (Number.isInteger(parseInt(event.target.value))) {
+      const updatedNodeValue = parseInt(event.target.value);
+      setNewNodeValue(updatedNodeValue);
+    } else if (event.target.value === '' || event.target.value === '-') {
+      const updatedNodeValue = event.target.value;
+      setNewNodeValue(updatedNodeValue);
+    } else return;
   };
 
   return (
