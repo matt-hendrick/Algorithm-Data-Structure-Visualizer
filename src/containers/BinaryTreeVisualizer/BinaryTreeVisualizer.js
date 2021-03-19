@@ -64,12 +64,6 @@ function BinaryTreeVisualizer() {
     setNewNodeValue(updatedNodeValue);
   };
 
-  const isNewNodeValueInTree = () => {
-    if (arr?.length > 0 && arr.flat().includes(parseInt(newNodeValue)))
-      return true;
-    else return false;
-  };
-
   return (
     <div>
       <div className={classes.ButtonRow}>
@@ -80,13 +74,13 @@ function BinaryTreeVisualizer() {
         />
         <MyButton
           onClick={insertNode}
-          disabled={!newNodeValue || isNewNodeValueInTree()}
+          disabled={!newNodeValue || tree?.has(parseInt(newNodeValue))}
         >
           Insert Specified Node
         </MyButton>
         <MyButton
           onClick={removeNode}
-          disabled={!newNodeValue || !tree || !isNewNodeValueInTree()}
+          disabled={!newNodeValue || !tree || !tree.has(parseInt(newNodeValue))}
         >
           Remove Specified Node
         </MyButton>

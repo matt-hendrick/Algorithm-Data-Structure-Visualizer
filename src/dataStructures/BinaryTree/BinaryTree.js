@@ -16,6 +16,23 @@ export default class BinaryTree {
     }
   }
 
+  has(value) {
+    return !!this.get(value, this.root);
+  }
+
+  get(value, node = this.root) {
+    if (!node || !value) return null;
+    else if (node.val === value) {
+      return node;
+    } else if (node.val > value) {
+      if (!node.left) return null;
+      else this.get(value, node.left);
+    } else if (node.val < value) {
+      if (!node.right) return null;
+      else this.get(value, node.right);
+    }
+  }
+
   insertNode(node, newNode) {
     if (node.val > newNode.val) {
       if (!node.left) node.left = newNode;
