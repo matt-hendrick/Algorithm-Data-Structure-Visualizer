@@ -99,10 +99,10 @@ function HeapVisualizer() {
           Clear Heap
         </MyButton>
       </div>
-      {heap ? (
-        <h6 className={classes.HeapTypeHeader}>
+      {arr?.length > 0 ? (
+        <h4 className={classes.HeapTypeHeader}>
           {isMinHeap ? 'Min Heap' : 'Max Heap'}
-        </h6>
+        </h4>
       ) : null}
       <div className={classes.Heap}>
         {arr?.length > 0 ? (
