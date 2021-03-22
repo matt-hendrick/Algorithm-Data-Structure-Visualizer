@@ -16,20 +16,20 @@ export default class BinaryTree {
     }
   }
 
-  has(value) {
-    return !!this.get(value, this.root);
+  has(val) {
+    return !!this.get(val, this.root);
   }
 
-  get(value, node = this.root) {
-    if (!node || !value) return null;
-    else if (node.val === value) {
+  get(val, node = this.root) {
+    if (!node || !val) return null;
+    else if (node.val === val) {
       return node;
-    } else if (node.val > value) {
+    } else if (node.val > val) {
       if (!node.left) return null;
-      else this.get(value, node.left);
-    } else if (node.val < value) {
+      else this.get(val, node.left);
+    } else if (node.val < val) {
       if (!node.right) return null;
-      else this.get(value, node.right);
+      else this.get(val, node.right);
     }
   }
 
@@ -50,16 +50,10 @@ export default class BinaryTree {
 
   removeNode(node, val) {
     if (!node) return null;
-    else if (val < node.val) {
-      node.left = this.removeNode(node.left, val);
-      return node;
-    } else if (val > node.val) {
-      node.right = this.removeNode(node.right, val);
-      return node;
-    } else {
+    else if (val === node.val) {
       if (!node.left && !node.right) {
         node = null;
-        return node;
+        return null;
       }
 
       if (!node.left) {
@@ -70,10 +64,16 @@ export default class BinaryTree {
         return node;
       }
 
-      const aux = this.findMinimumNode(node.right);
-      node.val = aux.val;
+      const temp = this.findMinimumNode(node.right);
+      node.val = temp.val;
 
-      node.right = this.removeNode(node.right, aux.key);
+      node.right = this.removeNode(node.right, temp.key);
+      return node;
+    } else if (val < node.val) {
+      node.left = this.removeNode(node.left, val);
+      return node;
+    } else if (val > node.val) {
+      node.right = this.removeNode(node.right, val);
       return node;
     }
   }
