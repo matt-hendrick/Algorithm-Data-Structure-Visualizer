@@ -5,8 +5,23 @@ import BinaryTreeVisualizer from './BinaryTreeVisualizer';
 
 describe('BinaryTreeVisualizer tests', () => {
   it(`BinaryTreeVisualizer initializes, adds from front/end, removes from front/end,
-     and reverse correctly`, () => {
+  clears tree, and reverses correctly`, () => {
     render(<BinaryTreeVisualizer />);
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Binary Tree/)
+    ).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox'), '1');
+    expect(screen.getByRole('textbox')).toHaveValue('1');
+
+    userEvent.click(
+      screen.getByRole('button', { name: /insert specified node/i })
+    );
+
+    expect(screen.getByText('1')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /clear tree/i }));
 
     expect(
       screen.getByText(/Add a new Node to visualize a new Binary Tree/)
