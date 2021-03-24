@@ -5,8 +5,42 @@ import LinkedListVisualizer from './LinkedListVisualizer';
 
 describe('LinkedListVisualizer tests', () => {
   it(`LinkedListVisualizer initializes, adds from front/end, removes from front/end,
-   and reverse correctly`, () => {
+   clears, and reverses correctly`, () => {
     render(<LinkedListVisualizer />);
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Linked List/i)
+    ).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox'), '3');
+    expect(screen.getByRole('textbox')).toHaveValue('3');
+
+    userEvent.click(
+      screen.getByRole('button', { name: /add to front of the list/i })
+    );
+
+    expect(screen.getByText('3')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /clear list/i }));
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Linked List/i)
+    ).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox'), '3');
+    expect(screen.getByRole('textbox')).toHaveValue('3');
+
+    userEvent.click(
+      screen.getByRole('button', { name: /add to end of the list/i })
+    );
+
+    expect(screen.getByText('3')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /clear list/i }));
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Linked List/i)
+    ).toBeInTheDocument();
 
     userEvent.type(screen.getByRole('textbox'), '3');
     expect(screen.getByRole('textbox')).toHaveValue('3');
