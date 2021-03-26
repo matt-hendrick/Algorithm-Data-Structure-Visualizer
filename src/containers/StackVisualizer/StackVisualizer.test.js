@@ -67,6 +67,11 @@ describe('StackVisualizer tests', () => {
     userEvent.type(screen.getByRole('textbox'), '15');
     userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
 
+    const stackOverFlowText = screen.getByText(/stack overflow/i);
     expect(screen.getByText(/stack overflow/i)).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /close alert/i }));
+
+    expect(stackOverFlowText).not.toBeInTheDocument();
   });
 });
