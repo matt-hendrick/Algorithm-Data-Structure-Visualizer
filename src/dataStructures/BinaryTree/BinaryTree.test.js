@@ -16,6 +16,16 @@ describe('BinaryTree Class tests', () => {
     },
   });
 
+  expect(testTree.has(1)).toEqual(true);
+  expect(testTree.has(5)).toEqual(false);
+
+  expect(testTree.get(1)).toEqual({
+    left: null,
+    right: null,
+    val: 1,
+  });
+  expect(testTree.get(5)).toEqual(null);
+
   testTree.insert(2);
 
   expect(testTree).toEqual({
@@ -66,6 +76,15 @@ describe('BinaryTree Class tests', () => {
       },
       val: 1,
     },
+  });
+
+  expect(testTree.has(1)).toEqual(true);
+  expect(testTree.has(5)).toEqual(false);
+
+  expect(testTree.get(1)).toEqual({
+    left: { left: null, right: null, val: 2 },
+    right: { left: null, right: null, val: -4 },
+    val: 1,
   });
 
   testTree.remove(1);
