@@ -7,6 +7,23 @@ describe('QueueVisualizer tests', () => {
   it('QueueVisualizer initializes, adds/removes nodes correctly', () => {
     render(<QueueVisualizer />);
 
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Queue/i)
+    ).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox'), '3');
+    expect(screen.getByRole('textbox')).toHaveValue('3');
+
+    userEvent.click(screen.getByRole('button', { name: /add to queue/i }));
+
+    expect(screen.getByText('3')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /clear queue/i }));
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Queue/i)
+    ).toBeInTheDocument();
+
     userEvent.type(screen.getByRole('textbox'), '3');
     expect(screen.getByRole('textbox')).toHaveValue('3');
 

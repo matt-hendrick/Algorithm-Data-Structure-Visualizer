@@ -7,6 +7,23 @@ describe('StackVisualizer tests', () => {
   it('StackVisualizer initializes, adds/removes nodes correctly', () => {
     render(<StackVisualizer />);
 
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Stack/i)
+    ).toBeInTheDocument();
+
+    userEvent.type(screen.getByRole('textbox'), '3');
+    expect(screen.getByRole('textbox')).toHaveValue('3');
+
+    userEvent.click(screen.getByRole('button', { name: /add to stack/i }));
+
+    expect(screen.getByText('3')).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', { name: /clear stack/i }));
+
+    expect(
+      screen.getByText(/Add a new Node to visualize a new Stack/i)
+    ).toBeInTheDocument();
+
     userEvent.type(screen.getByRole('textbox'), '3');
     expect(screen.getByRole('textbox')).toHaveValue('3');
 
