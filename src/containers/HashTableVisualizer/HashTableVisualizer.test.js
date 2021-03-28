@@ -8,7 +8,7 @@ describe('Hash Table Visualizer tests', () => {
     render(<HashTableVisualizer />);
 
     expect(
-      screen.getByText(/Add a new Node to visualize a new Hash Table/)
+      screen.getByText(/Add a new Node to visualize a new Hash Table/i)
     ).toBeInTheDocument();
 
     userEvent.type(screen.getByPlaceholderText(/enter a new key/i), '1');

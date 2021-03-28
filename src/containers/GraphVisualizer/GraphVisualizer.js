@@ -111,7 +111,7 @@ function GraphVisualizer() {
     autoResize: true,
   };
 
-  if (graph) {
+  if (graph?.adjacencyList.size > 0) {
     const { edgesArray, nodesArray } = graph.getNodesAndEdges();
     graphInfo = {
       nodes: nodesArray,
@@ -136,15 +136,13 @@ function GraphVisualizer() {
         <input
           onChange={updateSourceNode}
           value={newSourceNode}
-          placeholder="Enter the first edge node"
-          disabled={graph?.adjacencyList.size < 2}
+          placeholder="Enter first connected node"
           size="24"
         />
         <input
           onChange={updateDestinationNode}
           value={newDestinationNode}
-          placeholder="Enter the second edge node"
-          disabled={graph?.adjacencyList.size < 2}
+          placeholder="Enter second connected node"
           size="24"
         />
         <MyButton
@@ -165,9 +163,13 @@ function GraphVisualizer() {
       </div>
 
       <div style={{ height: '70vh' }}>
-        {graph ? (
+        {graph?.adjacencyList.size > 0 ? (
           <Graph key={uuidv4()} graph={graphInfo} options={graphOptions} />
-        ) : null}
+        ) : (
+          <h6 className={classes.EnterNodePrompt}>
+            Add a new Node (or two connected Nodes) to visualize a new Graph
+          </h6>
+        )}
       </div>
     </div>
   );

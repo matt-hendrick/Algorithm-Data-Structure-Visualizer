@@ -21,9 +21,10 @@ export default class Graph {
   }
 
   removeVertex(vertex) {
-    console.log(this.adjacencyList.get(vertex));
-
-    while (this.adjacencyList.get(vertex).length > 0) {
+    while (
+      this.adjacencyList.has(vertex) &&
+      this.adjacencyList.get(vertex).length > 0
+    ) {
       const adjacentVertex = this.adjacencyList.get(vertex).pop();
       this.removeEdge(vertex, adjacentVertex);
     }
