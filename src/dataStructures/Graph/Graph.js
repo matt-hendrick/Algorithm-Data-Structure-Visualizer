@@ -1,11 +1,9 @@
 import GraphNode from '../GraphNode/GraphNode';
-import Stack from '../Stack/Stack';
-import Queue from '../Queue/Queue';
 import HashTable from '../HashTable/HashTable';
 
-class Graph {
-  constructor(edgeDirection = 'directed') {
-    this.nodes = new HashTable();
+export default class Graph {
+  constructor(nodes, edgeDirection = 'directed') {
+    this.nodes = nodes ? nodes : new HashTable();
     this.edgeDiretion = edgeDirection;
   }
 
@@ -21,9 +19,49 @@ class Graph {
   removeVertex(value) {
     const current = this.nodes.get(value);
     if (current) {
-      Array.from(this.nodes.valueues()).forEach((node) =>
+      Array.from(this.nodes.values()).forEach((node) =>
         node.removeAdjacent(current)
       );
     }
+    return this.nodes.delete(value);
+  }
+
+  addEdge(source, destination) {
+    const sourceNode = this.addVertex(source);
+    const destinationNode = this.addVertex(destination);
+
+    sourceNode.addAdjacent(destinationNode);
+
+    if (this.edgeDiretion === 'undirected') {
+      destinationNode.addAdjacent(sourceNode);
+    }
+
+    return [sourceNode, destinationNode];
+  }
+
+  removeEdge(source, destination) {
+    const sourceNode = this.nodes.get(source);
+    const destinationNode = this.nodes.get(destination);
+
+    if (sourceNode && destinationNode) {
+      sourceNode.removeAdjacent(destinationNode);
+
+      if (this.edgeDiretion === 'undirected') {
+        destinationNode.removeAdjacent(sourceNode);
+      }
+    }
+
+    return [sourceNode, destinationNode];
+  }
+
+  areAdjacents(source, destination) {
+    const sourceNode = this.nodes.get(source);
+    const destinationNode = this.nodes.get(destination);
+
+    if (sourceNode && destinationNode) {
+      return sourceNode.isAdjacent(destinationNode);
+    }
+
+    return false;
   }
 }

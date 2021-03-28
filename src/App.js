@@ -16,6 +16,7 @@ import QueueVisualizer from './containers/QueueVisualizer/QueueVisualizer';
 import BinaryTreeVisualizer from './containers/BinaryTreeVisualizer/BinaryTreeVisualizer';
 import HeapVisualizer from './containers/HeapVisualizer/HeapVisualizer';
 import HashTableVisualizer from './containers/HashTableVisualizer/HashTableVisualizer';
+import GraphVisualizer from './containers/GraphVisualizer/GraphVisualizer';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route exact path="/binarytree" component={BinaryTreeVisualizer} />
           <Route exact path="/heap" component={HeapVisualizer} />
           <Route exact path="/hashtable" component={HashTableVisualizer} />
+          <Route exact path="/graph" component={GraphVisualizer} />
         </Switch>
       </Container>
     </Router>

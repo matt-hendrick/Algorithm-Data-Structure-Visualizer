@@ -80,8 +80,6 @@ function HashTableVisualizer() {
     setNewValue(updatedValue);
   };
 
-  if (hashTable) console.log(hashTable.keys(), hashTable.values());
-
   return (
     <div>
       <div className={classes.ButtonRow}>
