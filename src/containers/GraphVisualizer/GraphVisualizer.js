@@ -36,10 +36,35 @@ function GraphVisualizer() {
   };
 
   const addEdge = () => {
+    if (newSourceNode !== '' && newDestinationNode !== '') {
+      if (!graph) {
+        let tempGraph = new MyGraph();
+        tempGraph.addEdge(newSourceNode, newDestinationNode);
+        setGraph(tempGraph);
+        setNewSourceNode('');
+        setNewDestinationNode('');
+      } else {
+        let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+        tempGraph.addEdge(newSourceNode, newDestinationNode);
+        setGraph(tempGraph);
+        setNewSourceNode('');
+        setNewDestinationNode('');
+      }
+    }
+  };
+
+  const removeVertex = () => {
+    if (graph && newNodeValue !== '') {
+      let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+      tempGraph.removeVertex(newNodeValue);
+      setNewNodeValue('');
+    }
+  };
+
+  const removeEdge = () => {
     if (graph && newSourceNode !== '' && newDestinationNode !== '') {
       let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
-      tempGraph.addEdge(newSourceNode, newDestinationNode);
-      setGraph(tempGraph);
+      tempGraph.removeEdge(newSourceNode, newDestinationNode);
       setNewSourceNode('');
       setNewDestinationNode('');
     }
@@ -96,27 +121,34 @@ function GraphVisualizer() {
         <MyButton onClick={addVertex} disabled={!newNodeValue}>
           Add Vertex
         </MyButton>
+        <MyButton onClick={removeVertex} disabled={!newNodeValue || !graph}>
+          Remove Vertex
+        </MyButton>
         <input
           onChange={updateSourceNode}
           value={newSourceNode}
           placeholder="Enter the first edge node"
           disabled={graph?.adjacencyList.size < 2}
+          size="24"
         />
         <input
           onChange={updateDestinationNode}
           value={newDestinationNode}
-          placeholder="Enter the Second edge node"
+          placeholder="Enter the second edge node"
           disabled={graph?.adjacencyList.size < 2}
+          size="24"
         />
         <MyButton
           onClick={addEdge}
-          disabled={
-            graph?.adjacencyList.size < 2 ||
-            !newSourceNode ||
-            !newDestinationNode
-          }
+          disabled={!newSourceNode || !newDestinationNode}
         >
           Add Edge Between Nodes
+        </MyButton>
+        <MyButton
+          onClick={removeEdge}
+          disabled={!newSourceNode || !newDestinationNode}
+        >
+          Remove Edge Between Nodes
         </MyButton>
       </div>
 
