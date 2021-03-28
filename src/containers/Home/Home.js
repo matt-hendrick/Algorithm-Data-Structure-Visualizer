@@ -12,6 +12,7 @@ import StackImage from '../../images/StackImage.png';
 import QueueImage from '../../images/QueueImage.png';
 import HeapImage from '../../images/HeapImage.png';
 import HashTableImage from '../../images/HashTableImage.png';
+import GraphImage from '../../images/GraphImage.png';
 import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
@@ -31,6 +32,17 @@ function Home() {
       <div className={classes.HomeAlgoDSBox}>
         <h4 className={classes.HomeHeader}>Data Structure Visualizer Links</h4>
         <div className={classes.HomeCardWrapper}>
+          <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
+          <HomeCard
+            link="/hashtable"
+            header="Hash Table Visualizer"
+            image={HashTableImage}
+          />
+          <HomeCard
+            link="/graph"
+            header="Graph Visualizer"
+            image={GraphImage}
+          />
           <HomeCard
             link="/linkedlist"
             header="Linked List Visualizer"
@@ -50,12 +62,6 @@ function Home() {
             link="/binarytree"
             header="Binary Tree Visualizer"
             image={BinaryTreeImage}
-          />
-          <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
-          <HomeCard
-            link="/hashtable"
-            header="Hash Table Visualizer"
-            image={HashTableImage}
           />
         </div>
       </div>

@@ -6,7 +6,13 @@ import * as classes from './GraphVisualizer.module.css';
 import MyButton from '../../components/MyButton/MyButton';
 
 // Data Structures
-import Graph from '../../dataStructures/Graph/Graph';
+import MyGraph from '../../dataStructures/Graph/Graph';
+
+// Vis.js
+import Graph from 'react-graph-vis';
+
+// uuidv4
+import { v4 as uuidv4 } from 'uuid';
 
 function GraphVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
@@ -17,12 +23,12 @@ function GraphVisualizer() {
   const addVertex = () => {
     if (newNodeValue !== '') {
       if (!graph) {
-        let tempGraph = new Graph();
+        let tempGraph = new MyGraph();
         tempGraph.addVertex(newNodeValue);
         setGraph(tempGraph);
         setNewNodeValue('');
       } else {
-        let tempGraph = new Graph(graph.nodes);
+        let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
         tempGraph.addVertex(newNodeValue);
         setNewNodeValue('');
       }
@@ -30,15 +36,12 @@ function GraphVisualizer() {
   };
 
   const addEdge = () => {
-    if (
-      graph?.nodes.size > 1 &&
-      newSourceNode !== '' &&
-      newDestinationNode !== ''
-    ) {
-      let tempGraph = new Graph(graph.nodes);
+    if (graph && newSourceNode !== '' && newDestinationNode !== '') {
+      let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
       tempGraph.addEdge(newSourceNode, newDestinationNode);
       setGraph(tempGraph);
-      setNewNodeValue('');
+      setNewSourceNode('');
+      setNewDestinationNode('');
     }
   };
 
@@ -57,7 +60,30 @@ function GraphVisualizer() {
     setNewDestinationNode(updatedValue);
   };
 
-  if (graph) console.log(graph, graph.nodes.size);
+  let graphInfo = null;
+
+  const graphOptions = {
+    layout: {
+      improvedLayout: true,
+    },
+    edges: {
+      color: '#39cccc',
+    },
+    nodes: {
+      color: '#1aab8a',
+      font: { color: '#ffffff', size: 20 },
+      shape: 'circle',
+    },
+    autoResize: true,
+  };
+
+  if (graph) {
+    const { edgesArray, nodesArray } = graph.getNodesAndEdges();
+    graphInfo = {
+      nodes: nodesArray,
+      edges: edgesArray,
+    };
+  }
 
   return (
     <div>
@@ -74,39 +100,30 @@ function GraphVisualizer() {
           onChange={updateSourceNode}
           value={newSourceNode}
           placeholder="Enter the first edge node"
-          disabled={graph?.nodes.size < 2}
+          disabled={graph?.adjacencyList.size < 2}
         />
         <input
           onChange={updateDestinationNode}
           value={newDestinationNode}
           placeholder="Enter the Second edge node"
-          disabled={graph?.nodes.size < 2}
+          disabled={graph?.adjacencyList.size < 2}
         />
         <MyButton
           onClick={addEdge}
           disabled={
-            graph?.nodes.size < 2 ||
-            !graph?.nodes.has(newSourceNode) ||
-            !graph?.nodes.has(newDestinationNode)
+            graph?.adjacencyList.size < 2 ||
+            !newSourceNode ||
+            !newDestinationNode
           }
         >
           Add Edge Between Nodes
         </MyButton>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'space-between',
-          height: '100%',
-          flexWrap: 'wrap',
-        }}
-      >
-        {graph
-          ? graph.nodes.buckets.map((item) =>
-              item.map((subitem) => <div>{subitem.key}</div>)
-            )
-          : null}
+
+      <div style={{ height: '70vh' }}>
+        {graph ? (
+          <Graph key={uuidv4()} graph={graphInfo} options={graphOptions} />
+        ) : null}
       </div>
     </div>
   );

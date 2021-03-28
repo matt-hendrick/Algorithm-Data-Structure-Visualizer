@@ -1,67 +1,30 @@
-import GraphNode from '../GraphNode/GraphNode';
-import HashTable from '../HashTable/HashTable';
-
 export default class Graph {
-  constructor(nodes, edgeDirection = 'directed') {
-    this.nodes = nodes ? nodes : new HashTable();
-    this.edgeDiretion = edgeDirection;
+  constructor(adjacencyList = new Map()) {
+    this.adjacencyList = adjacencyList;
   }
 
   addVertex(value) {
-    if (this.nodes.has(value)) {
-      return this.nodes.get(value);
+    if (!this.adjacencyList.has(value)) {
+      this.adjacencyList.set(value, []);
     }
-    const vertex = new GraphNode(value);
-    this.nodes.set(value, vertex);
-    return vertex;
-  }
-
-  removeVertex(value) {
-    const current = this.nodes.get(value);
-    if (current) {
-      Array.from(this.nodes.values()).forEach((node) =>
-        node.removeAdjacent(current)
-      );
-    }
-    return this.nodes.delete(value);
   }
 
   addEdge(source, destination) {
-    const sourceNode = this.addVertex(source);
-    const destinationNode = this.addVertex(destination);
-
-    sourceNode.addAdjacent(destinationNode);
-
-    if (this.edgeDiretion === 'undirected') {
-      destinationNode.addAdjacent(sourceNode);
+    if (this.adjacencyList.has(source) && this.adjacencyList.has(destination)) {
+      this.adjacencyList.get(source).push(destination);
+      this.adjacencyList.get(destination).push(source);
     }
-
-    return [sourceNode, destinationNode];
   }
 
-  removeEdge(source, destination) {
-    const sourceNode = this.nodes.get(source);
-    const destinationNode = this.nodes.get(destination);
-
-    if (sourceNode && destinationNode) {
-      sourceNode.removeAdjacent(destinationNode);
-
-      if (this.edgeDiretion === 'undirected') {
-        destinationNode.removeAdjacent(sourceNode);
-      }
+  getNodesAndEdges() {
+    if (this.adjacencyList) {
+      const nodesArray = [];
+      const edgesArray = [];
+      this.adjacencyList.forEach((values, key) => {
+        nodesArray.push({ id: key, label: key });
+        values.forEach((value) => edgesArray.push({ from: key, to: value }));
+      });
+      return { nodesArray, edgesArray };
     }
-
-    return [sourceNode, destinationNode];
-  }
-
-  areAdjacents(source, destination) {
-    const sourceNode = this.nodes.get(source);
-    const destinationNode = this.nodes.get(destination);
-
-    if (sourceNode && destinationNode) {
-      return sourceNode.isAdjacent(destinationNode);
-    }
-
-    return false;
   }
 }

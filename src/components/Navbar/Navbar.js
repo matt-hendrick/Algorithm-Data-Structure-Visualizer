@@ -24,6 +24,7 @@ const MyNavbar = () => {
             <NavDropdown.Item href="/binarytree">Binary Trees</NavDropdown.Item>
             <NavDropdown.Item href="/heap">Heaps</NavDropdown.Item>
             <NavDropdown.Item href="/hashtable">Hash Tables</NavDropdown.Item>
+            <NavDropdown.Item href="/graph">Graphs</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
