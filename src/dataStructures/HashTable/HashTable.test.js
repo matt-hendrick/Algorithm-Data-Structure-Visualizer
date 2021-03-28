@@ -7,7 +7,8 @@ describe('Hash Table tests', () => {
     expect(testHashTable).toEqual({
       buckets: new Array(3),
       collisions: 0,
-      keys: [],
+      keysArray: [],
+      valuesArray: [],
       loadFactor: 0.75,
       size: 0,
     });
@@ -23,11 +24,13 @@ describe('Hash Table tests', () => {
             key: 1,
             keyIndex: 0,
             value: 5,
+            valueIndex: 0,
           },
         ],
       ],
       collisions: 0,
-      keys: [{ content: 1 }],
+      keysArray: [{ content: 1 }],
+      valuesArray: [{ content: 5 }],
       loadFactor: 0.75,
       size: 1,
     });
@@ -37,7 +40,8 @@ describe('Hash Table tests', () => {
     expect(testHashTable).toEqual({
       buckets: [undefined, undefined, []],
       collisions: 0,
-      keys: [undefined],
+      keysArray: [undefined],
+      valuesArray: [undefined],
       loadFactor: 0.75,
       size: 0,
     });
@@ -52,12 +56,14 @@ describe('Hash Table tests', () => {
             key: 12,
             keyIndex: 1,
             value: 20,
+            valueIndex: 1,
           },
         ],
         [],
       ],
       collisions: 0,
-      keys: [undefined, { content: 12 }],
+      keysArray: [undefined, { content: 12 }],
+      valuesArray: [undefined, { content: 20 }],
       loadFactor: 0.75,
       size: 1,
     });
@@ -74,6 +80,7 @@ describe('Hash Table tests', () => {
             key: 4,
             keyIndex: 1,
             value: 21,
+            valueIndex: 1,
           },
         ],
         [
@@ -81,6 +88,7 @@ describe('Hash Table tests', () => {
             key: 5,
             keyIndex: 2,
             value: 13,
+            valueIndex: 2,
           },
         ],
         [
@@ -88,12 +96,14 @@ describe('Hash Table tests', () => {
             key: 12,
             keyIndex: 0,
             value: 20,
+            valueIndex: 0,
           },
         ],
         undefined,
       ],
       collisions: 0,
-      keys: [{ content: 12 }, { content: 4 }, { content: 5 }],
+      keysArray: [{ content: 12 }, { content: 4 }, { content: 5 }],
+      valuesArray: [{ content: 20 }, { content: 21 }, { content: 13 }],
       loadFactor: 0.75,
       size: 3,
     });
@@ -104,6 +114,7 @@ describe('Hash Table tests', () => {
       bucketIndex: 2,
       itemIndex: 0,
       keyIndex: 1,
+      valueIndex: 1,
     });
     expect(testHashTable.get(4)).toEqual(21);
     expect(testHashTable.getLoadFactor()).toEqual(0.5);
@@ -113,7 +124,8 @@ describe('Hash Table tests', () => {
     expect(testHashTable).toEqual({
       buckets: new Array(16),
       collisions: 0,
-      keys: [],
+      keysArray: [],
+      valuesArray: [],
       loadFactor: 0.75,
       size: 0,
     });
