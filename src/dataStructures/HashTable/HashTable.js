@@ -7,7 +7,8 @@ export default class HashTable {
     loadFactor = 0.75,
     size = 0,
     collisions = 0,
-    keys = []
+    keysArray = [],
+    valuesArray = []
   ) {
     // buckets is added here in order to allow the initialization of new HashTable from react state hashMap (so the state is not directly mutated)
     this.buckets = buckets ? buckets : new Array(initialCapacity);
@@ -16,7 +17,8 @@ export default class HashTable {
     this.size = size;
     this.collisions = collisions;
     // keys is an array of all keys in the hash table
-    this.keys = keys;
+    this.keysArray = keysArray;
+    this.valuesArray = valuesArray;
   }
 
   hash(key) {
@@ -55,7 +57,8 @@ export default class HashTable {
       if (item.key === key) {
         // extracts index of item in keys
         const keyIndex = item.keyIndex;
-        return { bucketIndex, itemIndex, keyIndex };
+        const valueIndex = item.valueIndex;
+        return { bucketIndex, itemIndex, keyIndex, valueIndex };
       }
     }
 
@@ -68,9 +71,10 @@ export default class HashTable {
 
     // if key does does not exist, initialize array and save key/value
     if (itemIndex === undefined) {
-      const keyIndex = this.keys.push({ content: key }) - 1; // keep track of the key index
+      const keyIndex = this.keysArray.push({ content: key }) - 1; // keep track of the key index
+      const valueIndex = this.valuesArray.push({ content: value }) - 1; // keep track of value index
       this.buckets[bucketIndex] = this.buckets[bucketIndex] || [];
-      this.buckets[bucketIndex].push({ key, value, keyIndex });
+      this.buckets[bucketIndex].push({ key, value, keyIndex, valueIndex });
       this.size++;
       // Keep count of collisions
       if (this.buckets[bucketIndex].length > 1) {
@@ -113,7 +117,9 @@ export default class HashTable {
   }
 
   remove(key) {
-    const { bucketIndex, itemIndex, keyIndex } = this.getIndexes(key);
+    const { bucketIndex, itemIndex, keyIndex, valueIndex } = this.getIndexes(
+      key
+    );
 
     // if key does not exist, return false
     if (itemIndex === undefined) {
@@ -127,7 +133,8 @@ export default class HashTable {
 
     // if key exists, removes from buckets/keys and decrements size counter
     this.buckets[bucketIndex].splice(itemIndex, 1);
-    delete this.keys[keyIndex];
+    delete this.keysArray[keyIndex];
+    delete this.valuesArray[valueIndex];
     this.size--;
 
     return true;
@@ -138,7 +145,7 @@ export default class HashTable {
     const newMap = new HashTable(newCapacity);
 
     // for each key in keys, adds key/value pair
-    this.keys.forEach((key) => {
+    this.keysArray.forEach((key) => {
       if (key) {
         newMap.set(key.content, this.get(key.content));
       }
@@ -147,11 +154,20 @@ export default class HashTable {
     // update buckets, collisions, and keys
     this.buckets = newMap.buckets;
     this.collisions = newMap.collisions;
-    this.keys = newMap.keys;
+    this.keysArray = newMap.keysArray;
+    this.valuesArray = newMap.valuesArray;
   }
 
   getLoadFactor() {
     return this.size / this.buckets.length;
+  }
+
+  keys() {
+    return this.keysArray;
+  }
+
+  values() {
+    return this.valuesArray;
   }
 
   clear() {
@@ -159,6 +175,7 @@ export default class HashTable {
     this.loadFactor = 0.75;
     this.size = 0;
     this.collisions = 0;
-    this.keys = [];
+    this.keysArray = [];
+    this.valuesArray = [];
   }
 }

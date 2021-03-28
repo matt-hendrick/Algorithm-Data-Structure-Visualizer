@@ -30,7 +30,8 @@ function HashTableVisualizer() {
         hashTable.loadFactor,
         hashTable.size,
         hashTable.collisions,
-        hashTable.keys
+        hashTable.keysArray,
+        hashTable.valuesArray
       );
       tempHashTable.set(newKey, newValue);
       setHashTable(tempHashTable);
@@ -49,7 +50,8 @@ function HashTableVisualizer() {
         hashTable.loadFactor,
         hashTable.size,
         hashTable.collisions,
-        hashTable.keys
+        hashTable.keysArray,
+        hashTable.valuesArray
       );
       tempHashTable.remove(newKey);
       setHashTable(tempHashTable);
@@ -77,6 +79,8 @@ function HashTableVisualizer() {
     const updatedValue = event.target.value;
     setNewValue(updatedValue);
   };
+
+  if (hashTable) console.log(hashTable.keys(), hashTable.values());
 
   return (
     <div>
