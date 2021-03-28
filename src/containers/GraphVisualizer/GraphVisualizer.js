@@ -70,6 +70,15 @@ function GraphVisualizer() {
     }
   };
 
+  const clearGraph = () => {
+    if (graph) {
+      setGraph(null);
+      setNewNodeValue('');
+      setNewSourceNode('');
+      setNewDestinationNode('');
+    }
+  };
+
   const updateNodeValue = (event) => {
     const updatedValue = event.target.value;
     setNewNodeValue(updatedValue);
@@ -149,6 +158,9 @@ function GraphVisualizer() {
           disabled={!newSourceNode || !newDestinationNode}
         >
           Remove Edge Between Nodes
+        </MyButton>
+        <MyButton onClick={clearGraph} disabled={!graph}>
+          Clear Graph
         </MyButton>
       </div>
 

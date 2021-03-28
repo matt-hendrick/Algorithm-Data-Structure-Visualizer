@@ -60,4 +60,8 @@ export default class Graph {
       return { nodesArray, edgesArray };
     }
   }
+
+  clear() {
+    this.adjacencyList = new Map();
+  }
 }
