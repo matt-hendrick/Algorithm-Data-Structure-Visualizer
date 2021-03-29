@@ -11,9 +11,6 @@ import MyGraph from '../../dataStructures/Graph/Graph';
 // Vis.js
 import Graph from 'react-graph-vis';
 
-// uuidv4
-import { v4 as uuidv4 } from 'uuid';
-
 function GraphVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [newSourceNode, setNewSourceNode] = useState('');
@@ -164,7 +161,7 @@ function GraphVisualizer() {
 
       <div className={classes.GraphContainer}>
         {graph?.adjacencyList.size > 0 ? (
-          <Graph key={uuidv4()} graph={graphInfo} options={graphOptions} />
+          <Graph key={Date.now()} graph={graphInfo} options={graphOptions} />
         ) : (
           <h6 className={classes.EnterNodePrompt}>
             Add a new Node (or two connected Nodes) to visualize a new Graph
