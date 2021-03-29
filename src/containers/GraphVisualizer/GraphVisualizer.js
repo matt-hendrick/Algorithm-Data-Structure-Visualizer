@@ -162,7 +162,7 @@ function GraphVisualizer() {
         </MyButton>
       </div>
 
-      <div style={{ height: '70vh' }}>
+      <div className={classes.GraphContainer}>
         {graph?.adjacencyList.size > 0 ? (
           <Graph key={uuidv4()} graph={graphInfo} options={graphOptions} />
         ) : (

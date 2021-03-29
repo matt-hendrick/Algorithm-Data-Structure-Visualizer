@@ -8,3 +8,13 @@
   margin-top: 5vh;
   text-align: center;
 }
+
+.GraphContainer {
+  height: 80vh;
+}
+
+@media (max-width: 800px) {
+  .GraphContainer {
+    height: 55vh;
+  }
+}

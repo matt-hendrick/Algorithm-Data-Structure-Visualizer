@@ -6,7 +6,7 @@ Algorithm and Data Structure Visualizer was built with React 17.0.1.
 
 ## Test Coverage
 
-95% test coverage via Jest and React Testing Library unit tests.
+93% test coverage via Jest and React Testing Library unit tests.
 
 ## Installation and Setup Instructions
 
