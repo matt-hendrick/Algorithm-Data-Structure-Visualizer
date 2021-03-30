@@ -55,7 +55,7 @@ export default class Graph {
       const nodesArray = [];
       const edgesArray = [];
       this.adjacencyList.forEach((values, key) => {
-        nodesArray.push({ id: key, label: key });
+        nodesArray.push({ id: key, label: ` ${key} ` });
         values.forEach((value) => edgesArray.push({ from: key, to: value }));
       });
       return { nodesArray, edgesArray };
