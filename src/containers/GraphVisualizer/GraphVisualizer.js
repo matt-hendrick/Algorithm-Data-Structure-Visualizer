@@ -91,8 +91,10 @@ function GraphVisualizer() {
     setNewDestinationNode(updatedValue);
   };
 
+  // Viz.js 'graph'
   let graphInfo = null;
 
+  // Viz.js 'options'
   const graphOptions = {
     layout: {
       improvedLayout: true,
@@ -109,6 +111,7 @@ function GraphVisualizer() {
   };
 
   if (graph?.adjacencyList.size > 0) {
+    // extracts Viz.js friendly nodes and edges array to render Viz.js graph
     const { edgesArray, nodesArray } = graph.getNodesAndEdges();
     graphInfo = {
       nodes: nodesArray,

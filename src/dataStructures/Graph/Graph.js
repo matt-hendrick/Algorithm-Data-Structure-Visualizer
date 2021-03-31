@@ -50,11 +50,13 @@ export default class Graph {
     }
   }
 
+  // creates Viz.js friendly nodesArray and edgesArray
   getNodesAndEdges() {
     if (this.adjacencyList.size > 0) {
       const nodesArray = [];
       const edgesArray = [];
       this.adjacencyList.forEach((values, key) => {
+        // spaces added around the label ensure center alignment
         nodesArray.push({ id: key, label: ` ${key} ` });
         values.forEach((value) => edgesArray.push({ from: key, to: value }));
       });
