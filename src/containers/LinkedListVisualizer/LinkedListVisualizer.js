@@ -7,6 +7,7 @@ import Node from '../../dataStructures/Node/Node';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 function LinkedListVisualizer() {
   const [list, setList] = useState(null);
@@ -91,7 +92,7 @@ function LinkedListVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           onChange={updateAddNodeValue}
           value={newNodeValue}
           placeholder="Enter a new node value"

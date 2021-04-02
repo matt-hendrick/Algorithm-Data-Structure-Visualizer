@@ -7,6 +7,7 @@ import Stack from '../../dataStructures/Stack/Stack';
 // Components
 import MyButton from '../../components/MyButton/MyButton';
 import Alert from '../../components/Alert/Alert';
+import Input from '../../components/Input/Input';
 
 function StackVisualizer() {
   const [stack, setStack] = useState(null);
@@ -67,7 +68,7 @@ function StackVisualizer() {
     <div>
       {stackOverFlow ? <Alert /> : null}
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           onChange={updateNodeValue}
           value={newNodeValue}
           placeholder="Enter a new node value"

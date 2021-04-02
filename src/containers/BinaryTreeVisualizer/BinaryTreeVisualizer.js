@@ -4,6 +4,7 @@ import * as classes from './BinaryTreeVisualizer.module.scss';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 // Data Structures
 import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
@@ -72,7 +73,7 @@ function BinaryTreeVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
           onChange={updateNewNodeValue}

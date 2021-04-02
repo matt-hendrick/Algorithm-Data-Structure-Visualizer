@@ -4,6 +4,7 @@ import * as classes from './HeapVisualizer.module.scss';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 // Data Structures
 import Heap from '../../dataStructures/Heap/Heap';
@@ -83,7 +84,7 @@ function HeapVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
           onChange={updateNewNodeValue}

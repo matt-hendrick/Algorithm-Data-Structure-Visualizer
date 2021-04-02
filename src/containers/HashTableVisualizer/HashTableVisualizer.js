@@ -4,6 +4,7 @@ import * as classes from './HashTableVisualizer.module.css';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 // Data Structures
 import HashTable from '../../dataStructures/HashTable/HashTable';
@@ -83,13 +84,13 @@ function HashTableVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           id="KeyInput"
           value={newKey}
           placeholder="Enter a new key"
           onChange={updateNewKey}
         />
-        <input
+        <Input
           id="ValueInput"
           value={newValue}
           placeholder="Enter a new value"

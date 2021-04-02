@@ -4,6 +4,7 @@ import * as classes from './GraphVisualizer.module.css';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 // Data Structures
 import MyGraph from '../../dataStructures/Graph/Graph';
@@ -122,7 +123,7 @@ function GraphVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           onChange={updateNodeValue}
           value={newNodeValue}
           placeholder="Enter a new node value"
@@ -133,17 +134,15 @@ function GraphVisualizer() {
         <MyButton onClick={removeVertex} disabled={!newNodeValue || !graph}>
           Remove Vertex
         </MyButton>
-        <input
+        <Input
           onChange={updateSourceNode}
           value={newSourceNode}
           placeholder="Enter first connected node"
-          size="24"
         />
-        <input
+        <Input
           onChange={updateDestinationNode}
           value={newDestinationNode}
           placeholder="Enter second connected node"
-          size="24"
         />
         <MyButton
           onClick={addEdge}

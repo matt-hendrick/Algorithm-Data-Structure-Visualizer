@@ -6,6 +6,7 @@ import Queue from '../../dataStructures/Queue/Queue';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
+import Input from '../../components/Input/Input';
 
 function QueueVisualizer() {
   const [queue, setQueue] = useState(null);
@@ -54,7 +55,7 @@ function QueueVisualizer() {
   return (
     <div>
       <div className={classes.ButtonRow}>
-        <input
+        <Input
           onChange={updateNodeValue}
           value={newNodeValue}
           placeholder="Enter a new node value"

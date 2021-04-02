@@ -1,0 +1,12 @@
+.Input {
+  font-weight: 500;
+  min-width: 25%;
+  border: 2px #1aab8a solid;
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .Input {
+    min-width: 65%;
+  }
+}

@@ -1,16 +1,16 @@
 import React from 'react';
 
+import * as classes from './Input.module.css';
+
 const Input = (props) => {
   return (
-    <div className="Input">
-      <input
-        className="InputElement"
-        type={props.elementType}
-        value={props.value}
-        onChange={props.onChange}
-        placeholder={props.placeholder}
-      />
-    </div>
+    <input
+      className={classes.Input}
+      type={props.elementType}
+      value={props.value}
+      onChange={props.onChange}
+      placeholder={props.placeholder}
+    />
   );
 };
 
