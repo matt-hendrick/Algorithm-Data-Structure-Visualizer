@@ -96,7 +96,7 @@ describe('BinaryTree Class tests', () => {
         right: null,
         val: 2,
       },
-      right: undefined,
+      right: null,
       val: -4,
     },
   });
