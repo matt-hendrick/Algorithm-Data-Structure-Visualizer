@@ -1,12 +1,15 @@
 import Node from '../Node/Node';
 
 export default class Stack {
-  constructor(first = null, last = null) {
+  first: Node | null;
+  last: Node | null;
+
+  constructor(first: Node | null = null, last: Node | null = null) {
     this.first = first;
     this.last = last ? last : first;
   }
 
-  add(val) {
+  add(val: number | string) {
     const tempNode = new Node(val);
     if (!this.first) {
       this.first = tempNode;
@@ -31,7 +34,7 @@ export default class Stack {
 
   toArray() {
     if (this.first) {
-      let curr = this.first;
+      let curr: Node | null = this.first;
       let arr = [];
       while (curr) {
         arr.push(curr.val);
