@@ -42,10 +42,10 @@ describe('Graph tests', () => {
         { from: 2, to: 1 },
       ],
       nodesArray: [
-        { id: 1, label: 1 },
-        { id: 2, label: 2 },
-        { id: 3, label: 3 },
-        { id: 4, label: 4 },
+        { id: 1, label: ' 1 ' },
+        { id: 2, label: ' 2 ' },
+        { id: 3, label: ' 3 ' },
+        { id: 4, label: ' 4 ' },
       ],
     });
 
