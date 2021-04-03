@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
 
 // Bootstrap
 import Container from 'react-bootstrap/Container';
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <Router>
       <NavBar />
-      <Container style={{ marginTop: '20px' }}>
+      <Container className="AppContainer">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/sorting" component={Sorting} />
