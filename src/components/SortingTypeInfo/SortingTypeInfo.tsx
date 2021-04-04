@@ -1,5 +1,5 @@
 import React from 'react';
-import * as classes from './SortingTypeInfo.module.css';
+import './SortingTypeInfo.css';
 import {
   bubbleSortInfo,
   insertionSortInfo,
@@ -10,8 +10,20 @@ import {
   bogoSortInfo,
 } from './SortingTypeInfoText';
 
-const SortingTypeDescriptions = (props) => {
-  let sortingInfo;
+interface Props {
+  sortingType: string;
+  sortingSteps?: number[];
+  currentStep: number | string;
+}
+
+interface SortingInfo {
+  description: string;
+  code: string;
+  list: JSX.Element;
+}
+
+const SortingTypeDescriptions = (props: Props) => {
+  let sortingInfo: SortingInfo | null = null;
 
   const { sortingType, sortingSteps, currentStep } = props;
 
@@ -43,14 +55,14 @@ const SortingTypeDescriptions = (props) => {
         </h3>
         <h3>Current Step: {currentStep}</h3>
       </div>
-      <div className={classes.SortingTypeWrapper}>
-        <pre className={classes.SortingTypeCodeBlock}>
-          <code>{sortingInfo.code}</code>
+      <div className="SortingTypeWrapper">
+        <pre className="SortingTypeCodeBlock">
+          <code>{sortingInfo?.code}</code>
         </pre>
-        <div className={classes.SortingTypeDescriptionBlock}>
+        <div className="SortingTypeDescriptionBlock">
           <h4>{sortingType}</h4>
-          <div>{sortingInfo.description}</div>
-          {sortingInfo.list}
+          <div>{sortingInfo?.description}</div>
+          {sortingInfo?.list}
         </div>
       </div>
     </div>
