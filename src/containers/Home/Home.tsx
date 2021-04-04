@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as classes from './Home.module.css';
+import './Home.css';
 
 // Components
 import HomeCard from '../../components/HomeCard/HomeCard';
@@ -17,10 +17,10 @@ import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
   return (
-    <div className={classes.HomeFlexContainer}>
-      <div className={classes.HomeAlgoDSBox}>
-        <h4 className={classes.HomeHeader}>Algorithm Visualizer Links</h4>
-        <div className={classes.HomeCardWrapper}>
+    <div className="HomeFlexContainer">
+      <div className="HomeAlgoDSBox">
+        <h4 className="HomeHeader">Algorithm Visualizer Links</h4>
+        <div className="HomeCardWrapper">
           <HomeCard
             link="/sorting"
             header="Sorting Algorithms Visualizer"
@@ -29,9 +29,9 @@ function Home() {
         </div>
       </div>
 
-      <div className={classes.HomeAlgoDSBox}>
-        <h4 className={classes.HomeHeader}>Data Structure Visualizer Links</h4>
-        <div className={classes.HomeCardWrapper}>
+      <div className="HomeAlgoDSBox">
+        <h4 className="HomeHeader">Data Structure Visualizer Links</h4>
+        <div className="HomeCardWrapper">
           <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
           <HomeCard
             link="/hashtable"

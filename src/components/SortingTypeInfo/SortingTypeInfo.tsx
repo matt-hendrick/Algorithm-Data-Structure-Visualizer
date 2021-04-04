@@ -49,7 +49,7 @@ const SortingTypeDescriptions = (props: Props) => {
         <h3>
           Number of steps required to sort this array with{' '}
           {sortingType.toLowerCase()}
-          {sortingType !== 'Bogo Sort'
+          {sortingType !== 'Bogo Sort' && sortingSteps
             ? `: ${sortingSteps.length}`
             : " is unknown as bogo sort's average run time is O((n+1)!)"}
         </h3>
