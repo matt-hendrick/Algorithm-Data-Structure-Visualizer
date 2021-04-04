@@ -3,7 +3,13 @@ import HomeCard from './HomeCard';
 
 describe('HomeCard tests', () => {
   it('HomeCard initializes and displays correct text and link', () => {
-    render(<HomeCard header="Stack Visualizer" />);
+    render(
+      <HomeCard
+        header="Stack Visualizer"
+        link="Stack Visualizer"
+        image="Stack Visualizer"
+      />
+    );
 
     expect(screen.getByText(/Stack Visualizer/i)).toBeInTheDocument();
   });
