@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as classes from './BinaryTreeVisualizer.module.scss';
+import './BinaryTreeVisualizer.scss';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
@@ -10,32 +10,34 @@ import Input from '../../components/Input/Input';
 import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
 
 function BinaryTreeVisualizer() {
-  const [newNodeValue, setNewNodeValue] = useState('');
-  const [tree, setTree] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [newNodeValue, setNewNodeValue] = useState<number | '' | '-'>('');
+  const [tree, setTree] = useState<BinaryTree | null>(null);
+  const [arr, setArr] = useState<(string | number)[][] | null>(null);
 
   const insertNode = () => {
     if (!tree) {
       let tempTree = new BinaryTree();
-      tempTree.insert(newNodeValue);
+      tempTree.insert(newNodeValue as number);
       setTree(tempTree);
-      setArr(tempTree.toLevelOrderArray());
+      setArr(tempTree.toLevelOrderArray() as (string | number)[][]);
       setNewNodeValue('');
     } else {
       let tempTree = new BinaryTree(tree.root);
-      tempTree.insert(newNodeValue);
+      tempTree.insert(newNodeValue as number);
       setTree(tempTree);
-      setArr(tempTree.toLevelOrderArray());
+      setArr(tempTree.toLevelOrderArray() as (string | number)[][]);
       setNewNodeValue('');
     }
   };
 
   const removeNode = () => {
-    let tempTree = new BinaryTree(tree.root);
-    tempTree.remove(newNodeValue);
-    setTree(tempTree);
-    setArr(tempTree.toLevelOrderArray());
-    setNewNodeValue('');
+    if (tree?.root) {
+      let tempTree = new BinaryTree(tree.root);
+      tempTree.remove(newNodeValue as number);
+      setTree(tempTree);
+      setArr(tempTree.toLevelOrderArray() as (string | number)[][]);
+      setNewNodeValue('');
+    }
   };
 
   const invertTree = () => {
@@ -43,7 +45,7 @@ function BinaryTreeVisualizer() {
       let tempTree = new BinaryTree(tree.root);
       tempTree.invertTree();
       setTree(tempTree);
-      setArr(tempTree.toLevelOrderArray());
+      setArr(tempTree.toLevelOrderArray() as (string | number)[][]);
     }
   };
 
@@ -54,25 +56,32 @@ function BinaryTreeVisualizer() {
     }
   };
 
-  const updateNewNodeValue = (event) => {
-    if (Number.isInteger(parseInt(event.target.value))) {
-      const updatedNodeValue = parseInt(event.target.value);
-      setNewNodeValue(updatedNodeValue);
-    } else if (event.target.value === '' || event.target.value === '-') {
-      const updatedNodeValue = event.target.value;
-      setNewNodeValue(updatedNodeValue);
-    } else return;
+  const updateNewNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      if (Number.isInteger(parseInt(target.value))) {
+        const updatedNodeValue = parseInt(target.value);
+        setNewNodeValue(updatedNodeValue);
+      } else if (target.value === '' || target.value === '-') {
+        const updatedNodeValue = target.value;
+        setNewNodeValue(updatedNodeValue);
+      } else return;
+    }
   };
 
   const isNewNodeValueInTree = () => {
-    if (arr?.length > 0 && arr.flat().includes(parseInt(newNodeValue)))
+    if (
+      arr &&
+      arr?.length > 0 &&
+      arr.flat().includes(parseInt(newNodeValue as string))
+    )
       return true;
     else return false;
   };
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="ButtonRow">
         <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
@@ -90,20 +99,26 @@ function BinaryTreeVisualizer() {
         >
           Remove Specified Node
         </MyButton>
-        <MyButton onClick={invertTree} disabled={!tree || arr?.length < 2}>
+        <MyButton
+          onClick={invertTree}
+          disabled={!tree || !!(arr && arr?.length < 2)}
+        >
           Invert Tree
         </MyButton>
-        <MyButton onClick={clearTree} disabled={!tree || arr?.length < 1}>
+        <MyButton
+          onClick={clearTree}
+          disabled={!tree || !!(arr && arr?.length < 1)}
+        >
           Clear Tree
         </MyButton>
       </div>
-      <div className={classes.Tree}>
-        {arr?.length > 0 ? (
+      <div className="Tree">
+        {arr && arr?.length > 0 ? (
           arr.map((item, index) => (
-            <ul key={item + index}>
+            <ul key={item.toString() + index}>
               {item.map((subitem) => (
                 <li
-                  key={subitem + index + item}
+                  key={subitem.toString() + index + item}
                   style={{ width: `${index * 30 + 10}%` }}
                 >
                   <button disabled>{subitem}</button>
@@ -112,7 +127,7 @@ function BinaryTreeVisualizer() {
             </ul>
           ))
         ) : (
-          <h6 className={classes.EnterNodePrompt}>
+          <h6 className="TreeEnterNodePrompt">
             Add a new Node to visualize a new Binary Tree
           </h6>
         )}

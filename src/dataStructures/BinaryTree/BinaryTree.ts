@@ -3,7 +3,7 @@ import BinaryTreeNode from '../BinaryTreeNode/BinaryTreeNode';
 export default class BinaryTree {
   root: BinaryTreeNode | null;
 
-  constructor(root = null) {
+  constructor(root: BinaryTreeNode | null = null) {
     this.root = root;
   }
 
