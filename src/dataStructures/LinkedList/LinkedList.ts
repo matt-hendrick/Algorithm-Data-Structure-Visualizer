@@ -1,15 +1,16 @@
 import Node from '../Node/Node';
 export default class LinkedList {
-  constructor(node = null) {
+  head: Node | null;
+  constructor(node: Node | null = null) {
     this.head = node;
   }
 
-  addFirst(val) {
+  addFirst(val: number | string) {
     const tempNode = new Node(val, this.head);
     this.head = tempNode;
   }
 
-  addLast(val) {
+  addLast(val: number | string) {
     const tempNode = new Node(val);
     if (!this.head) this.head = tempNode;
     else {
@@ -46,7 +47,7 @@ export default class LinkedList {
       if (!this.head.next) this.head = null;
       let curr = this.head;
       if (curr?.next) {
-        while (curr.next.next) {
+        while (curr?.next?.next) {
           curr = curr.next;
         }
         curr.next = null;
@@ -60,7 +61,7 @@ export default class LinkedList {
       let arr = [];
       while (curr) {
         arr.push(curr.val);
-        curr = curr.next;
+        curr = curr.next as Node;
       }
       return arr;
     }
