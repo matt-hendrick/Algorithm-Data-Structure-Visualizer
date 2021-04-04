@@ -39,7 +39,7 @@ export default class Queue {
         arr.push(curr.val);
         curr = curr.next;
       }
-      return arr;
+      return arr as string[];
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as classes from './QueueVisualizer.module.css';
+import './QueueVisualizer.css';
 
 // Data Structures
 import Queue from '../../dataStructures/Queue/Queue';
@@ -9,8 +9,8 @@ import MyButton from '../../components/MyButton/MyButton';
 import Input from '../../components/Input/Input';
 
 function QueueVisualizer() {
-  const [queue, setQueue] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [queue, setQueue] = useState<Queue | null>(null);
+  const [arr, setArr] = useState<string[] | null>(null);
   const [newNodeValue, setNewNodeValue] = useState('');
 
   const addNode = () => {
@@ -19,24 +19,24 @@ function QueueVisualizer() {
         let newQueue = new Queue();
         newQueue.add(newNodeValue);
         setQueue(newQueue);
-        setArr(newQueue.toArray());
+        setArr(newQueue.toArray() as string[]);
         setNewNodeValue('');
       } else {
         let newQueue = new Queue(queue.first, queue.last);
         newQueue.add(newNodeValue);
         setQueue(newQueue);
-        setArr(newQueue.toArray());
+        setArr(newQueue.toArray() as string[]);
         setNewNodeValue('');
       }
     }
   };
 
   const removeNode = () => {
-    if (queue.first) {
+    if (queue?.first) {
       let newQueue = new Queue(queue.first, queue.last);
       newQueue.remove();
       setQueue(newQueue);
-      setArr(newQueue.toArray());
+      setArr(newQueue.toArray() as string[]);
     }
   };
 
@@ -47,14 +47,17 @@ function QueueVisualizer() {
     }
   };
 
-  const updateNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
+  const updateNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewNodeValue(updatedValue);
+    }
   };
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="ButtonRow">
         <Input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -70,24 +73,24 @@ function QueueVisualizer() {
           Clear Queue
         </MyButton>
       </div>
-      <div className={classes.QueueContainer}>
-        <div className={classes.BorderColumn}>Queue Start</div>
-        <div className={classes.QueueColumn}>
+      <div className="QueueContainer">
+        <div className="QueueBorderColumn">Queue Start</div>
+        <div className="QueueColumn">
           {arr ? (
             arr.map((val, index) => {
               return (
-                <div key={[val, index]} className={classes.QueueNode}>
-                  <div className={classes.QueueVal}>{val}</div>
+                <div key={val + index + Math.random()} className="QueueNode">
+                  <div className="QueueVal">{val}</div>
                 </div>
               );
             })
           ) : (
-            <h6 className={classes.EnterNodePrompt}>
+            <h6 className="QueueEnterNodePrompt">
               Add a new Node to visualize a new Queue
             </h6>
           )}
         </div>
-        <div className={classes.BorderColumn}>Queue End</div>
+        <div className="QueueBorderColumn">Queue End</div>
       </div>
     </div>
   );
