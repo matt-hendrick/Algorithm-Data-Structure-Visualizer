@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as classes from './LinkedListVisualizer.module.css';
+import './LinkedListVisualizer.css';
 
 // Data Structures
 import LinkedList from '../../dataStructures/LinkedList/LinkedList';
@@ -10,8 +10,8 @@ import MyButton from '../../components/MyButton/MyButton';
 import Input from '../../components/Input/Input';
 
 function LinkedListVisualizer() {
-  const [list, setList] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [list, setList] = useState<LinkedList | null>(null);
+  const [arr, setArr] = useState<string[] | null>(null);
   const [newNodeValue, setNewNodeValue] = useState('');
 
   const addFirst = () => {
@@ -20,13 +20,13 @@ function LinkedListVisualizer() {
         const newNode = new Node(newNodeValue);
         let newList = new LinkedList(newNode);
         setList(newList);
-        setArr(newList.toArray());
+        setArr(newList.toArray() as string[]);
         setNewNodeValue('');
       } else {
         let newList = new LinkedList(list.head);
         newList.addFirst(newNodeValue);
         setList(newList);
-        setArr(newList.toArray());
+        setArr(newList.toArray() as string[]);
         setNewNodeValue('');
       }
     }
@@ -38,13 +38,13 @@ function LinkedListVisualizer() {
         const newNode = new Node(newNodeValue);
         let newList = new LinkedList(newNode);
         setList(newList);
-        setArr(newList.toArray());
+        setArr(newList.toArray() as string[]);
         setNewNodeValue('');
       } else {
         let newList = new LinkedList(list.head);
         newList.addLast(newNodeValue);
         setList(newList);
-        setArr(newList.toArray());
+        setArr(newList.toArray() as string[]);
         setNewNodeValue('');
       }
     }
@@ -55,7 +55,7 @@ function LinkedListVisualizer() {
       let newList = new LinkedList(list.head);
       newList.removeFirst();
       setList(newList);
-      setArr(newList.toArray());
+      setArr(newList.toArray() as string[]);
     }
   };
 
@@ -64,7 +64,7 @@ function LinkedListVisualizer() {
       let newList = new LinkedList(list.head);
       newList.removeLast();
       setList(newList);
-      setArr(newList.toArray());
+      setArr(newList.toArray() as string[]);
     }
   };
 
@@ -73,7 +73,7 @@ function LinkedListVisualizer() {
       let newList = new LinkedList(list.head);
       newList.reverseList();
       setList(newList);
-      setArr(newList.toArray());
+      setArr(newList.toArray() as string[]);
     }
   };
 
@@ -84,14 +84,17 @@ function LinkedListVisualizer() {
     }
   };
 
-  const updateAddNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
+  const updateAddNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewNodeValue(updatedValue);
+    }
   };
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="ButtonRow">
         <Input
           onChange={updateAddNodeValue}
           value={newNodeValue}
@@ -116,32 +119,35 @@ function LinkedListVisualizer() {
           Clear List
         </MyButton>
       </div>
-      <div className={classes.LinkedListContainer}>
-        <div className={classes.BorderColumn}>List Start</div>
-        <div className={classes.LinkedListColumn}>
+      <div className="LinkedListContainer">
+        <div className="LinkedListBorderColumn">List Start</div>
+        <div className="LinkedListColumn">
           {arr ? (
             arr.map((val, index) => {
               return (
-                <div key={[val, index]} className={classes.LinkedListNode}>
-                  <div className={classes.LinkedListValWrapper}>
-                    <div className={classes.LinkedListVal}>{val}</div>
+                <div
+                  key={val + index + Math.random()}
+                  className="LinkedListNode"
+                >
+                  <div className="LinkedListValWrapper">
+                    <div className="LinkedListVal">{val}</div>
                   </div>
                   {index !== arr.length - 1 ? (
-                    <div className={classes.LinkedListArrowShaft}></div>
+                    <div className="LinkedListArrowShaft"></div>
                   ) : null}
                   {index !== arr.length - 1 ? (
-                    <div className={classes.LinkedListArrowHead}></div>
+                    <div className="LinkedListArrowHead"></div>
                   ) : null}
                 </div>
               );
             })
           ) : (
-            <h6 className={classes.EnterNodePrompt}>
+            <h6 className="LinkedListEnterNodePrompt">
               Add a new Node to visualize a new Linked List
             </h6>
           )}
         </div>
-        <div className={classes.BorderColumn}>List End</div>
+        <div className="LinkedListBorderColumn">List End</div>
       </div>
     </div>
   );

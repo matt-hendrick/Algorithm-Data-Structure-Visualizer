@@ -1,16 +1,10 @@
-.ButtonRow {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .LinkedListContainer {
   display: flex;
   width: 100%;
   margin-top: 10px;
 }
 
-.BorderColumn {
+.LinkedListBorderColumn {
   width: 15%;
   background-color: #ea5455;
   color: #ffffff;
@@ -61,7 +55,7 @@
   border-left: 10px solid #39cccc;
 }
 
-.EnterNodePrompt {
+.LinkedListEnterNodePrompt {
   text-align: center;
 }
 
