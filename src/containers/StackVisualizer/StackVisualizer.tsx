@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as classes from './StackVisualizer.module.css';
+import './StackVisualizer.css';
 
 // Data Structures
 import Stack from '../../dataStructures/Stack/Stack';
@@ -10,8 +10,8 @@ import Alert from '../../components/Alert/Alert';
 import Input from '../../components/Input/Input';
 
 function StackVisualizer() {
-  const [stack, setStack] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [stack, setStack] = useState<Stack | null>(null);
+  const [arr, setArr] = useState<string[] | null>(null);
   const [newNodeValue, setNewNodeValue] = useState('');
   const [stackOverFlow, setStackOverflow] = useState(false);
 
@@ -22,11 +22,11 @@ function StackVisualizer() {
         let newStack = new Stack();
         newStack.add(newNodeValue);
         setStack(newStack);
-        setArr(newStack.toArray());
+        setArr(newStack.toArray() as string[]);
         setNewNodeValue('');
       }
       // if user attempts to add a 15th node, set flag for stack overflow alert and reset state
-      else if (stack.toArray().length >= 14) {
+      else if ((stack.toArray()?.length as number) >= 14) {
         setStackOverflow(true);
         setStack(null);
         setArr(null);
@@ -35,7 +35,7 @@ function StackVisualizer() {
         let newStack = new Stack(stack.first, stack.last);
         newStack.add(newNodeValue);
         setStack(newStack);
-        setArr(newStack.toArray());
+        setArr(newStack.toArray() as string[]);
         setNewNodeValue('');
       }
     }
@@ -47,7 +47,7 @@ function StackVisualizer() {
       let newStack = new Stack(stack.first, stack.last);
       newStack.remove();
       setStack(newStack);
-      setArr(newStack.toArray());
+      setArr(newStack.toArray() as string[]);
     }
   };
 
@@ -59,15 +59,18 @@ function StackVisualizer() {
     }
   };
 
-  const updateNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
+  const updateNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewNodeValue(updatedValue);
+    }
   };
 
   return (
     <div>
       {stackOverFlow ? <Alert /> : null}
-      <div className={classes.ButtonRow}>
+      <div className="ButtonRow">
         <Input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -84,21 +87,21 @@ function StackVisualizer() {
         </MyButton>
       </div>
       {arr ? (
-        <div className={classes.StackDisplayContainer}>
-          <div className={classes.EmptyBorderColumn}></div>
-          <div className={classes.StackColumn}>
+        <div className="StackDisplayContainer">
+          <div className="StackEmptyBorderColumn"></div>
+          <div className="StackColumn">
             {arr.map((val, index) => {
               return (
-                <div key={[val, index]} className={classes.StackNode}>
-                  <div className={classes.StackVal}>{val}</div>
+                <div key={val + index + Math.random()} className="StackNode">
+                  <div className="StackVal">{val}</div>
                 </div>
               );
             })}
           </div>
-          <div className={classes.EmptyBorderColumn}></div>
+          <div className="StackEmptyBorderColumn"></div>
         </div>
       ) : (
-        <h6 className={classes.EnterNodePrompt}>
+        <h6 className="StackEnterNodePrompt">
           Add a new Node to visualize a new Stack
         </h6>
       )}

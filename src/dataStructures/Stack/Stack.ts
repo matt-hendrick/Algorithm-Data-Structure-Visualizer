@@ -40,7 +40,7 @@ export default class Stack {
         arr.push(curr.val);
         curr = curr.next;
       }
-      return arr;
+      return arr as string[];
     }
   }
 }
