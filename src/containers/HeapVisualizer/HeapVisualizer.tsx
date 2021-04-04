@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as classes from './HeapVisualizer.module.scss';
+import './HeapVisualizer.scss';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
@@ -10,9 +10,9 @@ import Input from '../../components/Input/Input';
 import Heap from '../../dataStructures/Heap/Heap';
 
 function HeapVisualizer() {
-  const [newNodeValue, setNewNodeValue] = useState('');
-  const [heap, setHeap] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [newNodeValue, setNewNodeValue] = useState<number | '' | '-'>('');
+  const [heap, setHeap] = useState<Heap | null>(null);
+  const [arr, setArr] = useState<(string | number)[][] | null>(null);
   const [isMinHeap, setIsMinHeap] = useState(true);
 
   const insertNode = () => {
@@ -21,7 +21,7 @@ function HeapVisualizer() {
         [],
         isMinHeap ? (a, b) => a - b : (a, b) => b - a
       );
-      tempHeap.insert(newNodeValue);
+      tempHeap.insert(newNodeValue as number);
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
       setNewNodeValue('');
@@ -30,7 +30,7 @@ function HeapVisualizer() {
         heap.arr,
         isMinHeap ? (a, b) => a - b : (a, b) => b - a
       );
-      tempHeap.insert(newNodeValue);
+      tempHeap.insert(newNodeValue as number);
       setHeap(tempHeap);
       setArr(tempHeap.toLevelOrderArray());
       setNewNodeValue('');
@@ -39,7 +39,7 @@ function HeapVisualizer() {
 
   const removeNode = () => {
     let tempHeap = new Heap(
-      heap.arr,
+      heap?.arr,
       isMinHeap ? (a, b) => a - b : (a, b) => b - a
     );
     tempHeap.remove();
@@ -49,41 +49,46 @@ function HeapVisualizer() {
   };
 
   const changeHeapType = () => {
-    if (isMinHeap) {
-      setIsMinHeap(false);
-      let tempHeap = new Heap(heap.arr, (a, b) => b - a);
-      tempHeap.reorderHeap();
-      setHeap(tempHeap);
-      setArr(tempHeap.toLevelOrderArray());
-    } else {
-      setIsMinHeap(true);
-      let tempHeap = new Heap(heap.arr, (a, b) => a - b);
-      tempHeap.reorderHeap();
-      setHeap(tempHeap);
-      setArr(tempHeap.toLevelOrderArray());
-    }
+    if (heap) {
+      if (isMinHeap) {
+        setIsMinHeap(false);
+        let tempHeap = new Heap(heap.arr, (a, b) => b - a);
+        tempHeap.reorderHeap();
+        setHeap(tempHeap);
+        setArr(tempHeap.toLevelOrderArray());
+      } else {
+        setIsMinHeap(true);
+        let tempHeap = new Heap(heap.arr, (a, b) => a - b);
+        tempHeap.reorderHeap();
+        setHeap(tempHeap);
+        setArr(tempHeap.toLevelOrderArray());
+      }
+    } else return;
   };
 
   const clearHeap = () => {
     if (heap) {
       setHeap(null);
       setArr(null);
-    }
+    } else return;
   };
 
-  const updateNewNodeValue = (event) => {
-    if (Number.isInteger(parseInt(event.target.value))) {
-      const updatedNodeValue = parseInt(event.target.value);
-      setNewNodeValue(updatedNodeValue);
-    } else if (event.target.value === '' || event.target.value === '-') {
-      const updatedNodeValue = event.target.value;
-      setNewNodeValue(updatedNodeValue);
+  const updateNewNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      if (Number.isInteger(parseInt(target.value))) {
+        const updatedNodeValue = parseInt(target.value);
+        setNewNodeValue(updatedNodeValue);
+      } else if (target.value === '' || target.value === '-') {
+        const updatedNodeValue = target.value;
+        setNewNodeValue(updatedNodeValue);
+      }
     } else return;
   };
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="ButtonRow">
         <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
@@ -102,18 +107,18 @@ function HeapVisualizer() {
           Clear Heap
         </MyButton>
       </div>
-      {arr?.length > 0 ? (
-        <h4 className={classes.HeapTypeHeader}>
+      {arr && arr.length > 0 ? (
+        <h4 className="HeapTypeHeader">
           {isMinHeap ? 'Min Heap' : 'Max Heap'}
         </h4>
       ) : null}
-      <div className={classes.Heap}>
-        {arr?.length > 0 ? (
+      <div className="Heap">
+        {arr && arr.length > 0 ? (
           arr.map((item, index) => (
-            <ul key={item + index}>
+            <ul key={item.toString() + index}>
               {item.map((subitem) => (
                 <li
-                  key={subitem + index + item}
+                  key={subitem.toString() + index + item}
                   style={{ width: `${index * 30 + 10}%` }}
                 >
                   <button disabled>{subitem}</button>
@@ -122,7 +127,7 @@ function HeapVisualizer() {
             </ul>
           ))
         ) : (
-          <h6 className={classes.EnterNodePrompt}>
+          <h6 className="HeapEnterNodePrompt">
             Add a new Node to visualize a new Heap
           </h6>
         )}
