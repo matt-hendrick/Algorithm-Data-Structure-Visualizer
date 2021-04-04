@@ -26,7 +26,7 @@ describe('Heap Class tests', () => {
     expect(testHeap.toLevelOrderArray()).toEqual([
       [1],
       [4, 2],
-      [5, ['null'], ['null'], ['null']],
+      [5, 'null', 'null', 'null'],
     ]);
 
     testHeap.clear();
@@ -59,7 +59,7 @@ describe('Heap Class tests', () => {
     expect(testHeap.toLevelOrderArray()).toEqual([
       [4],
       [2, 1],
-      [0, ['null'], ['null'], ['null']],
+      [0, 'null', 'null', 'null'],
     ]);
 
     testHeap.clear();

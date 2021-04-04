@@ -1,20 +1,27 @@
 import { swap } from '../../utility/utilityFunctions';
 
 export default class Heap {
-  constructor(arr = [], compareFunction = (a, b) => a - b) {
+  arr: number[];
+  rawCompareFunction: (a: number, b: number) => number;
+  compareFunction: Function;
+
+  constructor(
+    arr: number[] = [],
+    compareFunction = (a: number, b: number) => a - b
+  ) {
     this.arr = arr;
     this.rawCompareFunction = compareFunction;
-    this.compareFunction = (index1, index2) => {
+    this.compareFunction = (index1: number, index2: number) => {
       return compareFunction(this.arr[index1], this.arr[index2]);
     };
   }
 
-  insert(val) {
+  insert(val: number) {
     this.arr.push(val);
     this.bubbleUp();
   }
 
-  remove(index = 0) {
+  remove(index: number = 0) {
     if (this.arr.length < 1) return;
     swap(this.arr, index, this.arr.length - 1);
     this.arr.pop();
@@ -23,7 +30,7 @@ export default class Heap {
 
   bubbleUp() {
     let index = this.arr.length - 1;
-    const getParent = (index) => Math.ceil(index / 2 - 1);
+    const getParent = (index: number) => Math.ceil(index / 2 - 1);
     while (
       getParent(index) >= 0 &&
       this.compareFunction(getParent(index), index) > 0
@@ -33,7 +40,7 @@ export default class Heap {
     }
   }
 
-  bubbleDown(startingIndex = 0) {
+  bubbleDown(startingIndex: number = 0) {
     let curr = startingIndex;
 
     while (
@@ -49,15 +56,15 @@ export default class Heap {
   toLevelOrderArray() {
     if (this.arr.length < 1) return [];
 
-    let levelArr = [];
+    let levelArr: (number | string)[][] = [] as (number | string)[][];
 
-    const traverse = (node, level = 0) => {
+    const traverse = (node: number, level: number = 0) => {
       // for each level, creates a new blank subarray
       if (!levelArr[level]) levelArr[level] = [];
 
       if (node < 0 || node > this.arr.length - 1) {
         // if arr[level] already exists, adds a null node for each non-existent node found
-        if (levelArr[level]) levelArr[level].push(['null']);
+        if (levelArr[level]) levelArr[level].push('null');
         return null;
       }
       //for each node in level, push to that level's subarray
@@ -82,13 +89,13 @@ export default class Heap {
     return levelArr;
   }
 
-  getLeftChild(index) {
+  getLeftChild(index: number) {
     return 2 * index + 1;
   }
-  getRightChild(index) {
+  getRightChild(index: number) {
     return 2 * index + 2;
   }
-  getHigherChild(index) {
+  getHigherChild(index: number) {
     return this.getRightChild(index) < this.arr.length &&
       this.compareFunction(
         this.getLeftChild(index),
