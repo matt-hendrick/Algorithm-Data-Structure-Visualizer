@@ -29,6 +29,7 @@ export default class Queue {
         this.first = this.first.next;
       }
     }
+    return;
   }
 
   toArray() {
@@ -39,7 +40,8 @@ export default class Queue {
         arr.push(curr.val);
         curr = curr.next;
       }
-      return arr as string[];
+      return arr;
     }
+    return;
   }
 }

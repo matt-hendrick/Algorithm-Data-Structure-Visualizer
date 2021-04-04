@@ -33,6 +33,7 @@ export default class BinaryTree {
       if (!node.right) return null;
       else this.get(val, node.right);
     }
+    return;
   }
 
   insertNode(node: BinaryTreeNode, newNode: BinaryTreeNode) {
@@ -105,6 +106,7 @@ export default class BinaryTree {
       level++;
       traverse(node.left, level);
       traverse(node.right, level);
+      return;
     };
 
     traverse(this.root);

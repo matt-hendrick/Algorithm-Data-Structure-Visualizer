@@ -73,6 +73,7 @@ export default class Heap {
       level++;
       traverse(this.getLeftChild(node), level);
       traverse(this.getRightChild(node), level);
+      return;
     };
 
     traverse(0);

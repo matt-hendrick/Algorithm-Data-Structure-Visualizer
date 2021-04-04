@@ -65,6 +65,7 @@ export default class LinkedList {
       }
       return arr;
     }
+    return;
   }
 
   reverseList() {

@@ -42,5 +42,6 @@ export default class Stack {
       }
       return arr as string[];
     }
+    return;
   }
 }
