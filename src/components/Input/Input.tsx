@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.module.css';
+import './Input.css';
 
 interface Props {
   value?: string | number;
