@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as classes from './Sorting.module.css';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
+// Utility Functions
 import {
   useInterval,
   getRandomInt,
@@ -10,6 +11,7 @@ import {
   isSorted,
 } from '../../utility/utilityFunctions';
 
+// Components
 import MyButton from '../../components/MyButton/MyButton';
 import SortingTypeInfo from '../../components/SortingTypeInfo/SortingTypeInfo';
 import SortingListItem from '../../components/SortingListItem/SortingListItem';
@@ -152,6 +154,7 @@ const Sorting = () => {
     }
   };
 
+  // Bubble Sort
   const handleBubbleSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
 
@@ -177,6 +180,7 @@ const Sorting = () => {
     startSorting('Bubble Sort');
   };
 
+  // Insertion Sort
   const handleInsertionSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
 
@@ -195,6 +199,7 @@ const Sorting = () => {
     startSorting('Insertion Sort');
   };
 
+  // Selection Sort
   const handleSelectionSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
 
@@ -221,6 +226,7 @@ const Sorting = () => {
     startSorting('Selection Sort');
   };
 
+  // Merge Sort
   const handleMergeSort = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     let len = tempArr.length;
@@ -273,6 +279,7 @@ const Sorting = () => {
     startSorting('Merge Sort');
   };
 
+  // Quick Sort
   const getQuickSortPivot = (array, start, end) => {
     let pivot = array[start],
       pointer = start;
@@ -305,6 +312,7 @@ const Sorting = () => {
     return quickSort(tempArr);
   };
 
+  // Heap Sort
   const buildMaxHeap = (array) => {
     let i = Math.floor(array.length / 2 - 1);
 
@@ -358,10 +366,12 @@ const Sorting = () => {
     startSorting('Heap Sort');
   };
 
+  // Bogo Sort
   const handleBogoSort = () => {
     startSorting('Bogo Sort');
   };
 
+  // Shuffle
   const handleShuffle = () => {
     let tempArr = originalArr ? [...originalArr] : [...arr];
     if (originalArr) {
@@ -378,10 +388,12 @@ const Sorting = () => {
     setSortingSpeed(500);
   };
 
+  // Change Sorting Speed
   const handleSortingSpeedChange = (newSpeed) => {
     setSortingSpeed(newSpeed);
   };
 
+  // Toggle Pause
   const togglePause = () => {
     setIsRunning(!isRunning);
   };
@@ -423,6 +435,7 @@ const Sorting = () => {
     );
   }
 
+  // Display pointer if bubble, insertion, or selection sort
   if (arr && currentPointer) {
     if (
       sortingType === 'Bubble Sort' ||
@@ -451,6 +464,7 @@ const Sorting = () => {
     }
   }
 
+  // Display Pause/Continue and Change Speed buttons if current step > 0
   if (currentStep > 0) {
     playButtonsDisplay = (
       <div className={classes.ButtonRow}>
