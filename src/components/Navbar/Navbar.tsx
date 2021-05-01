@@ -1,4 +1,4 @@
-import React from 'react';
+import './Navbar.css';
 
 // Bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const MyNavbar = () => {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" variant="dark" className="nav-color">
       <Navbar.Brand href="/">
         Algorithm and Data Structure Visualizer
       </Navbar.Brand>

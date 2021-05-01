@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './HomeCard.css';
 
 interface Props {
@@ -10,10 +8,14 @@ interface Props {
 
 function HomeCard(props: Props) {
   return (
-    <div className="HomeCardBox">
+    <div className="home-card-box">
       <h5>
-        <a href={props.link} className="HomeCardLink">
-          <img src={props.image} alt={props.header} className="HomeCardImage" />
+        <a href={props.link} className="home-card-link">
+          <img
+            src={props.image}
+            alt={props.header}
+            className="home-card-image"
+          />
           {props.header}
         </a>
       </h5>

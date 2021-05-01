@@ -1,4 +1,3 @@
-import React from 'react';
 import './SortingListItem.css';
 
 interface Props {
@@ -8,9 +7,9 @@ interface Props {
 const SortingListItem = (props: Props) => {
   const { size } = props;
   return (
-    <div className="SortingListItemOuterDiv">
+    <div className="sorting-list-item-outer-div">
       <div
-        className="SortingListItemInnerDiv"
+        className="sorting-list-item-inner-div"
         style={{
           height: size,
         }}

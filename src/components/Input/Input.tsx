@@ -12,7 +12,7 @@ interface Props {
 const Input = (props: Props) => {
   return (
     <input
-      className="Input"
+      className="input"
       id={props.id}
       value={props.value}
       onChange={props.onChange}

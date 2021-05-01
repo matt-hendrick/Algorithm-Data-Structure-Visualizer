@@ -1,34 +1,32 @@
-.HomeCardBox {
+.home-card-box {
   width: 45%;
   text-align: center;
   padding: 5px;
 }
 
-.HomeCardImage {
+.home-card-image {
   width: 60%;
 }
 
-.HomeCardLink {
+.home-card-link {
   color: #1aab8a;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 
-.HomeCardLink:hover {
+.home-card-link:hover {
   color: #39cccc;
 }
 
-
 @media (max-width: 800px) {
-  .HomeCardBox {
+  .home-card-box {
     width: 100%;
   }
 
-  .HomeCardLink {
+  .home-card-link {
     color: #1aab8a;
     font-size: 0.65em;
   }
-  
 }

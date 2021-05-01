@@ -1,11 +1,11 @@
-.SortingListItemOuterDiv {
+.sorting-list-item-outer-div {
   height: 200px;
   margin-right: 3vw;
   position: relative;
   width: 150px;
 }
 
-.SortingListItemInnerDiv {
+.sorting-list-item-inner-div {
   background-color: #39cccc;
   color: #000000;
   position: absolute;

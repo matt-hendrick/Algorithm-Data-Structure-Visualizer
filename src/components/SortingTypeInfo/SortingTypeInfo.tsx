@@ -1,4 +1,3 @@
-import React from 'react';
 import './SortingTypeInfo.css';
 import {
   bubbleSortInfo,
@@ -55,11 +54,11 @@ const SortingTypeDescriptions = (props: Props) => {
         </h3>
         <h3>Current Step: {currentStep}</h3>
       </div>
-      <div className="SortingTypeWrapper">
-        <pre className="SortingTypeCodeBlock">
+      <div className="sorting-type-wrapper">
+        <pre className="sorting-type-code-block">
           <code>{sortingInfo?.code}</code>
         </pre>
-        <div className="SortingTypeDescriptionBlock">
+        <div className="sorting-type-description-block">
           <h4>{sortingType}</h4>
           <div>{sortingInfo?.description}</div>
           {sortingInfo?.list}

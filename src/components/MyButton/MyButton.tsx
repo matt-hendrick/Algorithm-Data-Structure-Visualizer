@@ -11,7 +11,7 @@ const MyButton = (props: Props) => {
   return (
     <button
       onClick={props.onClick}
-      className={props.disabled ? 'MyButtonDisabled' : 'MyButton'}
+      className={props.disabled ? 'my-button-disabled' : 'my-button'}
       disabled={props.disabled}
     >
       {props.children}

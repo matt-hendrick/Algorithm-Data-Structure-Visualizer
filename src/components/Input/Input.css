@@ -1,4 +1,4 @@
-.Input {
+.input {
   font-weight: 500;
   min-width: 25%;
   border: 2px #1aab8a solid;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 800px) {
-  .Input {
+  .input {
     min-width: 65%;
   }
 }
