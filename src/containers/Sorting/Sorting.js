@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as classes from './Sorting.module.css';
+import { useState, useEffect } from 'react';
+import './Sorting.css';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
 // Utility Functions
@@ -404,7 +404,7 @@ const Sorting = () => {
   // originalArr displayed when using sorting algos that aren't in-place
   if (originalArr) {
     originalArrDisplay = (
-      <div className={classes.OriginalArrWrapper}>
+      <div className="original-arr-wrapper">
         {originalArr.map((item) => (
           <SortingListItem key={item[1]} size={item[0] * 2}>
             {item[0]}
@@ -417,12 +417,12 @@ const Sorting = () => {
   if (arr) {
     arrDisplay = (
       <Flipper flipKey={arr.join('')}>
-        <ul className={classes.FlipperUL}>
+        <ul className="flipper-ul">
           {arr.map((item) => (
-            <li key={item[1]} className={classes.ArrFlipperLI}>
+            <li key={item[1]} className="arr-flipper-li">
               <Flipped flipId={item[1]}>
                 <div
-                  className={classes.FlippedDiv}
+                  className="flipped-div"
                   style={{
                     height: item[0] * 2,
                   }}
@@ -444,16 +444,13 @@ const Sorting = () => {
     ) {
       pointerDisplay = (
         <Flipper flipKey={arr.join('')}>
-          <ul className={classes.FlipperUL}>
+          <ul className="flipper-ul">
             {arr.map((item) => (
-              <li
-                key={item[1] + currentStep}
-                className={classes.PointerFlipperLI}
-              >
+              <li key={item[1] + currentStep} className="pointer-flipper-li">
                 <Flipped flipId={item[1]}>
                   {item[1] === currentPointer[0] ||
                   item[1] === currentPointer[1] ? (
-                    <div className={classes.ArrowUp}></div>
+                    <div className="arrow-up"></div>
                   ) : null}
                 </Flipped>
               </li>
@@ -467,7 +464,7 @@ const Sorting = () => {
   // Display Pause/Continue and Change Speed buttons if current step > 0
   if (currentStep > 0) {
     playButtonsDisplay = (
-      <div className={classes.ButtonRow}>
+      <div className="button-row">
         <MyButton onClick={togglePause}>
           {isRunning ? 'Pause' : 'Continue'}
         </MyButton>
@@ -492,7 +489,7 @@ const Sorting = () => {
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="button-row">
         <MyButton onClick={handleBubbleSort}>Bubble Sort!</MyButton>
         <MyButton onClick={handleInsertionSort}>Insertion Sort!</MyButton>
         <MyButton onClick={handleSelectionSort}>Selection Sort!</MyButton>

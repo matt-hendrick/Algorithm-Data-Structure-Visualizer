@@ -70,7 +70,7 @@ function StackVisualizer() {
   return (
     <div>
       {stackOverFlow ? <Alert /> : null}
-      <div className="ButtonRow">
+      <div className="button-row">
         <Input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -87,21 +87,21 @@ function StackVisualizer() {
         </MyButton>
       </div>
       {arr ? (
-        <div className="StackDisplayContainer">
-          <div className="StackEmptyBorderColumn"></div>
-          <div className="StackColumn">
+        <div className="stack-display-container">
+          <div className="stack-empty-border-column"></div>
+          <div className="stack-column">
             {arr.map((val, index) => {
               return (
-                <div key={val + index + Math.random()} className="StackNode">
-                  <div className="StackVal">{val}</div>
+                <div key={val + index + Math.random()} className="stack-node">
+                  <div className="stack-val">{val}</div>
                 </div>
               );
             })}
           </div>
-          <div className="StackEmptyBorderColumn"></div>
+          <div className="stack-empty-border-column"></div>
         </div>
       ) : (
-        <h6 className="StackEnterNodePrompt">
+        <h6 className="enter-node-prompt-margin-top">
           Add a new Node to visualize a new Stack
         </h6>
       )}

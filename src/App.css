@@ -1,9 +1,18 @@
-.AppContainer {
+.app-container {
   margin-top: 20px;
 }
 
-.ButtonRow {
+.button-row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.enter-node-prompt-no-margin {
+  text-align: center;
+}
+
+.enter-node-prompt-margin-top {
+  margin-top: 5vh;
+  text-align: center;
 }

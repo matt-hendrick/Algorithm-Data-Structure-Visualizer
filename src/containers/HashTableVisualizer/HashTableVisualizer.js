@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import * as classes from './HashTableVisualizer.module.css';
+import './HashTableVisualizer.css';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
@@ -83,7 +83,7 @@ function HashTableVisualizer() {
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="button-row">
         <Input
           id="KeyInput"
           value={newKey}
@@ -112,32 +112,32 @@ function HashTableVisualizer() {
       <div>
         {hashTable?.size > 0 ? (
           <div>
-            <h4 className={classes.HashTableInfoHeader}>
+            <h4 className="hash-table-info-header">
               Hash Table Size: {hashTable.size}, Hash Table Buckets:{' '}
               {hashTable.buckets.length}, Hash Table Collisions:{' '}
               {hashTable.collisions}
             </h4>
-            <div className={classes.HashTableBucketsContainer}>
+            <div className="hash-table-buckets-container">
               {arr.map((bucket, index) =>
                 bucket?.length > 0 ? (
                   <div
-                    className={classes.HashTableBucketContainer}
+                    className="hash-table-bucket-container"
                     key={bucket.join('') + index}
                   >
-                    <h5 className={classes.HashTableBucketHeader}>
+                    <h5 className="hash-table-bucket-header">
                       Bucket # {index + 1}
                     </h5>
-                    <div className={classes.HashTableItemsContainer}>
+                    <div className="hash-table-items-container">
                       {bucket.map((item, index) => (
-                        <div className={classes.HashTableItem} key={item.key}>
+                        <div className="hash-table-item" key={item.key}>
                           Key: {item.key}, Value: {item.value}
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <div className={classes.HashTableBucketContainer} key={index}>
-                    <h5 className={classes.HashTableBucketHeader}>
+                  <div className="hash-table-bucket-container" key={index}>
+                    <h5 className="hash-table-bucket-header">
                       Bucket # {index + 1}
                     </h5>
                     <div>No items in this bucket</div>
@@ -147,7 +147,7 @@ function HashTableVisualizer() {
             </div>
           </div>
         ) : (
-          <h6 className={classes.EnterNodePrompt}>
+          <h6 className="enter-node-prompt-margin-top">
             Add a new Node to visualize a new Hash Table
           </h6>
         )}

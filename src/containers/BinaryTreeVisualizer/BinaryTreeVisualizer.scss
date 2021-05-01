@@ -1,9 +1,4 @@
-.TreeEnterNodePrompt {
-  margin-top: 5vh;
-  text-align: center;
-}
-
-.Tree ul {
+.tree ul {
   position: relative;
   padding: 1em 0;
   white-space: nowrap;
@@ -18,7 +13,7 @@
   }
 }
 
-.Tree li {
+.tree li {
   display: inline-block;
   vertical-align: top;
   text-align: center;
@@ -61,7 +56,7 @@
   }
 }
 
-.Tree ul ul::before {
+.tree ul ul::before {
   content: '';
   position: absolute;
   top: 0;
@@ -71,7 +66,7 @@
   height: 1em;
 }
 
-.Tree li button {
+.tree li button {
   border: 1px solid #39cccc;
   background-color: #39cccc;
   color: #ffffff;

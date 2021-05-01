@@ -57,7 +57,7 @@ function QueueVisualizer() {
 
   return (
     <div>
-      <div className="ButtonRow">
+      <div className="button-row">
         <Input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -73,24 +73,24 @@ function QueueVisualizer() {
           Clear Queue
         </MyButton>
       </div>
-      <div className="QueueContainer">
-        <div className="QueueBorderColumn">Queue Start</div>
-        <div className="QueueColumn">
+      <div className="queue-container">
+        <div className="queue-border-column">Queue Start</div>
+        <div className="queue-column">
           {arr ? (
             arr.map((val, index) => {
               return (
-                <div key={val + index + Math.random()} className="QueueNode">
-                  <div className="QueueVal">{val}</div>
+                <div key={val + index + Math.random()} className="queue-node">
+                  <div className="queue-val">{val}</div>
                 </div>
               );
             })
           ) : (
-            <h6 className="QueueEnterNodePrompt">
+            <h6 className="enter-node-prompt-no-margin">
               Add a new Node to visualize a new Queue
             </h6>
           )}
         </div>
-        <div className="QueueBorderColumn">Queue End</div>
+        <div className="queue-border-column">Queue End</div>
       </div>
     </div>
   );

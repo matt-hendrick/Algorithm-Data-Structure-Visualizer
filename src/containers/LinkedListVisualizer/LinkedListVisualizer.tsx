@@ -94,7 +94,7 @@ function LinkedListVisualizer() {
 
   return (
     <div>
-      <div className="ButtonRow">
+      <div className="button-row">
         <Input
           onChange={updateAddNodeValue}
           value={newNodeValue}
@@ -119,35 +119,35 @@ function LinkedListVisualizer() {
           Clear List
         </MyButton>
       </div>
-      <div className="LinkedListContainer">
-        <div className="LinkedListBorderColumn">List Start</div>
-        <div className="LinkedListColumn">
+      <div className="linked-list-container">
+        <div className="linked-list-border-column">List Start</div>
+        <div className="linked-list-column">
           {arr ? (
             arr.map((val, index) => {
               return (
                 <div
                   key={val + index + Math.random()}
-                  className="LinkedListNode"
+                  className="linked-list-node"
                 >
-                  <div className="LinkedListValWrapper">
-                    <div className="LinkedListVal">{val}</div>
+                  <div className="linked-list-val-wrapper">
+                    <div className="linked-list-val">{val}</div>
                   </div>
                   {index !== arr.length - 1 ? (
-                    <div className="LinkedListArrowShaft"></div>
+                    <div className="linked-list-arrow-shaft"></div>
                   ) : null}
                   {index !== arr.length - 1 ? (
-                    <div className="LinkedListArrowHead"></div>
+                    <div className="linked-list-arrow-head"></div>
                   ) : null}
                 </div>
               );
             })
           ) : (
-            <h6 className="LinkedListEnterNodePrompt">
+            <h6 className="enter-node-prompt-no-margin">
               Add a new Node to visualize a new Linked List
             </h6>
           )}
         </div>
-        <div className="LinkedListBorderColumn">List End</div>
+        <div className="linked-list-border-column">List End</div>
       </div>
     </div>
   );

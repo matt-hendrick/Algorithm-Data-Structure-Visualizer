@@ -88,7 +88,7 @@ function HeapVisualizer() {
 
   return (
     <div>
-      <div className="ButtonRow">
+      <div className="button-row">
         <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
@@ -108,11 +108,11 @@ function HeapVisualizer() {
         </MyButton>
       </div>
       {arr && arr.length > 0 ? (
-        <h4 className="HeapTypeHeader">
+        <h4 className="heap-type-header">
           {isMinHeap ? 'Min Heap' : 'Max Heap'}
         </h4>
       ) : null}
-      <div className="Heap">
+      <div className="heap">
         {arr && arr.length > 0 ? (
           arr.map((item, index) => (
             <ul key={item.toString() + index}>
@@ -127,7 +127,7 @@ function HeapVisualizer() {
             </ul>
           ))
         ) : (
-          <h6 className="HeapEnterNodePrompt">
+          <h6 className="enter-node-prompt-margin-top">
             Add a new Node to visualize a new Heap
           </h6>
         )}

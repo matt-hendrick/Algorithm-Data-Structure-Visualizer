@@ -81,7 +81,7 @@ function BinaryTreeVisualizer() {
 
   return (
     <div>
-      <div className="ButtonRow">
+      <div className="button-row">
         <Input
           value={newNodeValue}
           placeholder="Enter a new Node value"
@@ -112,7 +112,7 @@ function BinaryTreeVisualizer() {
           Clear Tree
         </MyButton>
       </div>
-      <div className="Tree">
+      <div className="tree">
         {arr && arr?.length > 0 ? (
           arr.map((item, index) => (
             <ul key={item.toString() + index}>
@@ -127,7 +127,7 @@ function BinaryTreeVisualizer() {
             </ul>
           ))
         ) : (
-          <h6 className="TreeEnterNodePrompt">
+          <h6 className="enter-node-prompt-margin-top">
             Add a new Node to visualize a new Binary Tree
           </h6>
         )}

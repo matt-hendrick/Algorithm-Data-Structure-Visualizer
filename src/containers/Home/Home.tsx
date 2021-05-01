@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './Home.css';
 
 // Components
@@ -17,10 +15,10 @@ import QuicksortGif from '../../images/QuicksortGif.gif';
 
 function Home() {
   return (
-    <div className="HomeFlexContainer">
-      <div className="HomeAlgoDSBox">
-        <h4 className="HomeHeader">Algorithm Visualizer Links</h4>
-        <div className="HomeCardWrapper">
+    <div className="home-flex-container">
+      <div className="home-algo-ds-box">
+        <h4 className="home-header">Algorithm Visualizer Links</h4>
+        <div className="home-card-wrapper">
           <HomeCard
             link="/sorting"
             header="Sorting Algorithms Visualizer"
@@ -29,9 +27,9 @@ function Home() {
         </div>
       </div>
 
-      <div className="HomeAlgoDSBox">
-        <h4 className="HomeHeader">Data Structure Visualizer Links</h4>
-        <div className="HomeCardWrapper">
+      <div className="home-algo-ds-box">
+        <h4 className="home-header">Data Structure Visualizer Links</h4>
+        <div className="home-card-wrapper">
           <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
           <HomeCard
             link="/hashtable"

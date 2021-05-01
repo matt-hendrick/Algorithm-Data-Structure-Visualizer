@@ -1,14 +1,14 @@
-.HomeFlexContainer {
+.home-flex-container {
   display: flex;
   text-align: center;
 }
 
-.HomeAlgoDSBox {
+.home-algo-ds-box {
   width: 50%;
   padding: 5px;
 }
 
-.HomeHeader {
+.home-header {
   color: #1aab8a;
   width: 75%;
   height: 13%;
@@ -16,7 +16,7 @@
   font-size: 1.8em;
 }
 
-.HomeCardWrapper {
+.home-card-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -25,11 +25,11 @@
 }
 
 @media (max-width: 800px) {
-  .HomeHeader {
+  .home-header {
     font-size: 1em;
   }
 
-  .HomeCardWrapper {
+  .home-card-wrapper {
     margin-top: 0px;
   }
 }

@@ -23,7 +23,7 @@ const App = () => {
   return (
     <Router>
       <NavBar />
-      <Container className="AppContainer">
+      <Container className="app-container">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/sorting" component={Sorting} />

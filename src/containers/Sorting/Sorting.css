@@ -1,42 +1,36 @@
-.ButtonRow {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.OriginalArrWrapper {
+.original-arr-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: row;
   margin-bottom: 10px;
 }
 
-.FlipperUL {
+.flipper-ul {
   display: flex;
   justify-content: center;
   padding-inline-start: 0;
 }
 
-.FlipperUL {
+.flipper-ul {
   display: flex;
   justify-content: center;
   padding-inline-start: 0;
 }
 
-.ArrFlipperLI {
+.arr-flipper-li {
   list-style: none;
   height: 200px;
   position: relative;
   width: 150px;
 }
 
-.PointerFlipperLI {
+.pointer-flipper-li {
   list-style: none;
   position: relative;
   width: 150px;
 }
 
-.FlippedDiv {
+.flipped-div {
   background-color: #39cccc;
   color: #000000;
   position: absolute;
@@ -47,7 +41,7 @@
   right: 0;
 }
 
-.ArrowUp {
+.arrow-up {
   position: absolute;
   margin: auto;
   left: 0;

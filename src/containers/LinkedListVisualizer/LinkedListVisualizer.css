@@ -1,31 +1,31 @@
-.LinkedListContainer {
+.linked-list-container {
   display: flex;
   width: 100%;
   margin-top: 10px;
 }
 
-.LinkedListBorderColumn {
+.linked-list-border-column {
   width: 15%;
   background-color: #ea5455;
   color: #ffffff;
   text-align: center;
 }
 
-.LinkedListColumn {
+.linked-list-column {
   width: 70%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.LinkedListNode {
+.linked-list-node {
   display: flex;
   width: 20%;
   height: 5vh;
   align-items: center;
 }
 
-.LinkedListValWrapper {
+.linked-list-val-wrapper {
   width: 80%;
   height: 5vh;
   border: 1px solid white;
@@ -35,11 +35,11 @@
   color: #ffffff;
 }
 
-.LinkedListVal {
+.linked-list-val {
   padding-top: 1vh;
 }
 
-.LinkedListArrowShaft {
+.linked-list-arrow-shaft {
   width: 10%;
   height: 1vh;
   border: 1px solid white;
@@ -47,7 +47,7 @@
   color: #ffffff;
 }
 
-.LinkedListArrowHead {
+.linked-list-arrow-head {
   width: 5%;
   height: 1vh;
   border-top: 10px solid transparent;
@@ -55,12 +55,8 @@
   border-left: 10px solid #39cccc;
 }
 
-.LinkedListEnterNodePrompt {
-  text-align: center;
-}
-
 @media only screen and (max-width: 600px) {
-  .LinkedListNode {
+  .linked-list-node {
     display: flex;
     width: 30%;
     height: 5vh;

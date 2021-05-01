@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import * as classes from './GraphVisualizer.module.css';
+import './GraphVisualizer.css';
 
 // Components
 import MyButton from '../../components/MyButton/MyButton';
@@ -122,7 +122,7 @@ function GraphVisualizer() {
 
   return (
     <div>
-      <div className={classes.ButtonRow}>
+      <div className="button-row">
         <Input
           onChange={updateNodeValue}
           value={newNodeValue}
@@ -161,11 +161,11 @@ function GraphVisualizer() {
         </MyButton>
       </div>
 
-      <div className={classes.GraphContainer}>
+      <div className="graph-container">
         {graph?.adjacencyList.size > 0 ? (
           <Graph key={Date.now()} graph={graphInfo} options={graphOptions} />
         ) : (
-          <h6 className={classes.EnterNodePrompt}>
+          <h6 className="enter-node-prompt-margin-top">
             Add a new Node (or two connected Nodes) to visualize a new Graph
           </h6>
         )}
