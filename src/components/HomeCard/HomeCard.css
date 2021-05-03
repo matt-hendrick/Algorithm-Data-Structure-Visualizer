@@ -9,7 +9,7 @@
 }
 
 .home-card-link {
-  color: #1aab8a;
+  color: #b23a48;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 }
 
 .home-card-link:hover {
-  color: #39cccc;
+  color: #7ca5b8;
 }
 
 @media (max-width: 800px) {

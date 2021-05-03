@@ -1,5 +1,5 @@
 .my-button {
-  background: #1aab8a;
+  background: #b23a48;
   color: #ffffff;
   border: none;
   margin: 2px;
@@ -11,7 +11,7 @@
 }
 
 .my-button-disabled {
-  background: #80d6c2;
+  background: #fcb9b2;
   color: #ffffff;
   border: none;
   margin: 2px;

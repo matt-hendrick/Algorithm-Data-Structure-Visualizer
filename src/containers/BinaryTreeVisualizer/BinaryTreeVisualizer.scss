@@ -27,14 +27,14 @@
     position: absolute;
     top: 0;
     right: 50%;
-    border-top: 1px solid #39cccc;
+    border-top: 1px solid #b23a48;
     width: 50%;
     height: 1em;
   }
   &::after {
     right: auto;
     left: 50%;
-    border-left: 1px solid #39cccc;
+    border-left: 1px solid #b23a48;
   }
   &:only-child::after,
   &:only-child::before {
@@ -48,7 +48,7 @@
     border: 0 none;
   }
   &:last-child::before {
-    border-right: 1px solid #39cccc;
+    border-right: 1px solid #b23a48;
     border-radius: 0 5px 0 0;
   }
   &:first-child::after {
@@ -61,14 +61,14 @@
   position: absolute;
   top: 0;
   left: 50%;
-  border-left: 1px solid #39cccc;
+  border-left: 1px solid #b23a48;
   width: 0;
   height: 1em;
 }
 
 .tree li button {
-  border: 1px solid #39cccc;
-  background-color: #39cccc;
+  border: 1px solid #b23a48;
+  background-color: #b23a48;
   color: #ffffff;
   text-decoration: none;
   padding: 0.5em 0.75em;

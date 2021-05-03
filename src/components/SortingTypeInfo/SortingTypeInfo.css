@@ -3,7 +3,7 @@ ul {
 }
 
 li::marker {
-  color: #1aab8a;
+  color: #7ca5b8;
 }
 
 .sorting-type-wrapper {
@@ -13,18 +13,22 @@ li::marker {
 
 .sorting-type-code-block {
   width: 70%;
-  border: 1px solid #1aab8a;
+  border: 1px solid #7ca5b8;
   padding: 10px;
   height: 50vh;
   overflow: auto;
+  background-color: #b23a48;
+  color: #ffffff;
 }
 
 .sorting-type-description-block {
   width: 30%;
-  border: 1px solid #1aab8a;
+  border: 1px solid #7ca5b8;
   padding: 10px;
   height: 50vh;
   overflow: auto;
+  background-color: #b23a48;
+  color: #ffffff;
 }
 
 .sorting-type-code-block::-webkit-scrollbar-track {
@@ -42,7 +46,7 @@ li::marker {
 .sorting-type-code-block::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #1aab8a;
+  background-color: #b23a48;
 }
 
 @media only screen and (max-width: 600px) {

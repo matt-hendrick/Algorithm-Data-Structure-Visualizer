@@ -31,7 +31,7 @@
 }
 
 .flipped-div {
-  background-color: #39cccc;
+  background-color: #b23a48;
   color: #000000;
   position: absolute;
   margin: auto;
@@ -51,5 +51,5 @@
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #1aab8a;
+  border-bottom: 5px solid #7ca5b8;
 }

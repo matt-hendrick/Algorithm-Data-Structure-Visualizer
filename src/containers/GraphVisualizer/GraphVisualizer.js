@@ -101,10 +101,10 @@ function GraphVisualizer() {
       improvedLayout: true,
     },
     edges: {
-      color: '#1aab8a',
+      color: '#7ca5b8',
     },
     nodes: {
-      color: '#39cccc',
+      color: '#b23a48',
       font: { color: '#ffffff', size: 20 },
       shape: 'circle',
     },

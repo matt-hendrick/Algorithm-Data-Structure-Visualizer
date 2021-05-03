@@ -6,7 +6,7 @@
 
 .linked-list-border-column {
   width: 15%;
-  background-color: #ea5455;
+  background-color: #7ca5b8;
   color: #ffffff;
   text-align: center;
 }
@@ -29,7 +29,7 @@
   width: 80%;
   height: 5vh;
   border: 1px solid white;
-  background-color: #39cccc;
+  background-color: #b23a48;
   text-align: center;
   font-size: 1.1em;
   color: #ffffff;
@@ -43,7 +43,7 @@
   width: 10%;
   height: 1vh;
   border: 1px solid white;
-  background-color: #39cccc;
+  background-color: #b23a48;
   color: #ffffff;
 }
 
@@ -52,7 +52,7 @@
   height: 1vh;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 10px solid #39cccc;
+  border-left: 10px solid #b23a48;
 }
 
 @media only screen and (max-width: 600px) {
