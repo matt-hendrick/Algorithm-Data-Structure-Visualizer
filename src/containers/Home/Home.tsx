@@ -9,7 +9,7 @@ import LinkedListImage from '../../images/LinkedListImage.png';
 import StackImage from '../../images/StackImage.png';
 import QueueImage from '../../images/QueueImage.png';
 import HeapImage from '../../images/HeapImage.png';
-import HashTableImage from '../../images/HashTableImage2.png';
+import HashTableImage from '../../images/HashTableImage.png';
 import GraphImage from '../../images/GraphImage.png';
 import QuicksortGif from '../../images/QuicksortGif.gif';
 
