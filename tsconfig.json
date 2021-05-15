@@ -7,6 +7,10 @@
       "esnext",
       "esnext.array"
     ],
+    "typeRoots": [
+      "src/customTypes",
+      "node_modules/@types"
+    ], 
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

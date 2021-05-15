@@ -1,42 +1,46 @@
 export default class Graph {
-  constructor(adjacencyList = new Map()) {
+  adjacencyList: Map<string | number, Array<string | number>>;
+
+  constructor(
+    adjacencyList = new Map() as Map<string | number, Array<string | number>>
+  ) {
     this.adjacencyList = adjacencyList;
   }
 
-  addVertex(value) {
+  addVertex(value: string | number) {
     if (!this.adjacencyList.has(value)) {
       this.adjacencyList.set(value, []);
     }
   }
 
-  addEdge(source, destination) {
+  addEdge(source: string | number, destination: string | number) {
     if (!this.adjacencyList.has(source)) {
       this.addVertex(source);
     }
     if (!this.adjacencyList.has(destination)) {
       this.addVertex(destination);
     }
-    this.adjacencyList.get(source).push(destination);
-    this.adjacencyList.get(destination).push(source);
+    this.adjacencyList.get(source)!.push(destination);
+    this.adjacencyList.get(destination)!.push(source);
   }
 
-  removeVertex(vertex) {
+  removeVertex(vertex: string | number) {
     while (
-      this.adjacencyList.has(vertex) &&
-      this.adjacencyList.get(vertex).length > 0
+      this.adjacencyList.get(vertex) &&
+      this.adjacencyList.get(vertex)!.length > 0
     ) {
-      const adjacentVertex = this.adjacencyList.get(vertex).pop();
-      this.removeEdge(vertex, adjacentVertex);
+      const adjacentVertex = this.adjacencyList.get(vertex)!.pop();
+      this.removeEdge(vertex, adjacentVertex!);
     }
-    delete this.adjacencyList.delete(vertex);
+    this.adjacencyList.delete(vertex);
   }
 
-  removeEdge(source, destination) {
+  removeEdge(source: string | number, destination: string | number) {
     if (this.adjacencyList.has(source)) {
       this.adjacencyList.set(
         source,
         this.adjacencyList
-          .get(source)
+          .get(source)!
           .filter((vertex) => vertex !== destination)
       );
     }
@@ -44,7 +48,7 @@ export default class Graph {
       this.adjacencyList.set(
         destination,
         this.adjacencyList
-          .get(destination)
+          .get(destination)!
           .filter((vertex) => vertex !== source)
       );
     }
@@ -53,8 +57,8 @@ export default class Graph {
   // creates Viz.js friendly nodesArray and edgesArray
   getNodesAndEdges() {
     if (this.adjacencyList.size > 0) {
-      const nodesArray = [];
-      const edgesArray = [];
+      const nodesArray: { id: string | number; label: string }[] = [];
+      const edgesArray: { from: string | number; to: string | number }[] = [];
       this.adjacencyList.forEach((values, key) => {
         // spaces added around the label ensure center alignment
         nodesArray.push({ id: key, label: ` ${key} ` });
@@ -62,6 +66,7 @@ export default class Graph {
       });
       return { nodesArray, edgesArray };
     }
+    return;
   }
 
   clear() {

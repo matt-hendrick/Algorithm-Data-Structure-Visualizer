@@ -16,7 +16,7 @@ function GraphVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [newSourceNode, setNewSourceNode] = useState('');
   const [newDestinationNode, setNewDestinationNode] = useState('');
-  const [graph, setGraph] = useState(null);
+  const [graph, setGraph] = useState<MyGraph>();
 
   const addVertex = () => {
     if (newNodeValue !== '') {
@@ -26,7 +26,7 @@ function GraphVisualizer() {
         setGraph(tempGraph);
         setNewNodeValue('');
       } else {
-        let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+        let tempGraph = new MyGraph(graph.adjacencyList);
         tempGraph.addVertex(newNodeValue);
         setNewNodeValue('');
       }
@@ -42,7 +42,7 @@ function GraphVisualizer() {
         setNewSourceNode('');
         setNewDestinationNode('');
       } else {
-        let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+        let tempGraph = new MyGraph(graph.adjacencyList);
         tempGraph.addEdge(newSourceNode, newDestinationNode);
         setGraph(tempGraph);
         setNewSourceNode('');
@@ -53,7 +53,7 @@ function GraphVisualizer() {
 
   const removeVertex = () => {
     if (graph && newNodeValue !== '') {
-      let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+      let tempGraph = new MyGraph(graph.adjacencyList);
       tempGraph.removeVertex(newNodeValue);
       setNewNodeValue('');
     }
@@ -61,7 +61,7 @@ function GraphVisualizer() {
 
   const removeEdge = () => {
     if (graph && newSourceNode !== '' && newDestinationNode !== '') {
-      let tempGraph = new MyGraph(graph.adjacencyList, graph.size);
+      let tempGraph = new MyGraph(graph.adjacencyList);
       tempGraph.removeEdge(newSourceNode, newDestinationNode);
       setNewSourceNode('');
       setNewDestinationNode('');
@@ -70,26 +70,36 @@ function GraphVisualizer() {
 
   const clearGraph = () => {
     if (graph) {
-      setGraph(null);
+      let tempGraph = new MyGraph();
+      setGraph(tempGraph);
       setNewNodeValue('');
       setNewSourceNode('');
       setNewDestinationNode('');
     }
   };
 
-  const updateNodeValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewNodeValue(updatedValue);
+  const updateNodeValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewNodeValue(updatedValue);
+    }
   };
 
-  const updateSourceNode = (event) => {
-    const updatedValue = event.target.value;
-    setNewSourceNode(updatedValue);
+  const updateSourceNode = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewSourceNode(updatedValue);
+    }
   };
 
-  const updateDestinationNode = (event) => {
-    const updatedValue = event.target.value;
-    setNewDestinationNode(updatedValue);
+  const updateDestinationNode = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewDestinationNode(updatedValue);
+    }
   };
 
   // Viz.js 'graph'
@@ -111,9 +121,18 @@ function GraphVisualizer() {
     autoResize: true,
   };
 
-  if (graph?.adjacencyList.size > 0) {
+  if (graph && graph.adjacencyList.size > 0) {
     // extracts Viz.js friendly nodes and edges array to render Viz.js graph
-    const { edgesArray, nodesArray } = graph.getNodesAndEdges();
+    const { edgesArray, nodesArray } = graph.getNodesAndEdges() as {
+      nodesArray: {
+        id: string | number;
+        label: string;
+      }[];
+      edgesArray: {
+        from: string | number;
+        to: string | number;
+      }[];
+    };
     graphInfo = {
       nodes: nodesArray,
       edges: edgesArray,
@@ -156,14 +175,26 @@ function GraphVisualizer() {
         >
           Remove Edge Between Nodes
         </MyButton>
-        <MyButton onClick={clearGraph} disabled={!graph}>
+        <MyButton
+          onClick={clearGraph}
+          disabled={!graph || graph.adjacencyList.size === 0}
+        >
           Clear Graph
         </MyButton>
       </div>
 
       <div className="graph-container">
-        {graph?.adjacencyList.size > 0 ? (
-          <Graph key={Date.now()} graph={graphInfo} options={graphOptions} />
+        {graph && graph.adjacencyList.size > 0 ? (
+          <Graph
+            key={Date.now()}
+            graph={
+              graphInfo as {
+                nodes: { id: string | number; label: string }[];
+                edges: { from: string | number; to: string | number }[];
+              }
+            }
+            options={graphOptions}
+          />
         ) : (
           <h6 className="enter-node-prompt-margin-top">
             Add a new Node (or two connected Nodes) to visualize a new Graph
