@@ -2,7 +2,7 @@ import HashTable from './HashTable';
 
 describe('Hash Table tests', () => {
   it('Hash Tables initializes, adds, removes, rehashes, and clears correctly', () => {
-    let testHashTable = new HashTable(3);
+    let testHashTable = new HashTable(3, new Array(3));
 
     expect(testHashTable).toEqual({
       buckets: new Array(3),
