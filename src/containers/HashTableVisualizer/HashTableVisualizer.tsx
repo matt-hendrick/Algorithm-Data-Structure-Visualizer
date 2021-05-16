@@ -12,8 +12,16 @@ import HashTable from '../../dataStructures/HashTable/HashTable';
 function HashTableVisualizer() {
   const [newKey, setNewKey] = useState('');
   const [newValue, setNewValue] = useState('');
-  const [hashTable, setHashTable] = useState(null);
-  const [arr, setArr] = useState(null);
+  const [hashTable, setHashTable] = useState<HashTable>();
+  const [arr, setArr] =
+    useState<
+      {
+        key: string | number;
+        value: string | number;
+        keyIndex: number;
+        valueIndex: number;
+      }[][]
+    >();
 
   const insertNode = () => {
     if (!hashTable) {
@@ -44,7 +52,7 @@ function HashTableVisualizer() {
   };
 
   const removeNode = () => {
-    if (newKey) {
+    if (newKey && hashTable) {
       let tempHashTable = new HashTable(
         hashTable.initialCapacity,
         hashTable.buckets,
@@ -64,21 +72,27 @@ function HashTableVisualizer() {
 
   const clearHashTable = () => {
     if (hashTable) {
-      setHashTable(null);
-      setArr(null);
+      setHashTable(undefined);
+      setArr(undefined);
       setNewKey('');
       setNewValue('');
     }
   };
 
-  const updateNewKey = (event) => {
-    const updatedKey = event.target.value;
-    setNewKey(updatedKey);
+  const updateNewKey = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedKey = target.value;
+      setNewKey(updatedKey);
+    }
   };
 
-  const updateNewValue = (event) => {
-    const updatedValue = event.target.value;
-    setNewValue(updatedValue);
+  const updateNewValue = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedValue = target.value;
+      setNewValue(updatedValue);
+    }
   };
 
   return (
@@ -110,7 +124,7 @@ function HashTableVisualizer() {
         </MyButton>
       </div>
       <div>
-        {hashTable?.size > 0 ? (
+        {hashTable && hashTable.size > 0 ? (
           <div>
             <h4 className="hash-table-info-header">
               Hash Table Size: {hashTable.size}, Hash Table Buckets:{' '}
@@ -118,7 +132,7 @@ function HashTableVisualizer() {
               {hashTable.collisions}
             </h4>
             <div className="hash-table-buckets-container">
-              {arr.map((bucket, index) =>
+              {arr?.map((bucket, index) =>
                 bucket?.length > 0 ? (
                   <div
                     className="hash-table-bucket-container"

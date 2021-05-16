@@ -1,6 +1,7 @@
 // This more optimal hash table is based upon this (https://adrianmejia.com/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial) by Adrian Mejia
 
 export default class HashTable {
+  initialCapacity: number;
   buckets:
     | {
         key: string | number;
@@ -16,7 +17,7 @@ export default class HashTable {
   valuesArray: { content: string | number }[];
 
   constructor(
-    initialCapacity = 4,
+    initialCapacity = 16,
     buckets?:
       | {
           key: string | number;
@@ -40,6 +41,7 @@ export default class HashTable {
     // keys is an array of all keys in the hash table
     this.keysArray = keysArray;
     this.valuesArray = valuesArray;
+    this.initialCapacity = initialCapacity;
   }
 
   hash(key: string | number) {
