@@ -2,7 +2,7 @@ import HashTable from './HashTable';
 
 describe('Hash Table tests', () => {
   it('Hash Tables initializes, adds, removes, rehashes, and clears correctly', () => {
-    let testHashTable = new HashTable(3, new Array(3));
+    let testHashTable = new HashTable(3);
 
     expect(testHashTable).toEqual({
       buckets: new Array(3),
@@ -11,6 +11,7 @@ describe('Hash Table tests', () => {
       valuesArray: [],
       loadFactor: 0.75,
       size: 0,
+      initialCapacity: 3,
     });
 
     testHashTable.set(1, 5);
@@ -33,6 +34,7 @@ describe('Hash Table tests', () => {
       valuesArray: [{ content: 5 }],
       loadFactor: 0.75,
       size: 1,
+      initialCapacity: 3,
     });
 
     testHashTable.remove(1);
@@ -44,6 +46,7 @@ describe('Hash Table tests', () => {
       valuesArray: [undefined],
       loadFactor: 0.75,
       size: 0,
+      initialCapacity: 3,
     });
 
     testHashTable.set(12, 20);
@@ -66,6 +69,7 @@ describe('Hash Table tests', () => {
       valuesArray: [undefined, { content: 20 }],
       loadFactor: 0.75,
       size: 1,
+      initialCapacity: 3,
     });
 
     testHashTable.set(4, 21);
@@ -106,6 +110,7 @@ describe('Hash Table tests', () => {
       valuesArray: [{ content: 20 }, { content: 21 }, { content: 13 }],
       loadFactor: 0.75,
       size: 3,
+      initialCapacity: 3,
     });
 
     expect(testHashTable.has(4)).toEqual(true);
@@ -128,6 +133,7 @@ describe('Hash Table tests', () => {
       valuesArray: [],
       loadFactor: 0.75,
       size: 0,
+      initialCapacity: 3,
     });
   });
 });
