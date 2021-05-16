@@ -1,14 +1,35 @@
 // This more optimal hash table is based upon this (https://adrianmejia.com/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial) by Adrian Mejia
 
 export default class HashTable {
+  buckets:
+    | {
+        key: string | number;
+        value: string | number;
+        keyIndex: number;
+        valueIndex: number;
+      }[][]
+    | [];
+  loadFactor: number;
+  size: number;
+  collisions: number;
+  keysArray: { content: string | number }[];
+  valuesArray: { content: string | number }[];
+
   constructor(
     initialCapacity = 16,
-    buckets,
+    buckets:
+      | {
+          key: string | number;
+          value: string | number;
+          keyIndex: number;
+          valueIndex: number;
+        }[][]
+      | [],
     loadFactor = 0.75,
     size = 0,
     collisions = 0,
-    keysArray = [],
-    valuesArray = []
+    keysArray = [] as { content: string | number }[],
+    valuesArray = [] as { content: string | number }[]
   ) {
     // buckets is added here in order to allow the initialization of new HashTable from react state hashMap (so the state is not directly mutated)
     this.buckets = buckets ? buckets : new Array(initialCapacity);
@@ -21,7 +42,7 @@ export default class HashTable {
     this.valuesArray = valuesArray;
   }
 
-  hash(key) {
+  hash(key: string | number) {
     let hashValue = 0;
     // typeof used to distinguish between strings with same chars but diff type
     const stringTypeKey = `${key}${typeof key}`;
@@ -38,14 +59,14 @@ export default class HashTable {
   }
 
   // gets the index of the bucket that the key falls into
-  getBucketIndex(key) {
+  getBucketIndex(key: string | number) {
     const hashValue = this.hash(key);
     const bucketIndex = hashValue % this.buckets.length;
     return bucketIndex;
   }
 
-  getIndexes(key) {
-    // gets the bucket that the key is in
+  getIndexes(key: string | number) {
+    // gets the index of the bucket that the key falls into
     const bucketIndex = this.getBucketIndex(key);
     // creates a var representing that bucket
     const bucketItems = this.buckets[bucketIndex] || [];
@@ -66,7 +87,7 @@ export default class HashTable {
     return { bucketIndex };
   }
 
-  set(key, value) {
+  set(key: string | number, value: string | number) {
     const { bucketIndex, itemIndex } = this.getIndexes(key);
 
     // if key does does not exist, initialize array and save key/value
@@ -95,7 +116,7 @@ export default class HashTable {
   }
 
   // returns value of provided key (if key exists)
-  get(key) {
+  get(key: string | number) {
     const bucketIndex = this.getBucketIndex(key);
     if (this.buckets[bucketIndex]) {
       for (
@@ -109,17 +130,17 @@ export default class HashTable {
         }
       }
     }
+    return;
   }
 
   // returns a boolean establishing whether key exists
-  has(key) {
+  has(key: string | number) {
     return !!this.get(key);
   }
 
-  remove(key) {
-    const { bucketIndex, itemIndex, keyIndex, valueIndex } = this.getIndexes(
-      key
-    );
+  remove(key: string | number) {
+    const { bucketIndex, itemIndex, keyIndex, valueIndex } =
+      this.getIndexes(key);
 
     // if key does not exist, return false
     if (itemIndex === undefined) {
@@ -132,22 +153,23 @@ export default class HashTable {
     }
 
     // if key exists, removes from buckets/keys and decrements size counter
+
     this.buckets[bucketIndex].splice(itemIndex, 1);
-    delete this.keysArray[keyIndex];
-    delete this.valuesArray[valueIndex];
+    delete this.keysArray[keyIndex!];
+    delete this.valuesArray[valueIndex!];
     this.size--;
 
     return true;
   }
 
-  rehash(newCapacity) {
+  rehash(newCapacity: number) {
     // creates a new HashTable, double the previous capacity
-    const newMap = new HashTable(newCapacity);
+    const newMap = new HashTable(newCapacity, new Array(newCapacity));
 
     // for each key in keys, adds key/value pair
     this.keysArray.forEach((key) => {
-      if (key) {
-        newMap.set(key.content, this.get(key.content));
+      if (key && this.get(key.content) !== undefined) {
+        newMap.set(key.content, this.get(key.content)!);
       }
     });
 
