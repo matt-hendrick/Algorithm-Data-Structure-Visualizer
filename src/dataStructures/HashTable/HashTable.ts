@@ -16,8 +16,8 @@ export default class HashTable {
   valuesArray: { content: string | number }[];
 
   constructor(
-    initialCapacity = 16,
-    buckets:
+    initialCapacity = 4,
+    buckets?:
       | {
           key: string | number;
           value: string | number;
@@ -164,7 +164,7 @@ export default class HashTable {
 
   rehash(newCapacity: number) {
     // creates a new HashTable, double the previous capacity
-    const newMap = new HashTable(newCapacity, new Array(newCapacity));
+    const newMap = new HashTable(newCapacity);
 
     // for each key in keys, adds key/value pair
     this.keysArray.forEach((key) => {
