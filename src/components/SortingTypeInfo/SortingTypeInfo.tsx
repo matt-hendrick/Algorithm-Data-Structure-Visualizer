@@ -11,7 +11,7 @@ import {
 
 interface Props {
   sortingType: string;
-  sortingSteps?: number[];
+  sortingSteps?: number[][];
   currentStep: number | string;
 }
 

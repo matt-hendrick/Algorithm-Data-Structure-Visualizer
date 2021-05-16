@@ -25,11 +25,15 @@ export const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-export const swap = (array: number[], from: number, to: number) => {
+export const swap = (
+  array: number[] | number[][],
+  from: number,
+  to: number
+) => {
   [array[from], array[to]] = [array[to], array[from]];
 };
 
-export const shuffle = (array: number[]) => {
+export const shuffle = (array: number[] | number[][]) => {
   for (let index = 0; index < array.length; index++) {
     const newIndex = Math.floor(Math.random() * array.length);
     swap(array, index, newIndex);
