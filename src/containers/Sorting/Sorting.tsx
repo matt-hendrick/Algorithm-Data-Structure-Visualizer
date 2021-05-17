@@ -17,23 +17,25 @@ import SortingTypeInfo from '../../components/SortingTypeInfo/SortingTypeInfo';
 import SortingListItem from '../../components/SortingListItem/SortingListItem';
 
 const Sorting = () => {
-  const [arr, setArr] = useState();
+  const [arr, setArr] = useState<number[][]>([]);
   // originalArr is set to arr when merge sort is run
   // originalArr is displayed alongside the new array built by the merge sort function
-  const [originalArr, setOriginalArr] = useState();
-  const [sortingType, setSortingType] = useState(null);
+  const [originalArr, setOriginalArr] = useState<number[][]>([]);
+  const [sortingType, setSortingType] = useState('');
   // sortingSteps is an array of sorting steps that useInterval iterates through for the visualization
-  const [sortingSteps, setSortingSteps] = useState([]);
+  const [sortingSteps, setSortingSteps] = useState<
+    Array<number[] | null> | any
+  >([]);
   const [currentStep, setCurrentStep] = useState(0);
   // pointerSteps is an array of pointer locations that useInterval iterates through to mark locations of the pointers
-  const [pointerSteps, setPointerSteps] = useState([]);
-  const [currentPointer, setCurrentPointer] = useState();
+  const [pointerSteps, setPointerSteps] = useState<number[][]>([]);
+  const [currentPointer, setCurrentPointer] = useState<number[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [sortingSpeed, setSortingSpeed] = useState(10000);
 
   // these temp arrays are used to store sorting steps and pointer locations through each iteration of the sorting algorithms
-  let tempSortingStepsArray = [];
-  let tempPointerStepsArray = [];
+  let tempSortingStepsArray = [] as Array<number[] | null> | any;
+  let tempPointerStepsArray = [] as number[][];
 
   useEffect(() => {
     generateArray();
@@ -60,12 +62,12 @@ const Sorting = () => {
         }
         if (
           sortingSteps[currentStep] !== null &&
-          sortingSteps[currentStep][0] < 25
+          sortingSteps[currentStep]![0] < 25
         ) {
           swap(
             tempArr,
-            sortingSteps[currentStep][0],
-            sortingSteps[currentStep][1]
+            sortingSteps[currentStep]![0],
+            sortingSteps[currentStep]![1]
           );
           setArr(tempArr);
         }
@@ -73,11 +75,8 @@ const Sorting = () => {
       }
       // Merge Sort
       else if (sortingType === 'Merge Sort') {
-        // if (pointerSteps) {
-        //   setCurrentPointer(pointerSteps[currentStep]);
-        // }
         if (sortingSteps[currentStep] !== null) {
-          setArr(sortingSteps[currentStep]);
+          setArr(sortingSteps[currentStep]!);
         }
         setCurrentStep(currentStep + 1);
       }
@@ -99,20 +98,20 @@ const Sorting = () => {
       tempArr.push([getRandomInt(1, 100), i]);
     }
     setArr(tempArr);
-    setOriginalArr();
+    setOriginalArr([]);
     setIsRunning(false);
     setCurrentStep(0);
-    setSortingType(null);
-    setCurrentPointer();
+    setSortingType('');
+    setCurrentPointer([]);
     setPointerSteps([]);
     setSortingSpeed(10000);
   };
 
   // sets state to begin sorting
-  const startSorting = (nameOfSortingType) => {
+  const startSorting = (nameOfSortingType: string) => {
     // options shared by all sorting algos
     setCurrentStep(0);
-    setCurrentPointer(0);
+    setCurrentPointer([]);
     setIsRunning(true);
     setSortingType(nameOfSortingType);
     setSortingSpeed(500);
@@ -123,7 +122,7 @@ const Sorting = () => {
     }
     // Bogo sort clear out sorting steps
     else {
-      setSortingSteps(null);
+      setSortingSteps([]);
     }
 
     // Sorting algos with pointers
@@ -136,14 +135,14 @@ const Sorting = () => {
     }
     // Clear pointer steps if selected sorting algo does not have pointers set up
     else {
-      setPointerSteps(null);
+      setPointerSteps([]);
     }
 
     // Non Merge Sort sorting options
     if (nameOfSortingType !== 'Merge Sort') {
-      if (originalArr) {
+      if (originalArr.length > 0) {
         setArr(originalArr);
-        setOriginalArr();
+        setOriginalArr([]);
       }
     }
     // Merge Sort Specific options
@@ -156,7 +155,7 @@ const Sorting = () => {
 
   // Bubble Sort
   const handleBubbleSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
 
     for (let i = 1; i < tempArr.length; i++) {
       let swapped = false;
@@ -182,7 +181,7 @@ const Sorting = () => {
 
   // Insertion Sort
   const handleInsertionSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
 
     for (let right = 1; right < tempArr.length; right++) {
       for (
@@ -201,7 +200,7 @@ const Sorting = () => {
 
   // Selection Sort
   const handleSelectionSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
 
     for (let left = 0; left < tempArr.length; left++) {
       let selection = left;
@@ -228,11 +227,11 @@ const Sorting = () => {
 
   // Merge Sort
   const handleMergeSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
     let len = tempArr.length;
 
     // creates a second array necessary for merge sort
-    let buffer = [];
+    let buffer = [] as number[][];
 
     for (let size = 1; size < len; size *= 2) {
       for (let leftStart = 0; leftStart < len; leftStart += 2 * size) {
@@ -280,7 +279,7 @@ const Sorting = () => {
   };
 
   // Quick Sort
-  const getQuickSortPivot = (array, start, end) => {
+  const getQuickSortPivot = (array: number[][], start: number, end: number) => {
     let pivot = array[start],
       pointer = start;
 
@@ -297,7 +296,7 @@ const Sorting = () => {
     return pointer;
   };
 
-  const quickSort = (array, start = 0, end = array.length - 1) => {
+  const quickSort = (array: number[][], start = 0, end = array.length - 1) => {
     if (start < end) {
       let pivotIndex = getQuickSortPivot(array, start, end);
       quickSort(array, start, pivotIndex);
@@ -308,12 +307,12 @@ const Sorting = () => {
   };
 
   const handleQuickSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
     return quickSort(tempArr);
   };
 
   // Heap Sort
-  const buildMaxHeap = (array) => {
+  const buildMaxHeap = (array: number[][]) => {
     let i = Math.floor(array.length / 2 - 1);
 
     while (i >= 0) {
@@ -322,7 +321,7 @@ const Sorting = () => {
     }
   };
 
-  const heapify = (heap, i, max) => {
+  const heapify = (heap: number[][], i: number, max: number) => {
     let index, leftChild, rightChild;
 
     while (i < max) {
@@ -350,7 +349,7 @@ const Sorting = () => {
   };
 
   const handleHeapSort = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
     buildMaxHeap(tempArr);
 
     let lastElement = tempArr.length - 1;
@@ -373,23 +372,23 @@ const Sorting = () => {
 
   // Shuffle
   const handleShuffle = () => {
-    let tempArr = originalArr ? [...originalArr] : [...arr];
-    if (originalArr) {
+    let tempArr = originalArr.length > 0 ? [...originalArr] : [...arr];
+    if (originalArr.length > 0) {
       setArr(originalArr);
-      setOriginalArr();
+      setOriginalArr([]);
     }
     shuffle(tempArr);
     setArr(tempArr);
     setIsRunning(false);
     setCurrentStep(0);
-    setCurrentPointer();
+    setCurrentPointer([]);
     setPointerSteps([]);
-    setSortingType(null);
+    setSortingType('');
     setSortingSpeed(500);
   };
 
   // Change Sorting Speed
-  const handleSortingSpeedChange = (newSpeed) => {
+  const handleSortingSpeedChange = (newSpeed: number) => {
     setSortingSpeed(newSpeed);
   };
 
@@ -402,19 +401,17 @@ const Sorting = () => {
   let originalArrDisplay, arrDisplay, pointerDisplay, playButtonsDisplay;
 
   // originalArr displayed when using sorting algos that aren't in-place
-  if (originalArr) {
+  if (originalArr.length > 0) {
     originalArrDisplay = (
       <div className="original-arr-wrapper">
         {originalArr.map((item) => (
-          <SortingListItem key={item[1]} size={item[0] * 2}>
-            {item[0]}
-          </SortingListItem>
+          <SortingListItem key={item[1]} size={item[0] * 2}></SortingListItem>
         ))}
       </div>
     );
   }
 
-  if (arr) {
+  if (arr && arr.length > 0) {
     arrDisplay = (
       <Flipper flipKey={arr.join('')}>
         <ul className="flipper-ul">
@@ -436,7 +433,7 @@ const Sorting = () => {
   }
 
   // Display pointer if bubble, insertion, or selection sort
-  if (arr && currentPointer) {
+  if (arr && arr.length > 0 && currentPointer && currentPointer.length > 0) {
     if (
       sortingType === 'Bubble Sort' ||
       sortingType === 'Insertion Sort' ||
