@@ -1,11 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Sorting from './Sorting';
+import SortingVisualizer from './SortingVisualizer';
 
 describe('Sorting tests', () => {
   it('Runs bubble sort when bubble sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
 
     userEvent.click(screen.getByRole('button', { name: /bubble sort/i }));
 
@@ -21,7 +20,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs insertion sort when insertion sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /insertion sort/i }));
     expect(
       screen.getByRole('heading', {
@@ -35,7 +34,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs selection sort when selection sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /selection sort/i }));
     expect(
       screen.getByRole('heading', {
@@ -49,7 +48,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs quick sort when quick sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /quick sort/i }));
     expect(
       screen.getByRole('heading', {
@@ -63,7 +62,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs merge sort when merge sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /merge sort/i }));
     expect(
       screen.getByRole('heading', {
@@ -77,7 +76,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs heap sort when heap sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /heap sort/i }));
     expect(
       screen.getByRole('heading', {
@@ -91,7 +90,7 @@ describe('Sorting tests', () => {
   });
 
   it('Runs bogo sort when bogo sort button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
     userEvent.click(screen.getByRole('button', { name: /bogo sort/i }));
     expect(
       screen.getByRole('heading', { name: /bogo sort's average run time is/i })
@@ -103,7 +102,7 @@ describe('Sorting tests', () => {
   });
 
   it('Clears out sort info shuffle button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
 
     userEvent.click(screen.getByRole('button', { name: /shuffle/i }));
 
@@ -123,7 +122,7 @@ describe('Sorting tests', () => {
   });
 
   it('Clears out sort info generate a new array button clicked', async () => {
-    render(<Sorting />);
+    render(<SortingVisualizer />);
 
     userEvent.click(
       screen.getByRole('button', { name: /generate a new array/i })

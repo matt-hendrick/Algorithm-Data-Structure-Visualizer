@@ -10,7 +10,7 @@ import NavBar from './components/Navbar/Navbar';
 
 // Pages
 import Home from './containers/Home/Home';
-import Sorting from './containers/Sorting/Sorting';
+import SortingVisualizer from './containers/SortingVisualizer/SortingVisualizer';
 import LinkedListVisualizer from './containers/LinkedListVisualizer/LinkedListVisualizer';
 import StackVisualizer from './containers/StackVisualizer/StackVisualizer';
 import QueueVisualizer from './containers/QueueVisualizer/QueueVisualizer';
@@ -26,7 +26,7 @@ const App = () => {
       <Container className="app-container">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/sorting" component={Sorting} />
+          <Route exact path="/sorting" component={SortingVisualizer} />
           <Route exact path="/linkedlist" component={LinkedListVisualizer} />
           <Route exact path="/stack" component={StackVisualizer} />
           <Route exact path="/queue" component={QueueVisualizer} />

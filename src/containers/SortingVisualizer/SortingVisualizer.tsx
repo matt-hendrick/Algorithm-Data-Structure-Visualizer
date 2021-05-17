@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './Sorting.css';
+import './SortingVisualizer.css';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
 // Utility Functions
