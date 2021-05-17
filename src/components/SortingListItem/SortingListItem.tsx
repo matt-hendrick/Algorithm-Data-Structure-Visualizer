@@ -2,6 +2,7 @@ import './SortingListItem.css';
 
 interface Props {
   size: number | string;
+  children: number;
 }
 
 const SortingListItem = (props: Props) => {
@@ -13,7 +14,9 @@ const SortingListItem = (props: Props) => {
         style={{
           height: size,
         }}
-      ></div>
+      >
+        {props.children}
+      </div>
     </div>
   );
 };
