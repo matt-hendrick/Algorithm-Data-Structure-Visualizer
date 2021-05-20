@@ -1,6 +1,5 @@
 .sorting-list-item-outer-div {
   height: 200px;
-  margin-right: 3vw;
   position: relative;
   width: 150px;
 }
@@ -11,4 +10,6 @@
   bottom: 0;
   display: flex;
   width: 2vw;
+  left: 0;
+  right: 0;
 }

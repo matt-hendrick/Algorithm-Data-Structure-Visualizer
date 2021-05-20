@@ -38,7 +38,7 @@
   bottom: 0;
   width: 2vw;
   left: 0;
-  right: 0;
+  /* right: 0; */
 }
 
 .arrow-up {
