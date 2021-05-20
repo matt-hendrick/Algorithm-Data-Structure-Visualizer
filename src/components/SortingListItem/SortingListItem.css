@@ -9,6 +9,7 @@
   position: absolute;
   bottom: 0;
   display: flex;
+  margin: auto;
   width: 2vw;
   left: 0;
   right: 0;
