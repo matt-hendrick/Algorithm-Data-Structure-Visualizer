@@ -10,9 +10,11 @@
 
 .enter-node-prompt-no-margin {
   text-align: center;
+  color: #b23a48;
 }
 
 .enter-node-prompt-margin-top {
   margin-top: 5vh;
   text-align: center;
+  color: #b23a48;
 }
