@@ -8,6 +8,9 @@ import Queue from '../../dataStructures/Queue/Queue';
 import MyButton from '../../components/MyButton/MyButton';
 import Input from '../../components/Input/Input';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function QueueVisualizer() {
   const [queue, setQueue] = useState<Queue | null>(null);
   const [arr, setArr] = useState<string[] | null>(null);
@@ -47,6 +50,16 @@ function QueueVisualizer() {
     }
   };
 
+  const generateRandomQueue = () => {
+    let newQueue = new Queue();
+    let stackMaxHeight = getRandomInt(1, 50);
+    for (let i = 0; i < stackMaxHeight; i++) {
+      newQueue.add(getRandomInt(1, 100));
+    }
+    setQueue(newQueue);
+    setArr(newQueue.toArray() as string[]);
+  };
+
   const updateNodeValue = (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -72,6 +85,7 @@ function QueueVisualizer() {
         <MyButton onClick={clearQueue} disabled={!arr}>
           Clear Queue
         </MyButton>
+        <MyButton onClick={generateRandomQueue}>Generate Random Queue</MyButton>
       </div>
       <div className="queue-container">
         <div className="queue-border-column">Queue Start</div>
