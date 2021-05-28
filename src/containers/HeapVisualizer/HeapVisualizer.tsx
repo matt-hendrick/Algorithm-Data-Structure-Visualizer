@@ -9,6 +9,9 @@ import Input from '../../components/Input/Input';
 // Data Structures
 import Heap from '../../dataStructures/Heap/Heap';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function HeapVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState<number | '' | '-'>('');
   const [heap, setHeap] = useState<Heap | null>(null);
@@ -73,6 +76,17 @@ function HeapVisualizer() {
     } else return;
   };
 
+  const generateRandomHeap = () => {
+    setIsMinHeap(getRandomInt(1, 50) > 25 ? true : false);
+    let newHeap = new Heap([], isMinHeap ? (a, b) => a - b : (a, b) => b - a);
+    let stackMaxHeight = getRandomInt(1, 50);
+    for (let i = 0; i < stackMaxHeight; i++) {
+      newHeap.insert(getRandomInt(1, 100));
+    }
+    setHeap(newHeap);
+    setArr(newHeap.toLevelOrderArray());
+  };
+
   const updateNewNodeValue = (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -106,6 +120,7 @@ function HeapVisualizer() {
         <MyButton onClick={clearHeap} disabled={!heap}>
           Clear Heap
         </MyButton>
+        <MyButton onClick={generateRandomHeap}>Generate Random Heap</MyButton>
       </div>
       {arr && arr.length > 0 ? (
         <h4 className="heap-type-header">
