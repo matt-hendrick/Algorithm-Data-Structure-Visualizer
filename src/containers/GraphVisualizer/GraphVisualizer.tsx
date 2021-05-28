@@ -12,6 +12,9 @@ import MyGraph from '../../dataStructures/Graph/Graph';
 // Vis.js
 import Graph from 'react-graph-vis';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function GraphVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState('');
   const [newSourceNode, setNewSourceNode] = useState('');
@@ -76,6 +79,17 @@ function GraphVisualizer() {
       setNewSourceNode('');
       setNewDestinationNode('');
     }
+  };
+
+  const generateRandomGraph = () => {
+    let newGraph = new MyGraph();
+    let graphMaxSize = getRandomInt(1, 50);
+    for (let i = 0; i < graphMaxSize; i++) {
+      if (getRandomInt(1, 50) > 10)
+        newGraph.addEdge(getRandomInt(1, 100), getRandomInt(1, 100));
+      else newGraph.addVertex(getRandomInt(1, 100));
+    }
+    setGraph(newGraph);
   };
 
   const updateNodeValue = (event: React.ChangeEvent) => {
@@ -181,6 +195,7 @@ function GraphVisualizer() {
         >
           Clear Graph
         </MyButton>
+        <MyButton onClick={generateRandomGraph}>Generate Random Graph</MyButton>
       </div>
 
       <div className="graph-container">
