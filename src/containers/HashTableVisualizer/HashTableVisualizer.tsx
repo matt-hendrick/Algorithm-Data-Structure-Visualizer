@@ -9,6 +9,9 @@ import Input from '../../components/Input/Input';
 // Data Structures
 import HashTable from '../../dataStructures/HashTable/HashTable';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function HashTableVisualizer() {
   const [newKey, setNewKey] = useState('');
   const [newValue, setNewValue] = useState('');
@@ -79,6 +82,20 @@ function HashTableVisualizer() {
     }
   };
 
+  const generateRandomTable = () => {
+    let newHashTable = new HashTable();
+    let tableMaxSize = getRandomInt(1, 50);
+    for (let i = 0; i < tableMaxSize; i++) {
+      newHashTable.set(
+        Math.random().toString(36).substring(7),
+        Math.random().toString(36).substring(7)
+      );
+    }
+    setHashTable(newHashTable);
+    let newArr = Array.from(newHashTable.buckets, (item) => item || null);
+    setArr(newArr);
+  };
+
   const updateNewKey = (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -121,6 +138,9 @@ function HashTableVisualizer() {
         </MyButton>
         <MyButton onClick={clearHashTable} disabled={!hashTable}>
           Clear Hash Table
+        </MyButton>
+        <MyButton onClick={generateRandomTable}>
+          Generate Random Hash Table
         </MyButton>
       </div>
       <div>
