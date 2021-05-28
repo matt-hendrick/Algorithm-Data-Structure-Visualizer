@@ -9,6 +9,9 @@ import MyButton from '../../components/MyButton/MyButton';
 import Alert from '../../components/Alert/Alert';
 import Input from '../../components/Input/Input';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function StackVisualizer() {
   const [stack, setStack] = useState<Stack | null>(null);
   const [arr, setArr] = useState<string[] | null>(null);
@@ -59,6 +62,17 @@ function StackVisualizer() {
     }
   };
 
+  const generateRandomStack = () => {
+    setStackOverflow(false);
+    let newStack = new Stack();
+    let stackMaxHeight = getRandomInt(1, 13);
+    for (let i = 0; i < stackMaxHeight; i++) {
+      newStack.add(getRandomInt(1, 100));
+    }
+    setStack(newStack);
+    setArr(newStack.toArray() as string[]);
+  };
+
   const updateNodeValue = (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -85,6 +99,7 @@ function StackVisualizer() {
         <MyButton onClick={clearStack} disabled={!arr}>
           Clear Stack
         </MyButton>
+        <MyButton onClick={generateRandomStack}>Generate Random Stack</MyButton>
       </div>
       {arr ? (
         <div className="stack-display-container">
