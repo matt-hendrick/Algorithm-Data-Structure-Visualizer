@@ -9,6 +9,9 @@ import Node from '../../dataStructures/Node/Node';
 import MyButton from '../../components/MyButton/MyButton';
 import Input from '../../components/Input/Input';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function LinkedListVisualizer() {
   const [list, setList] = useState<LinkedList | null>(null);
   const [arr, setArr] = useState<string[] | null>(null);
@@ -84,6 +87,16 @@ function LinkedListVisualizer() {
     }
   };
 
+  const generateRandomList = () => {
+    let newList = new LinkedList();
+    let stackMaxHeight = getRandomInt(1, 50);
+    for (let i = 0; i < stackMaxHeight; i++) {
+      newList.addFirst(getRandomInt(1, 100));
+    }
+    setList(newList);
+    setArr(newList.toArray() as string[]);
+  };
+
   const updateAddNodeValue = (event: React.ChangeEvent) => {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -118,6 +131,7 @@ function LinkedListVisualizer() {
         <MyButton onClick={clearList} disabled={!arr}>
           Clear List
         </MyButton>
+        <MyButton onClick={generateRandomList}>Generate Random List</MyButton>
       </div>
       <div className="linked-list-container">
         <div className="linked-list-border-column">List Start</div>
