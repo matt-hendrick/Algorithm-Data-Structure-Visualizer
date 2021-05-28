@@ -89,8 +89,8 @@ function LinkedListVisualizer() {
 
   const generateRandomList = () => {
     let newList = new LinkedList();
-    let stackMaxHeight = getRandomInt(1, 50);
-    for (let i = 0; i < stackMaxHeight; i++) {
+    let listMaxSize = getRandomInt(1, 50);
+    for (let i = 0; i < listMaxSize; i++) {
       newList.addFirst(getRandomInt(1, 100));
     }
     setList(newList);

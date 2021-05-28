@@ -9,6 +9,9 @@ import Input from '../../components/Input/Input';
 // Data Structures
 import BinaryTree from '../../dataStructures/BinaryTree/BinaryTree';
 
+// Utility
+import { getRandomInt } from '../../utility/utilityFunctions';
+
 function BinaryTreeVisualizer() {
   const [newNodeValue, setNewNodeValue] = useState<number | '' | '-'>('');
   const [tree, setTree] = useState<BinaryTree | null>(null);
@@ -54,6 +57,16 @@ function BinaryTreeVisualizer() {
       setTree(null);
       setArr(null);
     }
+  };
+
+  const generateRandomTree = () => {
+    let newTree = new BinaryTree();
+    let treeMaxSize = getRandomInt(1, 10);
+    for (let i = 0; i < treeMaxSize; i++) {
+      newTree.insert(getRandomInt(1, 100));
+    }
+    setTree(newTree);
+    setArr(newTree.toLevelOrderArray() as (string | number)[][]);
   };
 
   const updateNewNodeValue = (event: React.ChangeEvent) => {
@@ -111,6 +124,7 @@ function BinaryTreeVisualizer() {
         >
           Clear Tree
         </MyButton>
+        <MyButton onClick={generateRandomTree}>Generate Random Tree</MyButton>
       </div>
       <div className="tree">
         {arr && arr?.length > 0 ? (

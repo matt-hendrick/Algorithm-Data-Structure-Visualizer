@@ -79,8 +79,8 @@ function HeapVisualizer() {
   const generateRandomHeap = () => {
     setIsMinHeap(getRandomInt(1, 50) > 25 ? true : false);
     let newHeap = new Heap([], isMinHeap ? (a, b) => a - b : (a, b) => b - a);
-    let stackMaxHeight = getRandomInt(1, 50);
-    for (let i = 0; i < stackMaxHeight; i++) {
+    let heapMaxSize = getRandomInt(1, 50);
+    for (let i = 0; i < heapMaxSize; i++) {
       newHeap.insert(getRandomInt(1, 100));
     }
     setHeap(newHeap);

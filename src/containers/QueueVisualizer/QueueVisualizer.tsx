@@ -52,8 +52,8 @@ function QueueVisualizer() {
 
   const generateRandomQueue = () => {
     let newQueue = new Queue();
-    let stackMaxHeight = getRandomInt(1, 50);
-    for (let i = 0; i < stackMaxHeight; i++) {
+    let queueMaxSize = getRandomInt(1, 50);
+    for (let i = 0; i < queueMaxSize; i++) {
       newQueue.add(getRandomInt(1, 100));
     }
     setQueue(newQueue);
