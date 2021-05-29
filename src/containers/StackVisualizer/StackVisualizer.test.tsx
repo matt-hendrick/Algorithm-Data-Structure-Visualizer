@@ -91,4 +91,20 @@ describe('StackVisualizer tests', () => {
 
     expect(stackOverFlowText).not.toBeInTheDocument();
   });
+
+  it('StackVisualizer generateRandomStack correctly generates a stack', () => {
+    render(<StackVisualizer />);
+
+    let addNodePromptText = screen.getByText(
+      /Add a new Node to visualize a new Stack/i
+    );
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random stack/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
