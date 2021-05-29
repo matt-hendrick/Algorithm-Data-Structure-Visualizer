@@ -99,4 +99,20 @@ describe('LinkedListVisualizer tests', () => {
 
     expect(node).not.toBeInTheDocument();
   });
+
+  it('LinkedListVisualizer generateRandomLinkedList correctly generates a list', () => {
+    render(<LinkedListVisualizer />);
+
+    let addNodePromptText = screen.getByText(
+      /Add a new Node to visualize a new Linked List/i
+    );
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random list/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
