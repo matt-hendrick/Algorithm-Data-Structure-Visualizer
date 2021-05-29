@@ -120,4 +120,20 @@ describe('HeapVisualizer tests', () => {
       screen.getByText(/Add a new Node to visualize a new Heap/)
     ).toBeInTheDocument();
   });
+
+  it('HeapVisualizer generateRandomHeap correctly generates a heap', () => {
+    render(<HeapVisualizer />);
+
+    let addNodePromptText = screen.getByText(
+      /Add a new Node to visualize a new Heap/i
+    );
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random heap/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
