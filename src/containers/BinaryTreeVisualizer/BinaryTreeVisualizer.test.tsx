@@ -83,4 +83,18 @@ describe('BinaryTreeVisualizer tests', () => {
       screen.getByText(/Add a new Node to visualize a new Binary Tree/)
     ).toBeInTheDocument();
   });
+
+  it('BinaryTreeVisualizer generateRandomBinaryTree correctly generates a binary tree', () => {
+    render(<BinaryTreeVisualizer />);
+
+    let addNodePromptText = screen.getByText(/Add a new Node/i);
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random tree/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });

@@ -129,10 +129,10 @@ function BinaryTreeVisualizer() {
       <div className="tree">
         {arr && arr?.length > 0 ? (
           arr.map((item, index) => (
-            <ul key={item.toString() + index}>
+            <ul key={Math.random().toString(36).substring(7)}>
               {item.map((subitem) => (
                 <li
-                  key={subitem.toString() + index + item}
+                  key={Math.random().toString(36).substring(7)}
                   style={{ width: `${index * 30 + 10}%` }}
                 >
                   <button disabled>{subitem}</button>
