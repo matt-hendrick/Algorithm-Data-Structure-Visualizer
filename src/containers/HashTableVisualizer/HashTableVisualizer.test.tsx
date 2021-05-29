@@ -78,4 +78,20 @@ describe('Hash Table Visualizer tests', () => {
       screen.getByText(/Add a new Node to visualize a new Hash Table/)
     ).toBeInTheDocument();
   });
+
+  it('HashTableVisualizer generateRandomHashTable correctly generates a hash table', () => {
+    render(<HashTableVisualizer />);
+
+    let addNodePromptText = screen.getByText(
+      /Add a new Node to visualize a new Hash Table/i
+    );
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random hash table/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
