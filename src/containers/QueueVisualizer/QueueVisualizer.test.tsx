@@ -49,4 +49,20 @@ describe('QueueVisualizer tests', () => {
 
     expect(node).not.toBeInTheDocument();
   });
+
+  it('QueueVisualizer generateRandomQueue correctly generates a queue', () => {
+    render(<QueueVisualizer />);
+
+    let addNodePromptText = screen.getByText(
+      /Add a new Node to visualize a new Queue/i
+    );
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random queue/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
