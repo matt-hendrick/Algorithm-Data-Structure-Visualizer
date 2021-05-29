@@ -44,4 +44,18 @@ describe('GraphVisualizer tests', () => {
 
     expect(nodePrompt).toBeInTheDocument();
   });
+
+  it('GraphVisualizer generateRandomGraph correctly generates a graph', () => {
+    render(<GraphVisualizer />);
+
+    let addNodePromptText = screen.getByText(/Add a new Node/i);
+
+    expect(addNodePromptText).toBeInTheDocument();
+
+    userEvent.click(
+      screen.getByRole('button', { name: /generate random graph/i })
+    );
+
+    expect(addNodePromptText).not.toBeInTheDocument();
+  });
 });
