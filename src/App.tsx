@@ -19,7 +19,21 @@ import HeapVisualizer from './containers/HeapVisualizer/HeapVisualizer';
 import HashTableVisualizer from './containers/HashTableVisualizer/HashTableVisualizer';
 import GraphVisualizer from './containers/GraphVisualizer/GraphVisualizer';
 
+// Utility
+import { googleAnalytics } from './utility/utilityFunctions';
+
+declare global {
+  interface Window {
+    gtag?: (
+      key: string,
+      trackingId: string,
+      config: { page_path: string }
+    ) => void;
+  }
+}
+
 const App = () => {
+  googleAnalytics();
   return (
     <Router>
       <NavBar />
