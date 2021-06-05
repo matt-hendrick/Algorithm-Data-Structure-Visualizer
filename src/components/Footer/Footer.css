@@ -1,0 +1,15 @@
+.footer {
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-link {
+  color: #b23a48;
+}
+
+.footer-link:hover {
+  color: #7ca5b8;
+}

@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 
 // Components
 import NavBar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 // Pages
 import Home from './containers/Home/Home';
@@ -49,6 +50,7 @@ const App = () => {
           <Route exact path="/hashtable" component={HashTableVisualizer} />
           <Route exact path="/graph" component={GraphVisualizer} />
         </Switch>
+        <Footer />
       </Container>
     </Router>
   );
