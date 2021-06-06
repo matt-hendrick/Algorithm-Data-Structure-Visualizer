@@ -17,7 +17,7 @@ function Home() {
   return (
     <div>
       <h3 className="home-header">
-        Click on a Link Below to View an Algorithm or Data Structure Visualizer
+        Click on a Link Below to View a Visualizer
       </h3>
 
       <div className="home-flex-container">
@@ -28,11 +28,6 @@ function Home() {
               header="Sorting Algorithms Visualizer"
               image={QuicksortGif}
             />
-          </div>
-        </div>
-
-        <div className="home-algo-ds-box">
-          <div className="home-card-wrapper">
             <HomeCard link="/heap" header="Heap Visualizer" image={HeapImage} />
             <HomeCard
               link="/hashtable"
