@@ -1,6 +1,7 @@
 .app-container {
   margin-top: 20px;
   padding-bottom: 10px;
+  min-height: 85vh;
 }
 
 .button-row {
