@@ -12,7 +12,6 @@ import Footer from './components/Footer/Footer';
 // Pages
 import Home from './containers/Home/Home';
 import SortingVisualizer from './containers/SortingVisualizer/SortingVisualizer';
-import PathFindingVisualizer from './containers/PathFindingVisualizer/PathFindingVisualizer';
 import LinkedListVisualizer from './containers/LinkedListVisualizer/LinkedListVisualizer';
 import StackVisualizer from './containers/StackVisualizer/StackVisualizer';
 import QueueVisualizer from './containers/QueueVisualizer/QueueVisualizer';
@@ -43,7 +42,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/sorting" component={SortingVisualizer} />
-          <Route exact path="/pathfinding" component={PathFindingVisualizer} />
           <Route exact path="/linkedlist" component={LinkedListVisualizer} />
           <Route exact path="/stack" component={StackVisualizer} />
           <Route exact path="/queue" component={QueueVisualizer} />
