@@ -1,6 +1,6 @@
 export const bubbleSortInfo = {
   description: `Bubble sort is an in-place sorting algorithm that sorts items by comparing each adjacent pair of items in turn,
-   swapping the items if necessary, and repeating iterating through the items until no swaps are done.`,
+   swapping the items if necessary, and repeatedly iterating through the items until no swaps are done.`,
   code: `const handleBubbleSort = (array) => {
     for (let i = 1; i < array.length; i++) {
       let swapped = false;
