@@ -487,15 +487,15 @@ const Sorting = () => {
   return (
     <div>
       <div className="button-row">
-        <MyButton onClick={handleBubbleSort}>Bubble Sort!</MyButton>
-        <MyButton onClick={handleInsertionSort}>Insertion Sort!</MyButton>
-        <MyButton onClick={handleSelectionSort}>Selection Sort!</MyButton>
-        <MyButton onClick={handleMergeSort}>Merge Sort!</MyButton>
-        <MyButton onClick={handleQuickSort}>Quick Sort!</MyButton>
-        <MyButton onClick={handleHeapSort}>Heap Sort!</MyButton>
-        <MyButton onClick={handleBogoSort}>Bogo Sort!</MyButton>
-        <MyButton onClick={handleShuffle}>Shuffle!</MyButton>
-        <MyButton onClick={generateArray}>Generate a New Array!</MyButton>
+        <MyButton onClick={handleBubbleSort}>Bubble Sort</MyButton>
+        <MyButton onClick={handleInsertionSort}>Insertion Sort</MyButton>
+        <MyButton onClick={handleSelectionSort}>Selection Sort</MyButton>
+        <MyButton onClick={handleMergeSort}>Merge Sort</MyButton>
+        <MyButton onClick={handleQuickSort}>Quick Sort</MyButton>
+        <MyButton onClick={handleHeapSort}>Heap Sort</MyButton>
+        <MyButton onClick={handleBogoSort}>Bogo Sort</MyButton>
+        <MyButton onClick={handleShuffle}>Shuffle</MyButton>
+        <MyButton onClick={generateArray}>Generate a New Array</MyButton>
       </div>
 
       <div>
