@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 
-describe('LeafletMap tests', () => {
-  it('renders iNaturalist link', () => {
+describe('Footer tests', () => {
+  it('renders my Github link', () => {
     render(<Footer />);
     expect(screen.getByText(`View on GitHub`).closest('a')).toHaveAttribute(
       'href',
